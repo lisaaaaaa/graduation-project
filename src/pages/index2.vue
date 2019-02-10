@@ -65,7 +65,7 @@
                             <h2><small>Benefits of Exercise</small>To enjoy the glow of good health, you must exercise</h2>
                         </div>
                     </div>
-                    <div class="row-item-2" style="max-width: 60%;float: left">
+                    <div class="row-item-2" style="max-width: 80%;float: left">
                         <div class="row-item-list" style="margin-right: -15px;margin-left: -15px;">
                             <div class="row-item-list-1 msg">
                                 <Icon type="md-add" />
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row-item-3" style="width:40%;max-width: 40%;float: left;margin-top: 60px;">
+                    <div class="row-item-3" style="width:20%;max-width: 20%;float: left;margin-top: 60px;">
                         <img src="./../images/side-01.jpg" class="row-item-img" style="max-width: 100%;height: 450px;"/>
                     </div>
                 </div>
@@ -287,7 +287,7 @@
                             <li class="list"><p>中国, 成都</p></li>
 
                             <li class="list"><Icon type="ios-mail" /></li>
-                            <li class="list"><a href="mailto:example@mail.com" style="margin-left: -7px">lisa.wow@outlook.com</a></li>
+                            <li class="list"><a target="_blank" href="https://outlook.live.com/owa/" style="margin-left: -7px;color:#007bff !important">lisa.wow@outlook.com</a></li>
                         </ul>
                     </div>
                     <div class="footer-socialicons">
@@ -299,7 +299,7 @@
                         <a href="#"><i class="icon6"> </i></a>
                     </div>
                     <div class="footer-bottom">
-                        <p>Copyright &copy; 2019.<a target="_blank" href="">电子科技大学成都学院-2015级云计算科学与技术系</a> - More Message <a href="" target="_blank" title="毕业设计">毕业设计</a></p>
+                        <p>Copyright &copy; 2019.<a target="_blank" href="http://www.cduestc.cn/s.php/yjsj/item-view-id-16334.html" style="color:#007bff !important">电子科技大学成都学院-2015级云计算科学与技术系</a> - More Message 毕业设计</p>
                     </div>
                 </div>
             </div>

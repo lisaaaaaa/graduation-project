@@ -35,6 +35,12 @@ img {
     vertical-align: middle;
 }
 
+hr {
+    margin: 18px 0;
+    background-color: transparent;
+    border-top: 2px dashed #8c8b8b !important;
+}
+
 .top-bar{
     border-radius: 0;
     padding: 16px 0;
@@ -412,8 +418,8 @@ label {
 }
 
 .btn-more:hover, .btn-more:focus {
-    background: #fff;
-    color: #0297FF;
+    background: #fff !important;
+    color: #0297FF !important;
 }
 
 .ivu-tabs{

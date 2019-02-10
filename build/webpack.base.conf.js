@@ -98,4 +98,4 @@ plugins: [
     $: 'jquery'
   })
 ]
-}
+  //}

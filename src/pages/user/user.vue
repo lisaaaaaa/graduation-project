@@ -40,30 +40,238 @@
                             <div class="person-health-indx" style="width: 55%;">
                                 <div class="index-process">
                                     <p style="font-size: 34px;">健康指数</p>
-                                    <div style="margin-top: 10px">
-                                        <span style="display: block;font-size: 20px;">HTML/CSS</span>
+                                    <div class="one" style="margin-top: 10px">
+                                        <span style="display: block;font-size: 20px;">体重指标</span>
                                         <Progress style="color: #c7e7c8;" class="health-progress" :percent="25" :stroke-width="5" />
                                     </div>
-                                    <div style="margin-top: 10px">
-                                        <span style="display: block;font-size: 20px;">Javascript</span>
+                                    <div class="two" style="margin-top: 10px">
+                                        <span style="display: block;font-size: 20px;">血糖指标</span>
                                         <Progress class="health-progress" :percent="25" :stroke-width="5" />
                                     </div>
-                                    <div style="margin-top: 10px">
-                                        <span style="display: block;font-size: 20px;">PHP</span>
+                                    <div class="three" style="margin-top: 10px">
+                                        <span style="display: block;font-size: 20px;">血压指标</span>
                                         <Progress class="health-progress" :percent="25" :stroke-width="5" />
                                     </div>
-                                    <div style="margin-top: 10px">
-                                        <span style="display: block;font-size: 20px;">MYSQL</span>
+                                    <div class="four" style="margin-top: 10px">
+                                        <span style="display: block;font-size: 20px;">血脂指标</span>
                                         <Progress class="health-progress" :percent="25" :stroke-width="5" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="health-img" style="display:-webkit-inline-box;margin-top:30px;width:100%;height:245px;background: radial-gradient(#648880, #293f50);color:#fff;">
+                            <div class="bg" style="width:100%;margin: 65px auto;">
+                                <div style="width:75%;margin:0px auto;">
+                                <div class="sports other " style="">
+                                    <Icon type="md-bicycle" />
+                                    <span class="time" style="font-family: sans-serif;color: #fff;">27</span>min
+                                    <p>骑自行车</p>
+                                </div>
+
+                                <div class="sports other" style="">
+                                    <Icon type="ios-baseball" />
+                                    <span class="time">30</span>min
+                                    <p>户外运动</p>
+                                </div>
+
+                                <div class="sports other walk" style="">
+                                    <Icon type="ios-body" />
+                                    <span class="time">500</span>min
+                                    <p>散步</p>
+                                </div>
+                                </div>
+                                
+                        
+                            </div>
+                    </div>
+                    <div class="article" style="height:auto;">
+                        <div style="padding:15px;">
+                            <div style="height:auto">
+                                <h2>文章</h2>
+                                <hr>
+                            </div>
+                            <div style="display: flex;width: 90%;margin: 0px auto;">
+
+                                <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
+                                <div class="" style="text-align: center;">
+                                    <div class="article-title">
+                                        <h5>CLEAN CODE</h5>
+                                    </div>
+                                    <div class="article-content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
+                                <div class="" style="text-align: center;">
+                                    <div class="article-title">
+                                        <h5>CLEAN CODE</h5>
+                                    </div>
+                                    <div class="article-content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
+                                <div class="" style="text-align: center;">
+                                    <div class="article-title">
+                                        <h5>CLEAN CODE</h5>
+                                    </div>
+                                    <div class="article-content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
+                                    </div>
+                                </div>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                        
+
+                    </div>
+                    <div class="album" style="height:auto">
+
+                        <div style="padding:15px;">
+                            <div style="height:auto">
+                                <h2>相册</h2>
+                                <hr>
+                            </div>
+                        </div>
+                        <div style="display: flex;width: 90%;margin: 0px auto;">
+                            <div class="photo">
+                                <img src='./../../images/project_3.jpg' />
+                            </div>
+                            <div class="photo">
+                                <img src='./../../images/project_3.jpg' />
+                            </div>
+                            <div class="photo">
+                                <img src='./../../images/project_3.jpg' />
+                            </div>
+                        </div>
+
+                        <div class="photo-footer" style="margin-top:15px;">
+                            <div class="viewer" style="width:50%;margin:0px auto;text-align: center;">
+                                <Button icon="ios-plane" size="small" type="success" @click="viewphoto">VIEW MORE</Button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="message-board" style="height:auto;margin-top: 20px;opacity: 1;background: #f3f3f3;">
+                        <div style="padding: 15px;">
+                            <div class="head-line">
+                                <h2>留言板</h2>
+                                <hr>
+                            </div>
+                            <div class="message">
+                                <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
+                                    <div class="icon" style="margin-top: 15px;">
+                                        <Icon type="md-contact" />
+                                    </div>
+                                <div class="info" style="margin-left: 10px;">
+                                    <p>陈小草</p>
+                                    <p style="margin-top: -15px;">2019.1.2</p>
+                                </div>
+                                </div>
+                                <div class="commenter-msg" style="width: 65%;">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    In hendrerit libero ac accumsan lobortis.
+                                     Nam sem lacus, vulputate ut turpis vel, viverra porta ante
+                                </p>
+                                <hr>
+                                </div>
+                            </div>
+                            <div class="message">
+                                <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
+                                    <div class="icon" style="margin-top: 15px;">
+                                        <Icon type="md-contact" />
+                                    </div>
+                                <div class="info" style="margin-left: 10px;">
+                                    <p>陈小草</p>
+                                    <p style="margin-top: -15px;">2019.1.2</p>
+                                </div>
+                                </div>
+                                <div class="commenter-msg" style="width: 65%;">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    In hendrerit libero ac accumsan lobortis.
+                                     Nam sem lacus, vulputate ut turpis vel, viverra porta ante
+                                </p>
+                                <hr>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="footer" style="padding:30px;">
+                        <div style="width:30%;margin:0px auto;">
+                            <div class="footer-icon">
+                                <Icon style="cursor:pointer;" title="github" type="logo-github" />
+                            </div>
+
+                            <div class="footer-icon">
+                                <Icon style="cursor:pointer;" title="phone" type="md-phone-portrait" />
+                            </div>
+                            
+                            <div class="footer-icon">
+                                <Icon style="cursor:pointer;" title="twitter" type="logo-twitter" />
+                            </div>
+
+                            <div class="footer-icon">
+                                <Icon style="cursor:pointer;" title="Email" type="ios-mail" />
+                            </div>
+                            
+                            <div class="footer-icon">
+                                <Icon style="cursor:pointer;" title="contact" type="logo-octocat" />
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
 
         </div>
+
+        <div class="modal">
+            <Modal v-model="modal" fullscreen>
+                <div style="width: 90%;margin: 50px auto;">
+                            <div class="more-photo">
+                                <img src='./../../images/project_3.jpg' />
+                            </div>
+                            <div class="more-photo">
+                                <img src='./../../images/project_3.jpg' />
+                            </div>
+                            <div class="more-photo">
+                                <img src='./../../images/project_3.jpg' />
+                            </div>
+                            <div class="more-photo">
+                                <img src='./../../images/project_3.jpg' />
+                            </div>
+                            <div class="more-photo">
+                                <img src='./../../images/project_3.jpg' />
+                            </div>
+                            <div class="more-photo">
+                                <img src='./../../images/project_3.jpg' />
+                            </div>
+                            <div class="more-photo">
+                                <img src='./../../images/project_3.jpg' />
+                            </div>
+                            <div class="more-photo">
+                                <img src='./../../images/project_3.jpg' />
+                            </div>
+                </div>
+                <div slot="footer" style="text-align: center;">
+                    <Button type="success" size="small" @click="more_cancel">OK</Button>
+                </div>
+            </Modal>
+            
+        </div>
+
     </div>
 </template>
 <script>
@@ -72,7 +280,7 @@
         name: 'user',
         data() {
             return {
-
+                modal:false,
             }
         },
 //        props: ['tariff', 'area', 'tariff_id', 'specification'],
@@ -84,19 +292,27 @@
 
         },
         methods: {
+            viewphoto(){
+                this.modal = true;
+            },
+
+            more_cancel(){
+                this.modal = false;
+            }
         }
     }
 
 
 </script>
 
-<style type="text/css" >
+<style type="text/css">
 
     .logo{
         position: fixed;
         left: 0;
         padding: 20px 20px;
         z-index: 10000;
+        cursor: pointer;
     }
 
     .logo > span{
@@ -105,6 +321,11 @@
         float: left;
         border: 2px solid #fff;
         padding: 7px 10px 7px 12px;
+    }
+
+    .logo > span:hover{
+        color: #fff;
+        opacity: .8;
     }
 
     #home-page{
@@ -203,11 +424,11 @@
     #user-msg .user-main{
         height: auto;
         min-height: 100%;
-        width: 60%;
+        width: 61%;
         position: absolute;
         right: 0px;
         top:0px;
-        padding: 15px;
+       /* padding: 15px;*/
         background: #fff;
     }
 
@@ -227,5 +448,119 @@
         line-height: 1.1;
         color: #444444;
     }
+
+    .health-img .first{
+        margin-left:10%;
+    }
+    .health-img .sports{
+        display: inline-block;
+        width:30%;
+        height:117px;
+        margin: 0px auto;
+        text-align: center;
+    }
+
+    .health-img .sports span p {
+        font-family: sans-serif;
+        color: #fff;
+    }
+
+    .health-img .other{
+       
+    }
+
+    .health-img .time{
+        font-size: 45px
+    }
+
+    .health-img .sports p {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 20px;
+    }
+
+    .ivu-icon-md-bicycle, .ivu-icon-ios-baseball, .ivu-icon-ios-body, .ivu-icon-md-contact, .ivu-icon-logo-github,
+    .ivu-icon-md-phone-portrait, .ivu-icon-logo-twitter, .ivu-icon-ios-mail, .ivu-icon-logo-octocat{
+        font-size: 30px;
+    }
+
+    .footer-icon{
+        display:-webkit-inline-box;
+        margin-left:10px;
+    }
+
+    .person-health-indx .index-process .one .ivu-progress-bg{
+        background-color:#e51c23;
+    }
+
+    .person-health-indx .index-process .two .ivu-progress-bg{
+        background-color:#4caf50;
+    }
+
+    .person-health-indx .index-process .three .ivu-progress-bg{
+        background-color:#ff9800;
+    }
+
+    .person-health-indx .index-process .four .ivu-progress-bg{
+        background-color:#2196f3;
+    }
+
+    .article-msg{
+        border: 4px solid transparent;
+        border-radius: 4px; 
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+        float: left;
+        height:auto;
+    }
+
+    .article-msg:hover{
+        box-shadow: 0 10px 10px -10px rgba(0,0,0,.5);
+        -webkit-transform: scale(1.1);
+    }
+
+.photo{
+    padding: 15px;
+    width: 45%;
+    margin-left: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+.photo:before{
+    background: #3085a3;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+}
+
+.ivu-modal-content{
+    background: rgba(25, 25, 25, .5);
+}
+
+.ivu-modal-close .ivu-icon-ios-close{
+    color:#fff;
+    font-size: 45px;
+}
+
+.more-photo{
+    padding: 15px;
+    width: 30%;
+    margin-left: 3%;
+    text-align: center;
+    cursor: pointer;
+    float:left;
+}
+
+.more-photo img{
+    width:100%;
+    height:100%;
+}
+
+.ivu-icon-logo-github:hover, .ivu-icon-md-phone-portrait:hover, .ivu-icon-logo-twitter:hover, .ivu-icon-ios-mail:hover, .ivu-icon-logo-octocat:hover{
+        color:#ff9800;
+    }
+
+
 
 </style>
