@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="index2">
 
         <div class="top-nav">
             <nav :class="fix1 == true ? 'top-bar fixed' : 'top-bar'">

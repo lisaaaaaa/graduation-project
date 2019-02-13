@@ -5,8 +5,11 @@ author   Lisa  于 2019/1/30
 
 /*-------------------------------------------------- */
 
-a {
+a{
     text-decoration: none !important;
+}
+
+#index2 a {
     color:#fff !important;
 }
 ul, li{
