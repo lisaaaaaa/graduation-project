@@ -1,5 +1,5 @@
 <template>
-    <div style="position:relative;">
+    <div id="login" style="position:relative;">
         <!--<div id="center" style="min-height:85%;">-->
         <div id="center" style="">
 
@@ -20,6 +20,7 @@
                         <span>验证码：</span>                   
                         <i-input v-model="yanzhengma" placeholder="请输入验证码" @on-enter="handleSubmit(formCustom)" style="width: 100px" ></i-input>                   
                         <input class="code-check" type="button" @click="createCode" v-model="checkCode" title="点击切换" style=""/>
+                        <span style="font-size: 12px">点击切换</span>
                     </FormItem>
                     <FormItem style="margin-left: 10%;">
                         <Button style="width: 309px;margin-top: -10px;font-size: 16px;" type="primary" :loading="modal_loading" @click="handleSubmit(formCustom)">登录</Button>
@@ -206,7 +207,7 @@
         width: 16%;
     }
 
-    .h1, .h2, .h3, h1, h2, h3 {
+    #login .h1, #login .h2,#login .h3,#login h1, #login h2, #login h3 {
         margin-top: 20px;
         margin-bottom: 10px;
     }

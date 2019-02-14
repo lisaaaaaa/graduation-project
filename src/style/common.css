@@ -10,7 +10,7 @@ a{
 }
 
 #index2 a {
-    color:#fff !important;
+    color:#fff;
 }
 ul, li{
     list-style-type:none;

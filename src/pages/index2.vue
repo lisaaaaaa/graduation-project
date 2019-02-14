@@ -116,7 +116,7 @@
                     <div class="row-item-5">
                         <p>Our greatest happiness does not depend on the condition of life in which chance has placed us, but is always the result of a good conscience, good health, occupation, and freedom in all just pursuits.</p>
                         <p>Being in control of your life and having realistic expectations about your day-to-day challenges are the keys to stress management, which is perhaps the most important ingredient to living a happy, healthy and rewarding life.</p>
-                        <p><a href="#" class="btn btn-more">Explore More</a></p>
+                        <p><a :href=" '/#/forum' " class="btn btn-more">Explore More</a></p>
                     </div>
                 </div>
             </div>
@@ -480,7 +480,7 @@
         width: 100%;
     }
 
-    .ivu-carousel-list {
+    #index2 .ivu-carousel-list {
         height: 100vh;
     }
 
