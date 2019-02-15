@@ -3,7 +3,8 @@
         <div id="home-page" style="position: absolute">
 
             <div class="logo">
-                <span>健康中心</span>
+                <span><a :href=" '/#/' " style="color:#fff">健康中心</a></span>
+                <!--<Button type="warning" style="background: transparent;color:#f90">健康中心</Button>-->
             </div>
 
             <div class="bg-img">
@@ -18,222 +19,271 @@
             </div>
             <div class="more-msg">
                 <p>View Profile</p>
-                <Icon type="ios-arrow-down" />
+                <Icon type="ios-arrow-down" @click.native="view_profile"/>
             </div>
 
-            <div id="user-msg">
-                <div class="user-main" style="">
-                    <div class="person-msg">
-                        <div class="title">
-                            <h1>David Smith</h1>
-                            <span style="display: block">I'm a Web designer</span>
-                        </div>
-                        <div class="person-signature" style="margin-top: 10px;">
-                            <h1>ABOUT ME</h1>
+
+
+            <Drawer :closable="false" v-model="drawer" width="966">
+
+                <div id="user-msg">
+                    <div class="user-main" style="">
+                        <div class="person-msg">
+                            <div class="title" style="width: 50%;float: left">
+                                <h1>David Smith</h1>
+                                <!--<span style="display: block">I'm a Web designer</span>-->
+                                <hr>
+                            </div>
+                            <div class="more-operations" style="width: 50%;float: right;height: 104px;">
+
+                                <div style="position: fixed;right: 40px;">
+
+
+                                    <Dropdown placement="bottom-start">
+                                        <a href="javascript:void(0)">
+                                            <Icon type="md-menu" />
+                                        </a>
+                                        <DropdownMenu slot="list">
+                                            <DropdownItem>
+                                                <Icon type="ios-contact" />
+                                                个人信息</DropdownItem>
+                                            <DropdownItem>
+                                                <Icon type="ios-heart" />
+                                                我的关注</DropdownItem>
+                                            <DropdownItem>
+                                                <Icon type="ios-star" />
+                                                我的收藏</DropdownItem>
+                                            <DropdownItem>
+                                                <Icon type="ios-paw" />
+                                                我的足迹</DropdownItem>
+                                            <DropdownItem>
+                                                <Icon type="md-exit" />
+                                                退出</DropdownItem>
+                                        </DropdownMenu>
+                                    </Dropdown>
+                                </div>
+                            </div>
+                            <div class="person-signature" style="margin-top: 10px;">
+                                <!--<h1>关于我</h1>-->
                             <span style="margin-top: 10px;">我是一颗小小小小草，怎么长也长也不高。我寻寻觅觅，寻寻觅觅，只为找到一颗太阳，那样就可以又长高。
                                 啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</span>
-                        </div>
-                        <div class="health-index" style="margin-top: 40px;display:-webkit-inline-box;">
-                            <div class="person-img" style="width:46%;margin-right: 4%">
-                                <img src="./../../images/user/avatar500x680.jpg" style="text-align: center;width: 100%;height: auto;"/>
                             </div>
-                            <div class="person-health-indx" style="width: 55%;">
-                                <div class="index-process">
-                                    <p style="font-size: 34px;">健康指数</p>
-                                    <div class="one" style="margin-top: 10px">
-                                        <span style="display: block;font-size: 20px;">体重指标</span>
-                                        <Progress style="color: #c7e7c8;" class="health-progress" :percent="25" :stroke-width="5" />
+                            <div class="health-index" style="margin-top: 40px;display:-webkit-inline-box;">
+                                <div class="person-img" style="width:46%;margin-right: 4%">
+                                    <img src="./../../images/user/avatar500x680.jpg" style="text-align: center;width: 100%;height: auto;"/>
+                                </div>
+                                <div class="person-health-indx" style="width: 55%;">
+                                    <div class="index-process">
+                                        <p style="font-size: 34px;">健康指数<span style="font-size: 12px">(近一周)</span></p>
+                                        <div class="one" style="margin-top: 10px">
+                                            <span style="display: block;font-size: 20px;">体重指标</span>
+                                            <Progress style="color: #c7e7c8;" class="health-progress" :percent="25" :stroke-width="5" />
+                                        </div>
+                                        <div class="two" style="margin-top: 10px">
+                                            <span style="display: block;font-size: 20px;">血糖指标</span>
+                                            <Progress class="health-progress" :percent="25" :stroke-width="5" />
+                                        </div>
+                                        <div class="three" style="margin-top: 10px">
+                                            <span style="display: block;font-size: 20px;">血压指标</span>
+                                            <Progress class="health-progress" :percent="25" :stroke-width="5" />
+                                        </div>
+                                        <div class="four" style="margin-top: 10px">
+                                            <span style="display: block;font-size: 20px;">血脂指标</span>
+                                            <Progress class="health-progress" :percent="25" :stroke-width="5" />
+                                        </div>
                                     </div>
-                                    <div class="two" style="margin-top: 10px">
-                                        <span style="display: block;font-size: 20px;">血糖指标</span>
-                                        <Progress class="health-progress" :percent="25" :stroke-width="5" />
-                                    </div>
-                                    <div class="three" style="margin-top: 10px">
-                                        <span style="display: block;font-size: 20px;">血压指标</span>
-                                        <Progress class="health-progress" :percent="25" :stroke-width="5" />
-                                    </div>
-                                    <div class="four" style="margin-top: 10px">
-                                        <span style="display: block;font-size: 20px;">血脂指标</span>
-                                        <Progress class="health-progress" :percent="25" :stroke-width="5" />
+                                    <div class="health_history">
+                                        <a style="font-size: 20px;font-weight: bold;" title="了解更多">......</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="health-img" style="display:-webkit-inline-box;margin-top:30px;width:100%;height:245px;background: radial-gradient(#648880, #293f50);color:#fff;">
+                        <div class="health-img" style="display:-webkit-inline-box;margin-top:30px;width:100%;height:245px;background: radial-gradient(#648880, #293f50);color:#fff;">
                             <div class="bg" style="width:100%;margin: 65px auto;">
                                 <div style="width:75%;margin:0px auto;">
-                                <div class="sports other " style="">
-                                    <Icon type="md-bicycle" />
-                                    <span class="time" style="font-family: sans-serif;color: #fff;">27</span>min
-                                    <p>骑自行车</p>
+                                    <div class="sports other " style="">
+                                        <Icon type="md-bicycle" />
+                                        <span class="time" style="font-family: sans-serif;color: #fff;">27</span>min
+                                        <p>骑自行车</p>
+                                    </div>
+
+                                    <div class="sports other" style="">
+                                        <Icon type="ios-baseball" />
+                                        <span class="time">30</span>min
+                                        <p>户外运动</p>
+                                    </div>
+
+                                    <div class="sports other walk" style="">
+                                        <Icon type="ios-body" />
+                                        <span class="time">500</span>min
+                                        <p>散步</p>
+                                    </div>
                                 </div>
 
-                                <div class="sports other" style="">
-                                    <Icon type="ios-baseball" />
-                                    <span class="time">30</span>min
-                                    <p>户外运动</p>
-                                </div>
 
-                                <div class="sports other walk" style="">
-                                    <Icon type="ios-body" />
-                                    <span class="time">500</span>min
-                                    <p>散步</p>
-                                </div>
-                                </div>
-                                
-                        
                             </div>
-                    </div>
-                    <div class="article" style="height:auto;">
-                        <div style="padding:15px;">
-                            <div style="height:auto">
-                                <h2>文章</h2>
-                                <hr>
+                        </div>
+                        <div class="article" style="height:auto;">
+                            <div style="padding:15px;">
+                                <div style="height:auto">
+                                    <h2>文章</h2>
+                                    <hr>
+                                </div>
+                                <div style="display: flex;width: 90%;margin: 0px auto;">
+
+                                    <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
+                                        <div class="" style="text-align: center;">
+                                            <div class="article-title">
+                                                <h5>CLEAN CODE</h5>
+                                            </div>
+                                            <div class="article-content">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
+                                        <div class="" style="text-align: center;">
+                                            <div class="article-title">
+                                                <h5>CLEAN CODE</h5>
+                                            </div>
+                                            <div class="article-content">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
+                                        <div class="" style="text-align: center;">
+                                            <div class="article-title">
+                                                <h5>CLEAN CODE</h5>
+                                            </div>
+                                            <div class="article-content">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="album" style="height:auto">
+
+                            <div style="padding:15px;">
+                                <div style="height:auto">
+                                    <h2>相册</h2>
+                                    <hr>
+                                </div>
                             </div>
                             <div style="display: flex;width: 90%;margin: 0px auto;">
-
-                                <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
-                                <div class="" style="text-align: center;">
-                                    <div class="article-title">
-                                        <h5>CLEAN CODE</h5>
-                                    </div>
-                                    <div class="article-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
-                                    </div>
+                                <div class="photo">
+                                    <img src='./../../images/project_3.jpg' />
                                 </div>
+                                <div class="photo">
+                                    <img src='./../../images/project_3.jpg' />
                                 </div>
-                                <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
-                                <div class="" style="text-align: center;">
-                                    <div class="article-title">
-                                        <h5>CLEAN CODE</h5>
-                                    </div>
-                                    <div class="article-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
-                                    </div>
+                                <div class="photo">
+                                    <img src='./../../images/project_3.jpg' />
                                 </div>
-                                </div>
-
-                                <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
-                                <div class="" style="text-align: center;">
-                                    <div class="article-title">
-                                        <h5>CLEAN CODE</h5>
-                                    </div>
-                                    <div class="article-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
-                                    </div>
-                                </div>
-                                </div>
-
                             </div>
-                            
+
+                            <div class="photo-footer" style="margin-top:15px;">
+                                <div class="viewer" style="width:50%;margin:0px auto;text-align: center;">
+                                    <Button icon="ios-plane" size="small" type="success" @click="viewphoto">VIEW MORE</Button>
+                                </div>
+                            </div>
+
+
+
                         </div>
-                        
+                        <div class="message-board" style="height:auto;margin-top: 20px;opacity: 1;background: #f3f3f3;">
+                            <div style="padding: 15px;">
+                                <div class="head-line">
 
-                    </div>
-                    <div class="album" style="height:auto">
-
-                        <div style="padding:15px;">
-                            <div style="height:auto">
-                                <h2>相册</h2>
-                                <hr>
-                            </div>
-                        </div>
-                        <div style="display: flex;width: 90%;margin: 0px auto;">
-                            <div class="photo">
-                                <img src='./../../images/project_3.jpg' />
-                            </div>
-                            <div class="photo">
-                                <img src='./../../images/project_3.jpg' />
-                            </div>
-                            <div class="photo">
-                                <img src='./../../images/project_3.jpg' />
-                            </div>
-                        </div>
-
-                        <div class="photo-footer" style="margin-top:15px;">
-                            <div class="viewer" style="width:50%;margin:0px auto;text-align: center;">
-                                <Button icon="ios-plane" size="small" type="success" @click="viewphoto">VIEW MORE</Button>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                    <div class="message-board" style="height:auto;margin-top: 20px;opacity: 1;background: #f3f3f3;">
-                        <div style="padding: 15px;">
-                            <div class="head-line">
-                                <h2>留言板</h2>
-                                <hr>
-                            </div>
-                            <div class="message">
-                                <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
-                                    <div class="icon" style="margin-top: 15px;">
-                                        <Icon type="md-contact" />
+                                    <h2>留言板
+                                        <Badge :count="3" style="position: absolute;margin-top: -6px;margin-left: -4px;"></Badge>
+                                    </h2>
+                                    <hr>
+                                </div>
+                                <div class="message">
+                                    <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
+                                        <div class="icon" style="margin-top: 15px;">
+                                            <Icon type="md-contact" />
+                                        </div>
+                                        <div class="info" style="margin-left: 10px;">
+                                            <p>陈小草</p>
+                                            <p style="margin-top: -15px;">2019.1.2</p>
+                                        </div>
                                     </div>
-                                <div class="info" style="margin-left: 10px;">
-                                    <p>陈小草</p>
-                                    <p style="margin-top: -15px;">2019.1.2</p>
-                                </div>
-                                </div>
-                                <div class="commenter-msg" style="width: 65%;">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                    In hendrerit libero ac accumsan lobortis.
-                                     Nam sem lacus, vulputate ut turpis vel, viverra porta ante
-                                </p>
-                                <hr>
-                                </div>
-                            </div>
-                            <div class="message">
-                                <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
-                                    <div class="icon" style="margin-top: 15px;">
-                                        <Icon type="md-contact" />
+                                    <div class="commenter-msg" style="width: 65%;">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            In hendrerit libero ac accumsan lobortis.
+                                            Nam sem lacus, vulputate ut turpis vel, viverra porta ante
+                                        </p>
+                                        <hr>
                                     </div>
-                                <div class="info" style="margin-left: 10px;">
-                                    <p>陈小草</p>
-                                    <p style="margin-top: -15px;">2019.1.2</p>
                                 </div>
+                                <div class="message">
+                                    <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
+                                        <div class="icon" style="margin-top: 15px;">
+                                            <Icon type="md-contact" />
+                                        </div>
+                                        <div class="info" style="margin-left: 10px;">
+                                            <p>陈小草</p>
+                                            <p style="margin-top: -15px;">2019.1.2</p>
+                                        </div>
+                                    </div>
+                                    <div class="commenter-msg" style="width: 65%;">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            In hendrerit libero ac accumsan lobortis.
+                                            Nam sem lacus, vulputate ut turpis vel, viverra porta ante
+                                        </p>
+                                        <hr>
+                                    </div>
                                 </div>
-                                <div class="commenter-msg" style="width: 65%;">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                    In hendrerit libero ac accumsan lobortis.
-                                     Nam sem lacus, vulputate ut turpis vel, viverra porta ante
-                                </p>
-                                <hr>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="footer" style="padding:30px;">
-                        <div style="width:30%;margin:0px auto;">
-                            <div class="footer-icon">
-                                <Icon style="cursor:pointer;" title="github" type="logo-github" />
                             </div>
 
-                            <div class="footer-icon">
-                                <Icon style="cursor:pointer;" title="phone" type="md-phone-portrait" />
-                            </div>
-                            
-                            <div class="footer-icon">
-                                <Icon style="cursor:pointer;" title="twitter" type="logo-twitter" />
+                        </div>
+                        <div class="footer" style="padding:30px;">
+                            <div style="width:30%;margin:0px auto;">
+                                <div class="footer-icon">
+                                    <Icon style="cursor:pointer;" title="github" type="logo-github" />
+                                </div>
+
+                                <div class="footer-icon">
+                                    <Icon style="cursor:pointer;" title="phone" type="md-phone-portrait" />
+                                </div>
+
+                                <div class="footer-icon">
+                                    <Icon style="cursor:pointer;" title="twitter" type="logo-twitter" />
+                                </div>
+
+                                <div class="footer-icon">
+                                    <Icon style="cursor:pointer;" title="Email" type="ios-mail" />
+                                </div>
+
+                                <div class="footer-icon">
+                                    <Icon style="cursor:pointer;" title="contact" type="logo-octocat" />
+                                </div>
+
                             </div>
 
-                            <div class="footer-icon">
-                                <Icon style="cursor:pointer;" title="Email" type="ios-mail" />
-                            </div>
-                            
-                            <div class="footer-icon">
-                                <Icon style="cursor:pointer;" title="contact" type="logo-octocat" />
-                            </div>
-                            
                         </div>
-                        
                     </div>
                 </div>
-            </div>
+
+
+            </Drawer>
+
+
+
+
+
+
 
         </div>
 
@@ -266,7 +316,7 @@
                             </div>
                 </div>
                 <div slot="footer" style="text-align: center;">
-                    <Button type="success" size="small" @click="more_cancel">OK</Button>
+                    <Button type="success" size="small" @click="more_cancel">关闭</Button>
                 </div>
             </Modal>
             
@@ -280,13 +330,16 @@
         name: 'user',
         data() {
             return {
+                drawer:false,
                 modal:false,
+                scrollTop:'',
             }
         },
 //        props: ['tariff', 'area', 'tariff_id', 'specification'],
         props:['name'],
         mounted() {
-            console.log(this.name)
+//            console.log(this.name)
+            window.addEventListener('scroll', this.handleScroll)
         },
         created() {
 
@@ -298,7 +351,22 @@
 
             more_cancel(){
                 this.modal = false;
-            }
+            },
+
+            view_profile(){
+                this.drawer = true;
+            },
+
+            handleScroll () {
+                this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+                console.log(this.scrollTop)
+                if(this.scrollTop == 0){
+                    this.drawer = false;
+                }else if(this.scrollTop == 100){
+                    this.drawer = true;
+                }
+            },
+
         }
     }
 
@@ -419,12 +487,18 @@
         font-size: 60px;
         font-weight: bold;
         color: #fff;
+        cursor: pointer;
+    }
+
+    .ivu-icon-ios-arrow-down:hover{
+        color: #e49ce4;
     }
 
     #user-msg .user-main{
         height: auto;
         min-height: 100%;
-        width: 61%;
+        /*width: 61%;*/
+        width:100%;
         position: absolute;
         right: 0px;
         top:0px;
@@ -525,6 +599,12 @@
     text-align: center;
     cursor: pointer;
 }
+
+.photo :hover{
+    box-shadow: 0 10px 10px -10px rgba(0,0,0,.5);
+    opacity: 0.5;
+}
+
 .photo:before{
     background: #3085a3;
 }
@@ -562,5 +642,21 @@
     }
 
 
+.ivu-icon-md-menu{
+    font-size: 35px;
+    cursor: pointer;
+}
+
+    .demo-badge{
+        width: 42px;
+        height: 42px;
+        background: #eee;
+        border-radius: 6px;
+        display: inline-block;
+    }
+
+    .health_history a:hover{
+        color:#af6382 !important;
+    }
 
 </style>
