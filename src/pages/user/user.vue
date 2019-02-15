@@ -13,8 +13,8 @@
 
             <div class="content">
                 <div class="title">
-                    <h2>HELLO·<span>{{this.name}}</span></h2>
-                    <p>I'm <span class="sub-title"></span></p>
+                    <h2>HELLO·<span>David Smith</span></h2>
+                    <!--<p>I'm <span class="sub-title"></span></p>-->
                 </div>
             </div>
             <div class="more-msg">
@@ -56,6 +56,9 @@
                                             <DropdownItem>
                                                 <Icon type="ios-paw" />
                                                 我的足迹</DropdownItem>
+                                            <DropdownItem>
+                                                <Icon type="ios-help-circle" />
+                                                帮助</DropdownItem>
                                             <DropdownItem>
                                                 <Icon type="md-exit" />
                                                 退出</DropdownItem>

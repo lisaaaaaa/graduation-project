@@ -317,7 +317,8 @@ hr {
 }
 
 .footer-socialicons {
-    margin-top: 4em;
+    /*margin-top: 4em;*/
+    margin-top: 0em;
 }
 
 .footer-socialicons i {
