@@ -24,7 +24,7 @@
                     <Button size="small" @click="register">注册</Button>
                 </div>
                 <div class="forum-login">
-                    <span style="color:#fff">欢迎你,</span> <a :href=" '/#/' " style="cursor:pointer">莉莎</a>
+                    <span style="color:#fff">欢迎你,</span> <a :href=" '/#/user' " style="cursor:pointer">莉莎</a>
                     <a class="exit" :href=" '/#/' " style="">【退出】</a>
                 </div>
             </div>

@@ -30,83 +30,47 @@
             <div class="basic-content" style="width: 100%;min-height:500px;background: #f5f6f7;">
                 <div style="width:70%;margin:0px auto;display: flex;text-align: center;padding: 15px;">
                     <div id="left-box" class="left-box" style="">
-                        <Menu :theme="theme" active-name="1">
-                            <MenuItem name="1">
-                                    <Icon type="ios-contact" />
-                                    个人资料
-                                </MenuItem>
-                            <MenuItem name="2">
-                                <Icon type="md-trending-up" />
-                                健康记录
-                            </MenuItem>
-                            <MenuItem name="3">
-                                    <Icon type="ios-heart" />
-                                    我的关注
-                                </MenuItem>
-                            <MenuItem name="4">
-                                    <Icon type="ios-star" />
-                                    我的收藏
-                                </MenuItem>
-                            <MenuItem name="5">
-                                <Icon type="ios-people" />
-                                我的粉丝
-                            </MenuItem>
-                            <MenuItem name="6">
-                                    <Icon type="ios-paw" />
-                                    我的足迹
-                                </MenuItem>
+                        <Menu :theme="theme" active-name="1" :open-names="['1']">
+                            <template v-for="list in this.subitems">
+                                <router-link :to="list.uri">
+
+                                    <MenuItem :name="list.level"><Icon :type="list.icon" />{{list.name}}</MenuItem>
+                                </router-link>
+                            </template>
+
+                            <!--<MenuItem name="2">-->
+                                <!--<Icon type="md-trending-up" />-->
+                                <!--健康记录-->
+                            <!--</MenuItem>-->
+                            <!--<MenuItem name="3">-->
+                                    <!--<Icon type="ios-heart" />-->
+                                    <!--我的关注-->
+                                <!--</MenuItem>-->
+                            <!--<MenuItem name="4">-->
+                                    <!--<Icon type="ios-star" />-->
+                                    <!--我的收藏-->
+                                <!--</MenuItem>-->
+                            <!--<MenuItem name="5">-->
+                                <!--<Icon type="ios-people" />-->
+                                <!--我的粉丝-->
+                            <!--</MenuItem>-->
+                            <!--<MenuItem name="6">-->
+                                    <!--<Icon type="ios-paw" />-->
+                                    <!--我的足迹-->
+                                <!--</MenuItem>-->
                         </Menu>
                     </div>
 
-                    <div class="right-box" style="width:80%;background-color: #fff;min-height:460px;box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);">
-                        <div style="padding: 0 32px 30px;">
-                            <div id="">
-                                <div class="right-box-title" style="">
-                                    <p class="right-box-name">个人资料</p>
-                                </div>
-                                <div class="right-box-content">
-                                    <div class="avatar" style="float: left;text-align: center;margin-right: 16px;cursor: pointer;">
-                                        <img src="./../../images/forum/man.png"/>
-                                        <p><a>修改头像</a></p>
-                                    </div>
-                                    <div class="person-info" style="float: right;width:85%;text-align: left;">
-                                        <div class="title" style="height:60px;border-bottom: 1px solid #e0e0e0;">
-                                            <div style="font-size: 14px;color: #999;margin-top: 16px">
-                                                <span>昵称：</span><span>莉莎</span>
-                                                <a style="float: right;font-size: 14px;color: #3399ea;padding-right: 9.3px;">个人主页></a>
-                                            </div>
-                                            <div style="margin-top: 8px;margin-bottom: 16px; color: rgb(77, 77, 77);font-size: 14px;">
-                                                <span>签名：</span><span>然而岁月漫长，总之值得等待</span>
-                                            </div>
-                                        </div>
-                                        <div class="person-list" style="margin-top: 10px;">
-                                            <ul style="color: rgb(77, 77, 77);font-size: 14px;">
-                                                <li>
-                                                    <span>性别：</span><span>女</span>
-                                                    <a style="float: right;font-size: 14px;color: #3399ea;padding-right: 9.3px;">修改资料</a>
-                                                </li>
-                                                <li>
-                                                    <span>生日：</span><span>1990/2/14</span>
-                                                </li>
-                                                <li>
-                                                    <span>地区：</span><span>中国 四川 成都</span>
-                                                </li>
-                                                <li>
-                                                    <span>爱好：</span><span>吃饭 睡觉</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                    <div id="right-box" class="right-box" style="width:80%;background-color: #fff;min-height:460px;box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);">
+                        <transition>
+                            <router-view></router-view>
+                        </transition>
                     </div>
 
                 </div>
             </div>
 
-            <div class="footer" style="width:100%;background: #fff;">
+            <div class="footer" style="position: absolute;width:100%;background: #fff;">
                 <div>
                     <div class="footer-top" style="margin: 8px auto;width: 60%;text-align: center;">
                         <div class="footer-indicate">
@@ -141,11 +105,15 @@
 
 <script>
 
+    import {basic_nav} from  './../../../config/nav'
+
     export default {
         name: 'basic_info',
         data() {
             return {
                 theme:'light',
+                basic_nav:{},    //菜单
+                subitems: {},
                 label_1:(h) => {return h('a',{domProps:{href:'#home'},},'首页')},
                 label_2:(h) => {return h('a',{domProps:{href:'#part-2'},},'下载')},
                 label_3:(h) => {return h('a',{domProps:{href:'#part-3'},},'问答')},
@@ -153,18 +121,48 @@
                 label_5:(h) => {return h('a',{domProps:{href:'#part-5'},},'活动')},
                 label_6:(h) => {return h('a',{domProps:{href:'#part-6'},},'招聘')},
                 label_7:(h) => {return h('a',{domProps:{href:'#part-7'},},'学院')},
+                scrollTop:'',
             }
         },
         props:[],
+        components: {basic_nav},
         mounted() {
-
+            this.subitems = basic_nav
+            window.addEventListener('scroll', this.handleScroll)
         },
         created() {
 
         },
         methods: {
 
-        }
+            handleScroll () {
+                this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+                if( parseInt(this.scrollTop) > 84 ){
+                    document.getElementById("left-box").style.position = 'fixed';
+                    document.getElementById("left-box").style.bottom = '0px';
+                    document.getElementById("left-box").style.top = '0px';
+                    document.getElementById("right-box").style.marginLeft = '140px';
+//                    document.getElementById("left-box").style.width = '8%';
+//                    document.getElementById("center").style.marginLeft = '11%';
+                }else{
+                    document.getElementById("left-box").style.position = '';
+                    document.getElementById("left-box").style.bottom = '';
+//                    document.getElementById("left-box").style.width = '10%';
+                    document.getElementById("right-box").style.marginLeft = '';
+//                    document.getElementById("nav").style.top = '';
+                }
+            },
+
+            health_center(){
+                this.$router.push({name: 'index', params: {}})
+            },
+
+        },
+        beforeDestroy:function(){
+//            console.log('lisa')
+            window.removeEventListener('scroll', this.handleScroll)
+            this.$Notice.destroy()
+        },
     }
 
 </script>
@@ -173,8 +171,12 @@
 
     #basic_info #left-box ul{
         box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
-        width: 137px !important;
+        width: 140px !important;
     }
+    #basic_info #left-box ul a{
+        color: #515a6e;
+    }
+
 
     #basic_info .right-box-title{
         color: #3d3d3d;

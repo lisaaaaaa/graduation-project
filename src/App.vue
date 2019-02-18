@@ -13,6 +13,7 @@ export default {
 
 <style>
 #app {
+  min-width: 1440px;
   height: 100%;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

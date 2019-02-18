@@ -13,6 +13,11 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './style/custom.css'
 
 
+// 引入Echarts
+import Echarts from 'echarts'
+Vue.prototype.echarts = Echarts
+Vue.use(Echarts)
+
 Vue.config.productionTip = false
 Vue.use(iView) //使用iview组件
 

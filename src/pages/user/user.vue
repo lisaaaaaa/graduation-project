@@ -39,27 +39,28 @@
                                 <div style="position: fixed;right: 40px;">
 
 
-                                    <Dropdown placement="bottom-start">
+                                    <Dropdown placement="bottom-start" @on-click="changeMenu">
                                         <a href="javascript:void(0)">
                                             <Icon type="md-menu" />
                                         </a>
                                         <DropdownMenu slot="list">
-                                            <DropdownItem>
+                                            <DropdownItem name="peronal">
                                                 <Icon type="ios-contact" />
                                                 个人信息</DropdownItem>
-                                            <DropdownItem>
+                                            <DropdownItem name="focus">
                                                 <Icon type="ios-heart" />
                                                 我的关注</DropdownItem>
-                                            <DropdownItem>
+                                            <DropdownItem name="collection">
                                                 <Icon type="ios-star" />
                                                 我的收藏</DropdownItem>
-                                            <DropdownItem>
+                                            <DropdownItem name="foot">
                                                 <Icon type="ios-paw" />
                                                 我的足迹</DropdownItem>
-                                            <DropdownItem>
-                                                <Icon type="ios-help-circle" />
-                                                帮助</DropdownItem>
-                                            <DropdownItem>
+                                            <DropdownItem name="fan">
+                                                <!--<Icon type="ios-help-circle" />-->
+                                                <Icon type="ios-people" />
+                                                我的粉丝</DropdownItem>
+                                            <DropdownItem name="exit">
                                                 <Icon type="md-exit" />
                                                 退出</DropdownItem>
                                         </DropdownMenu>
@@ -96,7 +97,7 @@
                                         </div>
                                     </div>
                                     <div class="health_history">
-                                        <a style="font-size: 20px;font-weight: bold;" title="了解更多">......</a>
+                                        <a :href=" '/#/basic_info/health_Record' " style="font-size: 20px;font-weight: bold;" title="了解更多">......</a>
                                     </div>
                                 </div>
                             </div>
@@ -128,8 +129,11 @@
                         </div>
                         <div class="article" style="height:auto;">
                             <div style="padding:15px;">
-                                <div style="height:auto">
-                                    <h2>文章</h2>
+                                <div class="article-name" style="height:auto">
+                                    <h2>文章
+                                        <a style="float:right;font-size: 13px;line-height: 38px;margin-right: 25px;">更多</a>
+                                    </h2>
+
                                     <hr>
                                 </div>
                                 <div style="display: flex;width: 90%;margin: 0px auto;">
@@ -210,44 +214,52 @@
                                     </h2>
                                     <hr>
                                 </div>
-                                <div class="message">
-                                    <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
-                                        <div class="icon" style="margin-top: 15px;">
-                                            <Icon type="md-contact" />
+                                <div>
+                                    <div class="message">
+                                        <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
+                                            <div class="icon" style="margin-top: 15px;">
+                                                <Icon type="md-contact" />
+                                            </div>
+                                            <div class="info" style="margin-left: 10px;">
+                                                <p>陈小草</p>
+                                                <p style="margin-top: -15px;">2019.1.2</p>
+                                            </div>
                                         </div>
-                                        <div class="info" style="margin-left: 10px;">
-                                            <p>陈小草</p>
-                                            <p style="margin-top: -15px;">2019.1.2</p>
+                                        <div class="commenter-msg" style="width: 65%;">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                In hendrerit libero ac accumsan lobortis.
+                                                Nam sem lacus, vulputate ut turpis vel, viverra porta ante
+                                            </p>
+                                            <hr>
                                         </div>
                                     </div>
-                                    <div class="commenter-msg" style="width: 65%;">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            In hendrerit libero ac accumsan lobortis.
-                                            Nam sem lacus, vulputate ut turpis vel, viverra porta ante
-                                        </p>
-                                        <hr>
+                                    <div class="message">
+                                        <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
+                                            <div class="icon" style="margin-top: 15px;">
+                                                <Icon type="md-contact" />
+                                            </div>
+                                            <div class="info" style="margin-left: 10px;">
+                                                <p>陈小草</p>
+                                                <p style="margin-top: -15px;">2019.1.2</p>
+                                            </div>
+                                        </div>
+                                        <div class="commenter-msg" style="width: 65%;">
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                In hendrerit libero ac accumsan lobortis.
+                                                Nam sem lacus, vulputate ut turpis vel, viverra porta ante
+                                            </p>
+                                            <hr>
+                                        </div>
                                     </div>
+
+                                    <div style="text-align: center;">
+                                        <Button type="primary">我要留言</Button>
+                                    </div>
+
                                 </div>
-                                <div class="message">
-                                    <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
-                                        <div class="icon" style="margin-top: 15px;">
-                                            <Icon type="md-contact" />
-                                        </div>
-                                        <div class="info" style="margin-left: 10px;">
-                                            <p>陈小草</p>
-                                            <p style="margin-top: -15px;">2019.1.2</p>
-                                        </div>
-                                    </div>
-                                    <div class="commenter-msg" style="width: 65%;">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            In hendrerit libero ac accumsan lobortis.
-                                            Nam sem lacus, vulputate ut turpis vel, viverra porta ante
-                                        </p>
-                                        <hr>
-                                    </div>
-                                </div>
+
                             </div>
 
                         </div>
@@ -319,7 +331,7 @@
                             </div>
                 </div>
                 <div slot="footer" style="text-align: center;">
-                    <Button type="success" size="small" @click="more_cancel">关闭</Button>
+                    <Button type="success" size="small" @click="more_cancel">上传</Button>
                 </div>
             </Modal>
             
@@ -362,7 +374,7 @@
 
             handleScroll () {
                 this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-                console.log(this.scrollTop)
+//                console.log(this.scrollTop)
                 if(this.scrollTop == 0){
                     this.drawer = false;
                 }else if(this.scrollTop == 100){
@@ -370,7 +382,28 @@
                 }
             },
 
-        }
+            changeMenu(name){
+//                console.log(name)
+                if(name == 'peronal'){
+                    this.$router.push({name:'personal_Information'})
+                }else if(name == 'focus'){
+                    this.$router.push({name:'my_Focus'})
+                }else if(name == 'foot'){
+                    this.$router.push({name:'my_Footprint'})
+                }else if(name == 'collection'){
+                    this.$router.push({name:'my_Collection'})
+                }else if(name == 'fan'){
+                    this.$router.push({name:'my_Fans'})
+                }else if(name == 'exit'){
+                    this.$router.push({name:'index'})
+                }
+            },
+
+        },
+        beforeDestroy:function(){
+            window.removeEventListener('scroll', this.handleScroll)
+            this.$Notice.destroy()
+        },
     }
 
 
@@ -615,10 +648,14 @@
 .photo img{
     width:100%;
     height:100%;
+    border-radius: 5px;
+    /*box-shadow: 1px 0.5px 0.5px black;*/
+    box-shadow: 0 4px 4px black;
 }
 
 .ivu-modal-content{
-    background: rgba(25, 25, 25, .5);
+    /*background: rgba(25, 25, 25, .5);*/
+    background: #d0d0d0ad;
 }
 
 .ivu-modal-close .ivu-icon-ios-close{
@@ -658,7 +695,7 @@
         display: inline-block;
     }
 
-    .health_history a:hover{
+    .health_history a:hover, .article-name a:hover{
         color:#af6382 !important;
     }
 
