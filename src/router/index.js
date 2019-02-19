@@ -11,6 +11,7 @@ import my_Focus from '@/pages/my_Focus/my_Focus'
 import my_Collection from '@/pages/my_Collection/my_Collection'
 import my_Fans from '@/pages/my_Fans/my_Fans'
 import my_Footprint from '@/pages/my_Footprint/my_Footprint'
+import registered from '@/pages/registered/registered'
 
 Vue.use(Router)
 
@@ -35,7 +36,17 @@ export default new Router({
         title: '健康中心系统',
         requireAuth: false,
       }
-    },{
+    },
+    {
+      path: '/registered',
+      name: 'registered',
+      component: registered,
+      meta: {
+        title: '健康中心系统',
+        requireAuth: false,
+      }
+    },
+    {
       path: '/forum',
       name: 'forum',
       component: forum,

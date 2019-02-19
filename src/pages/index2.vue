@@ -397,7 +397,9 @@
                     this.$Message.success('登录成功！');
                 }, 2000);
             },
-            register(){}
+            register(){
+                this.$router.push({name:'registered'})
+            }
         },
 
     }
