@@ -6,6 +6,10 @@
             <div class="login-card" style="height: auto">
                 <Form ref="formCustom" :model="formCustom" :rules="ruleCustom" label-position="top">
                     <span class="join">进入我的健康中心</span>
+                    <RadioGroup v-model="identity" @on-change="changeIdentity" style="margin-bottom: 16px">
+                        <Radio label="普通用户"></Radio>
+                        <Radio label="管理员"></Radio>
+                    </RadioGroup>
                     <FormItem prop="user">
                         <Input type="text" v-model="formCustom.user" @on-enter="handleSubmit(formCustom)" size="large" placeholder="用户名">
                         <Icon type="ios-person-outline" slot="prepend"></Icon>
@@ -33,6 +37,8 @@
 
 <script>
 
+    import {setStore,removeStore} from './../../config/Utils'
+
     export default {
         name: 'login',
         data() {
@@ -52,6 +58,7 @@
                 }
             };
             return {
+
                 modal_loading:false,
                 formCustom: {
                     passwd: '',
@@ -65,7 +72,7 @@
                         {validator: validateUser, trigger: 'blur'}
                     ],
                 },
-                identity:'配置管理员',
+                identity:'普通用户',
                 change:'1',
                 checkCode: '',
                 yanzhengma: '',
@@ -128,14 +135,40 @@
                         console.log(this.formCustom)
                         if( this.formCustom.user == 'lisa' && this.formCustom.passwd == '123'){
                             this.$Message.success('登录成功！');
+                            this.$store.commit('login');     //改变token状态
+                            setStore('user_name', this.formCustom.user);
+                            if (this.change == 1) {
+                                this.$store.commit('setPower1');    //设置权限,普通用户
+                                this.$router.push({name: 'user', params: {name:this.formCustom.user}});
+
+                            }else if(this.change == 2){
+                                this.$store.commit('setPower2');    //设置权限，管理员用户
+
+                            }
+
+
                         }else{
                             this.$Message.success('登录失败！');
                         }
 
-                        this.$router.push({name: 'user', params: {name:this.formCustom.user}});
+
                         }, 2000);
                 }
             },
+
+            changeIdentity(value){
+                switch (value) {
+                    case '普通用户':
+                        this.change = 1;
+                        break;
+                    case '管理员':
+                        this.change = 2;
+                        break;
+                    default:
+                }
+            }
+
+
         }
     }
 </script>

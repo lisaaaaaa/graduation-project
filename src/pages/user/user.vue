@@ -13,7 +13,7 @@
 
             <div class="content">
                 <div class="title">
-                    <h2>HELLO·<span>{{ this.$route.params.name }}</span></h2>
+                    <h2>HELLO·<span>{{ this.user_name }}</span></h2>
                     <!--<p>I'm <span class="sub-title"></span></p>-->
                 </div>
             </div>
@@ -30,7 +30,7 @@
                     <div class="user-main" style="">
                         <div class="person-msg">
                             <div class="title" style="width: 50%;float: left">
-                                <h1>{{ this.$route.params.name }}</h1>
+                                <h1>{{ this.user_name }}</h1>
                                 <!--<span style="display: block">I'm a Web designer</span>-->
                                 <hr>
                             </div>
@@ -400,10 +400,13 @@
 </template>
 <script>
 
+    import {getStore} from './../../../config/Utils'
+
     export default {
         name: 'user',
         data() {
             return {
+                user_name:'',
                 drawer:false,
                 modal:false,
                 comments_modal:false,
@@ -431,6 +434,7 @@
 //        props: ['tariff', 'area', 'tariff_id', 'specification'],
 //        props:['name'],
         mounted() {
+            this.user_name = getStore('user_name')
 //            console.log(this.$route.params.name)
             window.addEventListener('scroll', this.handleScroll)
             this.uploadList = this.$refs.upload.fileList;

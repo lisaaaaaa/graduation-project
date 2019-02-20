@@ -12,7 +12,7 @@
                     <div class="person-info" style="float: right;width:85%;text-align: left;">
                         <div class="title" style="height:60px;border-bottom: 1px solid #e0e0e0;">
                             <div style="font-size: 14px;color: #999;margin-top: 16px">
-                                <span>昵称：</span><span>莉莎</span>
+                                <span>昵称：</span><span>{{ this.user_name }}</span>
                                 <a :href=" '/#/user' "  style="float: right;font-size: 14px;color: #3399ea;padding-right: 9.3px;">个人主页></a>
                             </div>
                             <div style="margin-top: 8px;margin-bottom: 16px; color: rgb(77, 77, 77);font-size: 14px;">
@@ -48,14 +48,18 @@
 
 <script>
 
+    import {getStore} from './../../../config/Utils'
+
     export default {
         name: 'personal_Information',
         data() {
             return {
+                user_name:'',
             }
         },
         props:[],
         mounted() {
+            this.user_name = getStore('user_name')
 
         },
         created() {

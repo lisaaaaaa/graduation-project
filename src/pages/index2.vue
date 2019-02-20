@@ -352,7 +352,10 @@
             }
         },
         mounted () {
+
+            this.$store.commit('logout');     //改变token状态
             window.addEventListener('scroll', this.handleScroll)
+
         },
         components: {loginpage},
         created() {
