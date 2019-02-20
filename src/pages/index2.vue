@@ -386,17 +386,17 @@
             login(){
                 this.login_modal = true;
             },
-            login_cancel(){
-                this.login_modal = false;
-            },
-            login_ok(){
-                this.modal_loading = true;
-                setTimeout(() => {
-                    this.modal_loading = false;
-                    this.login_modal = false;
-                    this.$Message.success('登录成功！');
-                }, 2000);
-            },
+//            login_cancel(){
+//                this.login_modal = false;
+//            },
+//            login_ok(){
+//                this.modal_loading = true;
+//                setTimeout(() => {
+//                    this.modal_loading = false;
+//                    this.login_modal = false;
+//                    this.$Message.success('登录成功！');
+//                }, 2000);
+//            },
             register(){
                 this.$router.push({name:'registered'})
             }

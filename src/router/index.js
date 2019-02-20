@@ -12,6 +12,10 @@ import my_Collection from '@/pages/my_Collection/my_Collection'
 import my_Fans from '@/pages/my_Fans/my_Fans'
 import my_Footprint from '@/pages/my_Footprint/my_Footprint'
 import registered from '@/pages/registered/registered'
+import article from '@/pages/article/article'
+import article_all from '@/pages/article/article_all'
+import article_one from '@/pages/article/article_one'
+import article_edit from '@/pages/article/article_edit'
 
 Vue.use(Router)
 
@@ -112,6 +116,42 @@ export default new Router({
       meta: {
         requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
       },
+    },
+    {
+      path:'/article',
+      name:'article',
+      component:article,
+      metd:{
+        requireAuth:false,
+      },
+      children: [
+        {
+          path: 'article_all',
+          name: 'article_all',
+          component: article_all,
+          meta: {
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path: 'article_one',
+          name: 'article_one',
+          component: article_one,
+          meta: {
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },{
+          path: 'article_edit',
+          name: 'article_edit',
+          component: article_edit,
+          meta: {
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+      ]
+      
+      
+      
     },
   ]
 })

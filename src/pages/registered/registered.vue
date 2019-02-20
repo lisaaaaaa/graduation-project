@@ -14,6 +14,9 @@
                         <FormItem label="名称：" prop="name">
                             <Input v-model="formValidate.name" placeholder="Enter your name"></Input>
                         </FormItem>
+                        <FormItem label="签名：" prop="signature">
+                            <Input v-model="formValidate.signature" placeholder="Enter your signature"></Input>
+                        </FormItem>
                         <FormItem label="邮箱：" prop="mail">
                             <Input v-model="formValidate.mail" placeholder="Enter your e-mail"></Input>
                         </FormItem>
@@ -66,6 +69,7 @@ export default {
             return {
                formValidate: {
                     name: '',
+                    signature:'',
                     mail: '',
                     city: '',
                     gender: '',
@@ -74,6 +78,9 @@ export default {
                 },ruleValidate: {
                     name: [
                         { required: true, message: '名称不能为空', trigger: 'blur' }
+                    ],
+                    signature: [
+                        { required: true, message: '签名不能为空', trigger: 'blur' }
                     ],
                     mail: [
                         { required: true, message: '邮箱不能为空', trigger: 'blur' },

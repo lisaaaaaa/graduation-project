@@ -25,11 +25,11 @@
                                     <span>性别：</span><span>女</span>
                                     <a style="float: right;font-size: 14px;color: #3399ea;padding-right: 9.3px;">修改资料</a>
                                 </li>
+                                <!--<li>-->
+                                    <!--<span>生日：</span><span>1990/2/14</span>-->
+                                <!--</li>-->
                                 <li>
-                                    <span>生日：</span><span>1990/2/14</span>
-                                </li>
-                                <li>
-                                    <span>地区：</span><span>中国 四川 成都</span>
+                                    <span>地区：</span><span>成都</span>
                                 </li>
                                 <li>
                                     <span>邮箱：</span><span>lisa.wow@outlook.com</span>

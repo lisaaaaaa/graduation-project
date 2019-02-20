@@ -125,8 +125,14 @@
                     this.modal_loading = true;
                     setTimeout(() => {
                         this.modal_loading = false;
-                        this.$Message.success('登录成功！');
-                        this.$router.push({name: 'user', params: {name:account}});
+                        console.log(this.formCustom)
+                        if( this.formCustom.user == 'lisa' && this.formCustom.passwd == '123'){
+                            this.$Message.success('登录成功！');
+                        }else{
+                            this.$Message.success('登录失败！');
+                        }
+
+                        this.$router.push({name: 'user', params: {name:this.formCustom.user}});
                         }, 2000);
                 }
             },
@@ -296,7 +302,7 @@
         font-size: 13px;
     }
 
-    .ivu-icon{
+    #login .ivu-icon{
         font-size: 22px;
     }
 

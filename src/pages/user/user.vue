@@ -13,7 +13,7 @@
 
             <div class="content">
                 <div class="title">
-                    <h2>HELLO·<span>David Smith</span></h2>
+                    <h2>HELLO·<span>{{ this.$route.params.name }}</span></h2>
                     <!--<p>I'm <span class="sub-title"></span></p>-->
                 </div>
             </div>
@@ -30,7 +30,7 @@
                     <div class="user-main" style="">
                         <div class="person-msg">
                             <div class="title" style="width: 50%;float: left">
-                                <h1>David Smith</h1>
+                                <h1>{{ this.$route.params.name }}</h1>
                                 <!--<span style="display: block">I'm a Web designer</span>-->
                                 <hr>
                             </div>
@@ -131,7 +131,7 @@
                             <div style="padding:15px;">
                                 <div class="article-name" style="height:auto">
                                     <h2>文章
-                                        <a style="float:right;font-size: 13px;line-height: 38px;margin-right: 25px;">更多</a>
+                                        <a :href=" '#/article/article_all' " style="float:right;font-size: 13px;line-height: 38px;margin-right: 25px;">更多</a>
                                     </h2>
 
                                     <hr>
@@ -141,7 +141,7 @@
                                     <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
                                         <div class="" style="text-align: center;">
                                             <div class="article-title">
-                                                <h5>CLEAN CODE</h5>
+                                                <h5>导致肥胖的原因？</h5>
                                             </div>
                                             <div class="article-content">
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
@@ -151,7 +151,7 @@
                                     <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
                                         <div class="" style="text-align: center;">
                                             <div class="article-title">
-                                                <h5>CLEAN CODE</h5>
+                                                <h5>减肥是一项长久以来的大工程</h5>
                                             </div>
                                             <div class="article-content">
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
@@ -162,7 +162,7 @@
                                     <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
                                         <div class="" style="text-align: center;">
                                             <div class="article-title">
-                                                <h5>CLEAN CODE</h5>
+                                                <h5>坚持就是胜利啊，加油哦</h5>
                                             </div>
                                             <div class="article-content">
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
@@ -255,7 +255,7 @@
                                     </div>
 
                                     <div style="text-align: center;">
-                                        <Button type="primary">我要留言</Button>
+                                        <Button type="primary" @click="leave_msg">我要留言</Button>
                                     </div>
 
                                 </div>
@@ -302,39 +302,98 @@
 
         </div>
 
+        <!--相册-->
         <div class="modal">
             <Modal v-model="modal" fullscreen>
-                <div style="width: 90%;margin: 50px auto;">
-                            <div class="more-photo">
-                                <img src='./../../images/project_3.jpg' />
+                <div style="width: 90%;margin: 70px auto;">
+
+
+                    <div class="demo-upload-list" v-for="item in uploadList">
+                        <template v-if="item.status === 'finished'">
+                            <img :src="item.url">
+                            <div class="demo-upload-list-cover">
+                                <!--<Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>-->
+                                <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
                             </div>
-                            <div class="more-photo">
-                                <img src='./../../images/project_3.jpg' />
-                            </div>
-                            <div class="more-photo">
-                                <img src='./../../images/project_3.jpg' />
-                            </div>
-                            <div class="more-photo">
-                                <img src='./../../images/project_3.jpg' />
-                            </div>
-                            <div class="more-photo">
-                                <img src='./../../images/project_3.jpg' />
-                            </div>
-                            <div class="more-photo">
-                                <img src='./../../images/project_3.jpg' />
-                            </div>
-                            <div class="more-photo">
-                                <img src='./../../images/project_3.jpg' />
-                            </div>
-                            <div class="more-photo">
-                                <img src='./../../images/project_3.jpg' />
-                            </div>
+                        </template>
+                        <template v-else>
+                            <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
+                        </template>
+                    </div>
+                    <Upload
+                            ref="upload"
+                            :show-upload-list="false"
+                            :default-file-list="defaultList"
+                            :on-success="handleSuccess"
+                            :format="['jpg','jpeg','png']"
+                            :max-size="2048"
+                            :on-format-error="handleFormatError"
+                            :on-exceeded-size="handleMaxSize"
+                            :before-upload="handleBeforeUpload"
+                            multiple
+                            type="drag"
+                            action="//jsonplaceholder.typicode.com/posts/"
+                            style="display: inline-block;width:58px;">
+                        <div style="width: 58px;height:58px;line-height: 58px;">
+                            <Icon type="ios-camera" size="20"></Icon>
+                        </div>
+                    </Upload>
+                    <!--<Modal title="View Image" v-model="visible">-->
+                        <!--<img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">-->
+                    <!--</Modal>-->
+
+
+
                 </div>
-                <div slot="footer" style="text-align: center;">
-                    <Button type="success" size="small" @click="more_cancel">上传</Button>
+
+
+
+                <!--<div style="width: 90%;margin: 50px auto;">-->
+                            <!--<div class="more-photo">-->
+                                <!--<img src='./../../images/project_3.jpg' />-->
+                            <!--</div>-->
+                            <!--<div class="more-photo">-->
+                                <!--<img src='./../../images/project_3.jpg' />-->
+                            <!--</div>-->
+                            <!--<div class="more-photo">-->
+                                <!--<img src='./../../images/project_3.jpg' />-->
+                            <!--</div>-->
+                            <!--<div class="more-photo">-->
+                                <!--<img src='./../../images/project_3.jpg' />-->
+                            <!--</div>-->
+                            <!--<div class="more-photo">-->
+                                <!--<img src='./../../images/project_3.jpg' />-->
+                            <!--</div>-->
+                            <!--<div class="more-photo">-->
+                                <!--<img src='./../../images/project_3.jpg' />-->
+                            <!--</div>-->
+                            <!--<div class="more-photo">-->
+                                <!--<img src='./../../images/project_3.jpg' />-->
+                            <!--</div>-->
+                            <!--<div class="more-photo">-->
+                                <!--<img src='./../../images/project_3.jpg' />-->
+                            <!--</div>-->
+                            <!--<div class="more-photo">-->
+
+                            <!--</div>-->
+                <!--</div>-->
+
+                <div slot="footer" style="text-align: center;" title="上传图片">
+                    <!--<Button type="success" size="small" @click="more_cancel">上传</Button>-->
                 </div>
             </Modal>
             
+        </div>
+
+        <!--留言-->
+        <div class="modal">
+            <Modal v-model="comments_modal" title="我要留言">
+                <Input v-model="leave_comments" placeholder="Enter something..." style="width: 300px" />
+                <div slot="footer">
+                    <Button type="primary" @click="leave_ok">确认</Button>
+                    <Button type="primary" ghost @click="leave_cancel">取消</Button>
+                </div>
+            </Modal>
         </div>
 
     </div>
@@ -347,19 +406,53 @@
             return {
                 drawer:false,
                 modal:false,
+                comments_modal:false,
+                leave_comments:'',
                 scrollTop:'',
+
+
+                defaultList: [
+                    {
+                        'name': 'a42bdcc1178e62b4694c830f028db5c0',
+                        'url': 'https://o5wwk8baw.qnssl.com/a42bdcc1178e62b4694c830f028db5c0/avatar'
+                    },
+                    {
+                        'name': 'bc7521e033abdd1e92222d733590f104',
+                        'url': 'https://o5wwk8baw.qnssl.com/bc7521e033abdd1e92222d733590f104/avatar'
+                    }
+                ],
+                imgName: '',
+                visible: false,
+                uploadList: [],
+                newList:'',
+
             }
         },
 //        props: ['tariff', 'area', 'tariff_id', 'specification'],
-        props:['name'],
+//        props:['name'],
         mounted() {
-//            console.log(this.name)
+//            console.log(this.$route.params.name)
             window.addEventListener('scroll', this.handleScroll)
+            this.uploadList = this.$refs.upload.fileList;
+//            console.log(this.uploadList)
         },
         created() {
 
         },
         methods: {
+
+            leave_msg(){
+                this.comments_modal = true;
+            },
+
+            leave_ok(){
+                this.comments_modal = false;
+            },
+
+            leave_cancel(){
+                this.comments_modal = false;
+            },
+
             viewphoto(){
                 this.modal = true;
             },
@@ -398,6 +491,56 @@
                     this.$router.push({name:'index'})
                 }
             },
+
+//            handleRemove (file) {
+//                var url = file.url
+//                for(var i in this.uploadList){
+//                    if( this.uploadList[i] = url){
+//                        this.uploadList.splice( i ,1)
+//                    }
+////                    console.log(this.defaultList[i])
+//                }
+////                const fileList = this.$refs.upload.fileList;
+////                this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+//            },
+            handleView (name) {
+                this.imgName = name;
+                this.visible = true;
+            },
+            handleRemove (file) {
+                const fileList = this.$refs.upload.fileList;
+                this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+            },
+            handleSuccess (res, file) {
+                file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar';
+                file.name = '7eb99afb9d5f317c912f08b5212fd69a';
+            },
+            handleFormatError (file) {
+                this.$Notice.warning({
+                    title: '文件格式错误',
+                    desc: '文件 ' + file.name + ' 格式不正确, 请选择 jpg 或者 png.'
+                });
+            },
+            handleMaxSize (file) {
+                this.$Notice.warning({
+                    title: '超过文件大小限制',
+                    desc: '文件  ' + file.name + ' 过大，不超过2M.'
+                });
+            },
+            handleBeforeUpload (file) {
+                console.log(file)
+                const check = this.uploadList.length < 5;
+                console.log(check)
+                if (!check) {
+                    this.$Notice.warning({
+                        title: '最多上传5张照片.'
+                    });
+                }
+                return false ;
+            },
+
+
+
 
         },
         beforeDestroy:function(){
@@ -674,7 +817,8 @@
 
 .more-photo img{
     width:100%;
-    height:100%;
+    height:300px;
+    /*height:100%;*/
 }
 
 .ivu-icon-logo-github:hover, .ivu-icon-md-phone-portrait:hover, .ivu-icon-logo-twitter:hover, .ivu-icon-ios-mail:hover, .ivu-icon-logo-octocat:hover{
@@ -697,6 +841,44 @@
 
     .health_history a:hover, .article-name a:hover{
         color:#af6382 !important;
+    }
+
+
+    .demo-upload-list{
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        line-height: 60px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        overflow: hidden;
+        background: #fff;
+        position: relative;
+        box-shadow: 0 1px 1px rgba(0,0,0,.2);
+        margin-right: 14px;
+    }
+    .demo-upload-list img{
+        width: 100%;
+        height: 100%;
+    }
+    .demo-upload-list-cover{
+        display: none;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,.6);
+    }
+    .demo-upload-list:hover .demo-upload-list-cover{
+        display: block;
+    }
+    .demo-upload-list-cover i{
+        color: #fff;
+        font-size: 50px;
+        cursor: pointer;
+        margin: 70px 2px;
     }
 
 </style>
