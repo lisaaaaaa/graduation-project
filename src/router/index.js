@@ -16,6 +16,8 @@ import article from '@/pages/article/article'
 import article_all from '@/pages/article/article_all'
 import article_one from '@/pages/article/article_one'
 import article_edit from '@/pages/article/article_edit'
+import backend_Page from '@/pages/backend_Page/backend_Page'
+import user_Management from '@/pages/user_Management/user_Management'
 
 Vue.use(Router)
 
@@ -149,9 +151,24 @@ export default new Router({
           },
         },
       ]
-      
-      
-      
+    },{
+      path: '/backend_Page',
+      name: 'backend_Page',
+      component: backend_Page,
+      meta: {
+        title: '健康中心系统',
+        requireAuth: false,
+      },
+      children: [
+        {
+          path: 'user_Management',
+          name: 'user_Management',
+          component: user_Management,
+          meta: {
+            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+      ]
     },
   ]
 })

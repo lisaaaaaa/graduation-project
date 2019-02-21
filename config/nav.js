@@ -36,3 +36,24 @@ export const basic_nav = {
         "icon":'ios-paw',
     },
 }
+
+export const backend_nav = {
+    "user_Management": {
+        "name": "用户管理",
+        "uri": "user_Management",
+        "level": '1',
+        "icon":'ios-contact'
+    },
+    "system_Management": {
+        "name": "系统管理",
+        "uri": "system_Management",
+        "level": '2',
+        "icon":'ios-briefcase'
+    },
+    "system_setting": {
+        "name": "设置",
+        "uri": "system_setting",
+        "level": '3',
+        "icon":'ios-build'
+    },
+}

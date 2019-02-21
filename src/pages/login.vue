@@ -143,7 +143,7 @@
 
                             }else if(this.change == 2){
                                 this.$store.commit('setPower2');    //设置权限，管理员用户
-
+                                this.$router.push({name: 'user_Management', params: {name:this.formCustom.user}});
                             }
 
 
