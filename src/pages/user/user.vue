@@ -53,13 +53,17 @@
                                             <DropdownItem name="collection">
                                                 <Icon type="ios-star" />
                                                 我的收藏</DropdownItem>
+                                            <DropdownItem name="fan">
+                                                <!--<Icon type="ios-help-circle" />-->
+                                                <Icon type="md-people" />
+                                                我的粉丝</DropdownItem>
                                             <DropdownItem name="foot">
                                                 <Icon type="ios-paw" />
                                                 我的足迹</DropdownItem>
-                                            <DropdownItem name="fan">
+                                            <DropdownItem name="blog">
                                                 <!--<Icon type="ios-help-circle" />-->
                                                 <Icon type="ios-people" />
-                                                我的粉丝</DropdownItem>
+                                                论坛</DropdownItem>
                                             <DropdownItem name="exit">
                                                 <Icon type="md-exit" />
                                                 退出</DropdownItem>
@@ -78,23 +82,29 @@
                                 </div>
                                 <div class="person-health-indx" style="width: 55%;">
                                     <div class="index-process">
-                                        <p style="font-size: 34px;">健康指数<span style="font-size: 12px">(近一周)</span></p>
-                                        <div class="one" style="margin-top: 10px">
-                                            <span style="display: block;font-size: 20px;">体重指标</span>
-                                            <Progress style="color: #c7e7c8;" class="health-progress" :percent="25" :stroke-width="5" />
-                                        </div>
+                                        <p style="font-size: 34px;">食品摄入量
+                                            <span style="font-size: 12px">(近一周)</span>
+                                            <Button size="small" type="primary" style="" @click="food_intake">今天</Button>
+                                        </p>
+
                                         <div class="two" style="margin-top: 10px">
-                                            <span style="display: block;font-size: 20px;">血糖指标</span>
+                                            <span style="display: block;font-size: 20px;">蔬菜</span>
                                             <Progress class="health-progress" :percent="25" :stroke-width="5" />
                                         </div>
                                         <div class="three" style="margin-top: 10px">
-                                            <span style="display: block;font-size: 20px;">血压指标</span>
+                                            <span style="display: block;font-size: 20px;">水果</span>
                                             <Progress class="health-progress" :percent="25" :stroke-width="5" />
                                         </div>
                                         <div class="four" style="margin-top: 10px">
-                                            <span style="display: block;font-size: 20px;">血脂指标</span>
+                                            <span style="display: block;font-size: 20px;">肉类</span>
                                             <Progress class="health-progress" :percent="25" :stroke-width="5" />
                                         </div>
+                                        <div class="one" style="margin-top: 10px">
+                                            <span style="display: block;font-size: 20px;">其他</span>
+                                            <Progress style="color: #c7e7c8;" class="health-progress" :percent="25" :stroke-width="5" />
+                                        </div>
+
+
                                     </div>
                                     <div class="health_history">
                                         <a :href=" '/#/basic_info/health_Record' " style="font-size: 20px;font-weight: bold;" title="了解更多">......</a>
@@ -396,6 +406,93 @@
             </Modal>
         </div>
 
+
+        <!--记录食品摄入量-->
+        <div class="foods-modal">
+            <Modal v-model="foods_modal" title="记录你每天的食物摄入情况:" width="600px;">
+                <div style="width:100%;">
+                    <div style="width: 90%;margin: 0px auto;text-align: center; ">
+                        <img class="foods-img" src="./../../images/foods/1.gif" />
+                        <img class="foods-img" src="./../../images/foods/2.gif" />
+                        <img class="foods-img" src="./../../images/foods/3.gif" />
+                        <img class="foods-img" src="./../../images/foods/4.gif" />
+                    </div>
+                    <div style="display: flex;margin-top: 15px;">
+                        <div style="width: 40%;margin-left:20px;">
+                            <p style="font-size: 12px;font-weight:bold;color:#626269bd">每周给自己定一个小目标吧
+                                <Icon type="md-hand" size="22px" style="cursor:pointer;color:#ff00a3;margin-left: 5px;" title="开始制定"/>
+                            </p>
+                            <div class="goal-body">
+                                <div style="width: 95%;text-align: center;padding: 20px;background: #eacca6;border-radius: 10px;">
+                                    <div>
+                                        <div style=" margin-bottom: 10px;">
+                                            <span>蔬菜</span>
+
+                                            <span>克</span>
+                                        </div>
+                                        <Input v-model="target_vegetables" style=" margin-bottom: 10px;">
+                                        <span slot="prepend">蔬菜</span>
+                                        <span slot="append">克</span>
+                                        </Input>
+                                        <Input v-model="target_fruit" style=" margin-bottom: 10px;">
+                                        <span slot="prepend">水果</span>
+                                        <span slot="append">克</span>
+                                        </Input>
+                                        <Input v-model="target_meat" style=" margin-bottom: 10px;">
+                                        <span slot="prepend">肉类</span>
+                                        <span slot="append">克</span>
+                                        </Input>
+                                        <Input v-model="target_others" style=" margin-bottom: 10px;">
+                                        <span slot="prepend">其他</span>
+                                        <span slot="append">克</span>
+                                        </Input>
+                                    </div>
+                                    <div class="footer" style="">
+                                        <Button type="warning" @click="leave_ok" size="small">ok</Button>
+                                        <Button type="warning" ghost @click="leave_cancel" size="small">no</Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 55%;float: right">
+                            <p style="font-size: 12px;font-weight:bold;color:#626269bd;">今天你吃了多少？</p>
+                            <div class="goal-body">
+                                <div style="width: 95%;text-align: center;padding: 20px;background: #bbb9da;border-radius: 10px;">
+                                    <div>
+                                        <Input v-model="eat_vegetables" type="number" style=" margin-bottom: 10px;">
+                                        <span slot="prepend">蔬菜</span>
+                                        <span slot="append">克</span>
+                                        </Input>
+                                        <Input v-model="eat_fruit" style=" margin-bottom: 10px;">
+                                        <span slot="prepend">水果</span>
+                                        <span slot="append">克</span>
+                                        </Input>
+                                        <Input v-model="eat_meat" style=" margin-bottom: 10px;">
+                                        <span slot="prepend">肉类</span>
+                                        <span slot="append">克</span>
+                                        </Input>
+                                        <Input v-model="eat_others" style=" margin-bottom: 10px;">
+                                        <span slot="prepend">其他</span>
+                                        <span slot="append">克</span>
+                                        </Input>
+                                    </div>
+                                    <div class="footer" style="">
+                                        <Button type="success" @click="leave_ok" size="small">ok</Button>
+                                        <Button type="success" ghost @click="leave_cancel" size="small">no</Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div slot="footer">
+                    <!--<Button type="primary" @click="food_ok">确认</Button>-->
+                    <!--<Button type="primary" ghost @click="food_cancel">取消</Button>-->
+                </div>
+            </Modal>
+        </div>
+
     </div>
 </template>
 <script>
@@ -406,6 +503,15 @@
         name: 'user',
         data() {
             return {
+                target_vegetables:'',
+                target_fruit:'',
+                target_meat:'',
+                target_others:'',
+                eat_vegetables:'',
+                eat_fruit:'',
+                eat_meat:'',
+                eat_others:'',
+                foods_modal:false,
                 user_name:'',
                 drawer:false,
                 modal:false,
@@ -493,6 +599,8 @@
                     this.$router.push({name:'my_Fans'})
                 }else if(name == 'exit'){
                     this.$router.push({name:'index'})
+                }else if(name == 'blog'){
+                    this.$router.push({name:'forum'})
                 }
             },
 
@@ -543,7 +651,9 @@
                 return false ;
             },
 
-
+            food_intake(){
+                this.foods_modal = true;
+            },
 
 
         },
@@ -802,7 +912,7 @@
 
 .ivu-modal-content{
     /*background: rgba(25, 25, 25, .5);*/
-    background: #d0d0d0ad;
+    /*background: #d0d0d0ad;*/
 }
 
 .ivu-modal-close .ivu-icon-ios-close{
@@ -883,6 +993,10 @@
         font-size: 50px;
         cursor: pointer;
         margin: 70px 2px;
+    }
+
+    .foods-img{
+        width:20%
     }
 
 </style>

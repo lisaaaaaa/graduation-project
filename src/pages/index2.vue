@@ -62,36 +62,36 @@
                 <div class="row" style="margin: auto;width: 100%;">
                     <div class="row-item-1" style="margin: 0px auto;">
                         <div class="row-item-head" style="text-align: center;">
-                            <h2><small>Benefits of Exercise</small>To enjoy the glow of good health, you must exercise</h2>
+                            <h2><small>健康咨询</small>享受生活 享受健康 我们给你整个服务</h2>
                         </div>
                     </div>
                     <div class="row-item-2" style="max-width: 80%;float: left">
                         <div class="row-item-list" style="margin-right: -15px;margin-left: -15px;">
                             <div class="row-item-list-1 msg">
                                 <Icon type="md-add" />
-                                <h3>Better Sleep</h3>
-                                <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe.</p>
+                                <h3>医疗健康</h3>
+                                <p>运动的保障前提是有医疗的保障。好指导好医生一路保障你的健身之行。</p>
                             </div>
                         </div>
                         <div class="row-item-list" style="margin-right: -15px;margin-left: -15px;">
                             <div class="row-item-list-1 msg">
                                 <Icon type="md-bicycle" />
-                                <h3>Better Sleep</h3>
-                                <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe.</p>
+                                <h3>单车</h3>
+                                <p>骑单车不仅可以沿途观赏美丽的风景，还十分的锻炼自己的腿部肌肉.</p>
                             </div>
                         </div>
                         <div class="row-item-list" style="margin-right: -15px;margin-left: -15px;">
                             <div class="row-item-list-1 msg">
                                 <Icon type="ios-body" />
-                                <h3>Better Sleep</h3>
-                                <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe.</p>
+                                <h3>良好的睡眠</h3>
+                                <p>劳逸要结合。足够的运动消耗体能同时也需要足够的休息睡眠时间保障身体的健康。</p>
                             </div>
                         </div>
                         <div class="row-item-list" style="margin-right: -15px;margin-left: -15px;">
                             <div class="row-item-list-1 msg">
                                 <Icon type="ios-baseball" />
-                                <h3>Better Sleep</h3>
-                                <p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe.</p>
+                                <h3>打球</h3>
+                                <p>打球可以带动全身的运动，唤起全身的运动细胞，运动流汗之后留下的是一身轻松，当然记得休息一会儿后冲个澡。</p>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                     <div class="row-item-5">
                         <p>Our greatest happiness does not depend on the condition of life in which chance has placed us, but is always the result of a good conscience, good health, occupation, and freedom in all just pursuits.</p>
                         <p>Being in control of your life and having realistic expectations about your day-to-day challenges are the keys to stress management, which is perhaps the most important ingredient to living a happy, healthy and rewarding life.</p>
-                        <p><a :href=" '/#/forum' " class="btn btn-more">Explore More</a></p>
+                        <p><a @click="login" class="btn btn-more">了解更多</a></p>
                     </div>
                 </div>
             </div>

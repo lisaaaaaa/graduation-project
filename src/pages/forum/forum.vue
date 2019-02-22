@@ -24,7 +24,7 @@
                     <Button size="small" @click="register">注册</Button>
                 </div>
                 <div class="forum-login">
-                    <span style="color:#fff">欢迎你,</span> <a :href=" '/#/user' " style="cursor:pointer">莉莎</a>
+                    <span style="color:#fff">欢迎你,</span> <a :href=" '/#/user' " style="cursor:pointer"> {{ this.user_name }} </a>
                     <a class="exit" :href=" '/#/' " style="">【退出】</a>
                 </div>
             </div>
@@ -850,7 +850,7 @@
                             <Icon type="md-mail" />
                             <span style="margin-left: 0px;font-size: 12px;">lisa.wow@outlook.com</span>
                         </div>
-                        <div style="margin-left: 15px;">
+                        <div style="margin-left: 2px;">
                             <Icon type="ios-call" />
                             <span style="margin-left: 0px;font-size: 12px;">028-87654321</span>
                         </div>
@@ -968,11 +968,13 @@
 
     import {chinArk_form} from './../../../config/Utils'
     import loginpage from './../login.vue'
+    import {getStore} from './../../../config/Utils'
 
     export default {
         name: 'forum',
         data() {
             return {
+                user_name:'',
                 weight:'',  //体重
                 height:'',  //身高
                 login_modal:false,
@@ -1030,6 +1032,7 @@
         }
         },
         mounted () {
+            this.user_name = getStore('user_name')
             window.addEventListener('scroll', this.handleScroll)
             this.info();
         },
