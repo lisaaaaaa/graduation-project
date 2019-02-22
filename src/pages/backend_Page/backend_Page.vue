@@ -24,13 +24,13 @@
 
             <div id="nav-tip" style="margin-bottom: 0;position: fixed;width: 100%;top: 0px;z-index: 9;">
                 <div class="nav-top" style="height:60px;background:#3E4B5E">
-                    <div style="display: flex;float: right;line-height: 60px;width: 32%;">
+                    <div style="display: flex;float: right;line-height: 60px;width: 35%;">
                         <div style="margin-right: 18%;">
                             <div class="top-icon">
                                 <Input search size="small" placeholder="Enter something..." />
                             </div>
                             <div class="top-icon">
-                                <Badge :count="10" type="warning" size="5" overflow-count="99">
+                                <Badge :count="2" type="warning" size="5" overflow-count="99">
                                     <Icon type="md-notifications" size="20"/>
                                 </Badge>
                             </div>
@@ -42,10 +42,11 @@
                         </div>
                         <div class="manager" style="">
                             <Icon type="md-contact" />
-                            <span style="margin-left: 5px;">{{ this.login_name }}</span>
+                            <!--<span style="margin-left: 5px;">{{ this.login_name }}</span>-->
+                            <a  :href=" '#/backend_Page/backend_Administrator' " style="margin-left: 5px;">{{ this.login_name }}</a>
                         </div>
-                        <div>
-                            <Icon type="md-exit" />
+                        <div style="margin-left:15px;">
+                            <Icon type="md-exit" style="cursor: pointer" title="退出" @click.native="exit"/>
                         </div>
                     </div>
 
@@ -103,6 +104,11 @@
 //                    document.getElementById("right-box").style.marginLeft = '';
 //                }
             },
+
+            exit(){
+                this.$store.commit('logout');
+                this.$router.push({name:'index'})
+            }
 
         },
         beforeDestroy:function(){
@@ -164,6 +170,10 @@
         right: 20px;
         overflow-y: auto;
         bottom: 10px;
+    }
+
+    #backend #nav-tip .manager a{
+        color:#fff;
     }
 
 

@@ -114,6 +114,67 @@
     export default {
         name: 'user_Management',
         data() {
+
+            const validatePass2 = (rule, value, callback) => {
+                var reg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
+                if (value === '') {
+                    callback(new Error('请输入新密码'));
+                } else if(!reg.test(value)) {
+                    callback(new Error('只能含有英文大小写字母、下划线、数字、中文'));
+                } else if (value.length < 6) {
+                    callback(new Error('至少6个字符'));
+                } else if (value.length >= 35) {
+                    callback(new Error('应35个字符以内'));
+                } else {
+                    callback();
+                }
+            };
+
+            const validatePassCheck = (rule, value, callback) => {
+                var reg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
+                if (value === '') {
+                    callback(new Error('请再次输入密码'));
+                } else if(!reg.test(value)) {
+                    callback(new Error('只能含有英文大小写字母、下划线、数字、中文'));
+                } else if (value !== this.formReset.pass) {
+                    callback(new Error('两次密码不一致!'));
+                } else {
+                    callback();
+                }
+            };
+
+            const validateInput = (rule, value, callback) => {
+                var reg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
+                if (value === '') {
+                    callback(new Error('请输入有效值'));
+                } else if(!reg.test(value)) {
+                    callback(new Error('只能含有英文大小写字母、下划线、数字、中文'));
+                } else if (value.length >= 35) {
+                    callback(new Error('应35个字符以内'));
+                } else {
+                    callback();
+                }
+            };
+
+            const validateContact = (rule, value, callback) => {
+                var reg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
+                if (value === '') {
+                    callback(new Error('请输入联系人'));
+                } else if(!reg.test(value)) {
+                    callback(new Error('只能含有英文大小写字母、下划线、数字、中文'));
+                } else if (value.length < 2) {
+                    callback(new Error('至少2个字符'));
+                } else if (value.length >= 35) {
+                    callback(new Error('应35个字符以内'));
+                } else {
+                    callback();
+                }
+            };
+
+
+
+
+
             return {
 
                 isPower:true,
@@ -129,10 +190,10 @@
                         { required: false}
                     ],
                     pass: [
-                        { required: true, message: '密码不能为空', trigger: 'blur' }
+                        {validator: validatePass2, trigger: 'blur',required: true}
                     ],
                     newpass: [
-                        { required: true, message: '密码不能为空', trigger: 'blur' },
+                        {validator: validatePassCheck, trigger: 'blur',required: true}
                     ],
                 },
                 formValidate: {
@@ -144,10 +205,10 @@
                     single:'false'
                 },ruleValidate: {
                     name: [
-                        { required: true, message: '名称不能为空', trigger: 'blur' }
+                        {validator: validateInput, trigger: 'blur',required: true}
                     ],
                     contact: [
-                        { required: true, message: '联系人不能为空', trigger: 'blur' }
+                        {validator: validateContact, trigger: 'blur',required: true}
                     ],
                     phone: [
                         { required: true, message: '电话不能为空', trigger: 'blur' },
@@ -583,17 +644,19 @@
                 this.modal_reset = true;
             },
             reset_ok(){
-                var self = this;
-                if(self.formReset.new_pass != self.formReset.pass){
-                    self.$Message.error('两次密码不一致！');
-                    return;
-                }
+                console.log('修改成功')
+                this.modal_reset = false;
+//                if(self.formReset.new_pass != self.formReset.pass){
+//                    self.$Message.error('两次密码不一致！');
+//                    return;
+//                }
 
                 self.getStore();
             },
             reset_cancel(){
                 this.modal_reset = false;
             },
+            getStore(){},
 
         },
         beforeDestroy:function(){

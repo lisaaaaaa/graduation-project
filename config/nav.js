@@ -50,9 +50,9 @@ export const backend_nav = {
         "level": '2',
         "icon":'ios-briefcase'
     },
-    "system_setting": {
+    "system_Setting": {
         "name": "设置",
-        "uri": "system_setting",
+        "uri": "system_Setting",
         "level": '3',
         "icon":'ios-build'
     },
