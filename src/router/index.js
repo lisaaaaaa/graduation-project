@@ -21,6 +21,7 @@ import user_Management from '@/pages/user_Management/user_Management'
 import backend_Administrator from '@/pages/backend_Administrator/backend_Administrator'
 import system_Management from '@/pages/system_Management/system_Management'
 import system_Setting from '@/pages/system_Setting/system_Setting'
+import medical_History from '@/pages/medical_History/medical_History'
 
 Vue.use(Router)
 
@@ -43,7 +44,7 @@ export default new Router({
       component: user,
       meta: {
         title: '健康中心系统',
-        requireAuth: true,
+        requireAuth: false,
       }
     },
     {
@@ -196,6 +197,14 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      path:'/medical_History',
+      name:'medical_History',
+      component:medical_History,
+      meta:{
+        requireAuth:false,
+      }
     },
   ]
 })

@@ -29,14 +29,24 @@
                                     <!--<span>生日：</span><span>1990/2/14</span>-->
                                 <!--</li>-->
                                 <li>
-                                    <span>地区：</span><span>成都</span>
-                                </li>
-                                <li>
                                     <span>邮箱：</span><span>lisa.wow@outlook.com</span>
                                 </li>
                                 <li>
-                                    <span>爱好：</span><span>吃饭 睡觉</span>
+                                    <span>出生日期：</span><span>2019-02-01</span>
                                 </li>
+                                <li>
+                                    <span>身高：</span><span>152<em>cm</em></span>
+                                </li>
+                                <li>
+                                    <span>体重：</span><span>42<em>kg</em></span>
+                                </li>
+                                <li>
+                                    <span>血型：</span><span>成都</span>
+                                </li>
+
+                                <!--<li>-->
+                                    <!--<span>爱好：</span><span>吃饭 睡觉</span>-->
+                                <!--</li>-->
                             </ul>
                         </div>
                     </div>

@@ -186,35 +186,70 @@
 
 
                         </div>
-                        <div class="album" style="height:auto">
+
+
+                        <!--过敏史-->
+                        <div class="allergies" style="height:auto">
 
                             <div style="padding:15px;">
                                 <div style="height:auto">
-                                    <h2>相册</h2>
+                                    <h2>过敏史 <Icon type="md-add-circle" size="22" style="color:green;cursor:pointer" title="添加" @click.native="allergies"/></h2>
+
                                     <hr>
                                 </div>
                             </div>
-                            <div style="display: flex;width: 90%;margin: 0px auto;">
-                                <div class="photo">
-                                    <img src='./../../images/project_3.jpg' />
-                                </div>
-                                <div class="photo">
-                                    <img src='./../../images/project_3.jpg' />
-                                </div>
-                                <div class="photo">
-                                    <img src='./../../images/project_3.jpg' />
-                                </div>
+                            <div style="width: 90%;margin: 0px auto;">
+                                <Table height="200" :columns="columns1" :data="data2"></Table>
                             </div>
 
-                            <div class="photo-footer" style="margin-top:15px;">
-                                <div class="viewer" style="width:50%;margin:0px auto;text-align: center;">
-                                    <Button icon="ios-plane" size="small" type="success" @click="viewphoto">VIEW MORE</Button>
+                            <!--<div class="photo-footer" style="margin-top:15px;">-->
+                                <!--<div class="viewer" style="width:50%;margin:0px auto;text-align: center;">-->
+                                    <!--<Button icon="ios-plane" size="small" type="success" @click="viewphoto">VIEW MORE</Button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+
+                        </div>
+
+                        <!--病史-->
+                        <div class="Medical-history" style="height:auto">
+
+                            <div style="padding:15px;">
+                                <div style="height:auto">
+                                    <h2>病史<Icon type="md-add-circle" size="22" style="color:green;margin-left: 8px;cursor:pointer" title="添加" @click.native="medical_history"/></h2>
+                                    <hr>
                                 </div>
+                            </div>
+                            <div style="">
+                                <div class="medical">
+                                    <Table height="200" :columns="columns_medical" :data="data_medical"></Table>
+                                    <!--<span class="time">2018-10-2</span>-->
+                                    <!--<div class="other">-->
+                                        <!--<span>-->
+                                            <!--这是病史的具体内容这是病史的具体内容这是病史的具体内容这是病史的具体内容-->
+                                        <!--</span>-->
+                                        <!--<Icon type="md-eye" />-->
+                                        <!--<Button title="了解更多" style="border:none" >......</Button>-->
+                                    <!--</div>-->
+                                </div>
+
+                                <!--<div class="photo">-->
+                                    <!--<img src='./../../images/project_3.jpg' />-->
+                                <!--</div>-->
+                                <!--<div class="photo">-->
+                                    <!--<img src='./../../images/project_3.jpg' />-->
+                                <!--</div>-->
+                                <!--<div class="photo">-->
+                                    <!--<img src='./../../images/project_3.jpg' />-->
+                                <!--</div>-->
                             </div>
 
 
 
                         </div>
+
+
                         <div class="message-board" style="height:auto;margin-top: 20px;opacity: 1;background: #f3f3f3;">
                             <div style="padding: 15px;">
                                 <div class="head-line">
@@ -493,6 +528,26 @@
             </Modal>
         </div>
 
+
+        <!--过敏史-->
+        <div class="allergies-modal">
+            <Modal v-model="allergies_modal" title="记录您的过敏史">
+                <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="90">
+                    <FormItem label="过敏原：" prop="name">
+                        <Input v-model="formValidate.name" placeholder="Enter the name" style="width:75%"></Input>
+                    </FormItem>
+                    <FormItem label="药物：" prop="medical">
+                        <Input v-model="formValidate.medical" placeholder="Enter the medical" style="width:75%"></Input>
+                    </FormItem>
+                </Form>
+
+                <div slot="footer">
+                    <Button type="primary" @click="allergies_ok('formValidate')">确认</Button>
+                    <Button type="primary" ghost @click="allergies_cancel">取消</Button>
+                </div>
+            </Modal>
+        </div>
+
     </div>
 </template>
 <script>
@@ -503,6 +558,120 @@
         name: 'user',
         data() {
             return {
+                formValidate:{
+                    id:'',
+                    name:'',
+                    medical:''
+                },
+                ruleValidate: {
+                    name: [
+                        { required: true, message: '请填写过敏原', trigger: 'blur' }
+                    ],
+                    medical: [
+                        { required: true, message: '请填写治疗药物', trigger: 'blur' }
+                    ],
+                },
+                allergies_modal:false,
+                columns_medical: [
+                    {
+                        title: '时间',
+                        key: 'time'
+                    },
+                    {
+                        title: '诊断结果',
+                        key: 'diagnosis'
+                    },
+                    {
+                        title:'操作',
+                        key: 'action',
+                        align: 'center',
+                        render: (h, params) => {
+                        return h('div', [
+                            h('Button', {
+                                props: {
+                                    type: 'error',
+                                    size: 'small'
+                                },
+                                on: {
+                                    click: () => {
+                                        this.remove_medical(params.row.id)
+                                    }
+                                }
+                            }, '删除'),
+                            h('Button', {
+                                props: {
+                                    type: 'primary',
+                                    size: 'small'
+                                },
+                                on: {
+                                    click: () => {
+                                        this.detail_medical(params.row.id)
+                                    }
+                                }
+                            }, '详情')
+                            ]);
+                         }
+                     }
+                ],
+            data_medical:[
+                {
+                    id:'1',
+                    time:'2018-01-02',
+                    diagnosis:'病毒性感冒引起的呼吸道感染',
+                }
+            ],
+                columns1: [
+                    {
+                        title: '过敏原',
+                        key: 'allergen'
+                    },
+                    {
+                        title: '药物',
+                        key: 'medicine'
+                    },
+                    {
+                        title:'操作',
+                        key: 'action',
+                        align: 'center',
+                        render: (h, params) => {
+                        return h('div', [
+                            h('Button', {
+                                props: {
+                                    type: 'error',
+                                    size: 'small'
+                                },
+                            on: {
+                                click: () => {
+                                    this.remove_allergen(params.row.id)
+                                }
+                             }
+                            }, 'Delete')
+                        ]);
+                        }
+                        }
+                ],
+                data2: [
+                    {
+                        id:'1',
+                        allergen:'海鲜',
+                        medicine:'无',
+                    },
+                    {
+                        id:'2',
+                        allergen:'海鲜',
+                        medicine:'无',
+                    },
+                    {
+                        id:'3',
+                        allergen:'海鲜',
+                        medicine:'无',
+                    },
+                    {
+                        id:'4',
+                        allergen:'海鲜',
+                        medicine:'无',
+                    },
+                ],
                 target_vegetables:'',
                 target_fruit:'',
                 target_meat:'',
@@ -518,8 +687,6 @@
                 comments_modal:false,
                 leave_comments:'',
                 scrollTop:'',
-
-
                 defaultList: [
                     {
                         'name': 'a42bdcc1178e62b4694c830f028db5c0',
@@ -550,6 +717,46 @@
 
         },
         methods: {
+
+//            删除过敏史
+            remove_allergen(id){
+                if(confirm("确认删除吗？")){
+                    console.log('删除' + id)
+                }
+            },
+//            添加过敏史
+            allergies(){
+                this.allergies_modal = true;
+            },
+            allergies_ok(name){
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.data2.push(this.formValidate)
+                        console.log(this.formValidate)
+//                        this.$Message.success('Success!');
+                    } else {
+                        this.$Message.error('请正确填写表单信息');
+                    }
+                })
+            },
+            allergies_cancel(){
+                this.allergies_modal = false;
+            },
+
+//            删除病史
+            remove_medical(id){
+
+            },
+
+            detail_medical(id){
+                this.$router.push({'name':'medical_History',params: {id: id}})
+            },
+
+//            添加病史
+            medical_history(){
+
+            },
+
 
             leave_msg(){
                 this.comments_modal = true;
@@ -909,6 +1116,37 @@
     /*box-shadow: 1px 0.5px 0.5px black;*/
     box-shadow: 0 4px 4px black;
 }
+
+    .medical{
+        padding: 15px;
+        width: 95%;
+        margin-left: 20px;
+        /*cursor: pointer;*/
+    }
+
+    .medical Button:hover{
+        cursor: pointer;
+        box-shadow: 0 10px 10px -10px rgba(0,0,0,.5);
+        opacity: 0.5;
+    }
+
+    .medical Button{
+        /*float: right;*/
+        margin:5px;
+    }
+
+    .medical .time{
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .medical .other{
+        margin-left: 20px;
+        font-size: 13px;
+        overflow: hidden;
+        /*text-overflow:ellipsis;*/
+        white-space: nowrap;
+    }
 
 .ivu-modal-content{
     /*background: rgba(25, 25, 25, .5);*/
