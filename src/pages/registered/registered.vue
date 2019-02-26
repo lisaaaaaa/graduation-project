@@ -10,40 +10,59 @@
 
             <div class="register-form" style=""> 
                 <div class="register-container" style="padding:24px;">
-                    <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
+                    <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="90">
                         <FormItem label="名称：" prop="name">
-                            <Input v-model="formValidate.name" placeholder="Enter your name"></Input>
+                            <Input v-model="formValidate.name" placeholder="Enter your name" style="width:75%"></Input>
                         </FormItem>
                         <FormItem label="签名：" prop="signature">
-                            <Input v-model="formValidate.signature" placeholder="Enter your signature"></Input>
+                            <Input v-model="formValidate.signature" placeholder="Enter your signature" style="width:75%"></Input>
                         </FormItem>
                         <FormItem label="邮箱：" prop="mail">
-                            <Input v-model="formValidate.mail" placeholder="Enter your e-mail"></Input>
-                        </FormItem>
-                        <FormItem label="城市：" prop="city">
-                            <Select v-model="formValidate.city" placeholder="Select your city">
-                                <Option value="beijing">北京</Option>
-                                <Option value="shanghai">上海</Option>
-                                <Option value="shenzhen">深圳</Option>
-                                <Option value="chengdu">成都</Option>
-                                <Option value="xianggang">香港</Option>
-                                <Option value="niuyue">纽约</Option>
-                            </Select>
+                            <Input v-model="formValidate.mail" placeholder="Enter your e-mail" style="width:75%"></Input>
                         </FormItem>
                         <FormItem label="性别：" prop="gender">
                             <RadioGroup v-model="formValidate.gender">
-                            <Radio label="male">男</Radio>
-                            <Radio label="female">女</Radio>
+                                <Radio label="male">男</Radio>
+                                <Radio label="female">女</Radio>
                             </RadioGroup>
                         </FormItem>
-                        <FormItem label="爱好：" prop="interest">
-                            <CheckboxGroup v-model="formValidate.interest">
-                            <Checkbox label="吃"></Checkbox>
-                            <Checkbox label="睡"></Checkbox>
-                            <Checkbox label="运动"></Checkbox>
-                            <Checkbox label="电影"></Checkbox>
-                            </CheckboxGroup>
+                        <FormItem label="身高：" prop="height">
+                            <!--<InputNumber :min="1" v-model="formValidate.height">-->
+                            <!--<span>cm</span>-->
+                            <Input v-model="formValidate.height" placeholder="height" type="number" style="width:80px;"></Input>
+                            <span>cm</span>
                         </FormItem>
+                        <FormItem label="体重：" prop="weight">
+                            <Input v-model="formValidate.weight" placeholder="weight" type="number" style="width:80px;"></Input>
+                            <span>kg</span>
+                            <!--<InputNumber :min="1" v-model="formValidate.weight">-->
+                            <!--<span>kg</span>-->
+                            <!--<Input v-model="formValidate.name" placeholder="Enter your weight"></Input>-->
+                        </FormItem>
+                        <FormItem label="出生日期：" prop="date">
+                            <Row>
+                                <Col span="11">
+                                <DatePicker type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="date"></DatePicker>
+                                </Col>
+                                <!--<Col span="2" style="text-align: center">-</Col>-->
+                            </Row>
+                        </FormItem>
+                        <FormItem label="血型：" prop="blood">
+                            <Select v-model="formValidate.blood" placeholder="Select your blood type" style="width:80px;">
+                                <Option value="A">A型</Option>
+                                <Option value="B">B型</Option>
+                                <Option value="AB">AB型</Option>
+                                <Option value="O">0型</Option>
+                            </Select>
+                        </FormItem>
+                        <!--<FormItem label="爱好：" prop="interest">-->
+                            <!--<CheckboxGroup v-model="formValidate.interest">-->
+                            <!--<Checkbox label="吃"></Checkbox>-->
+                            <!--<Checkbox label="睡"></Checkbox>-->
+                            <!--<Checkbox label="运动"></Checkbox>-->
+                            <!--<Checkbox label="电影"></Checkbox>-->
+                            <!--</CheckboxGroup>-->
+                        <!--</FormItem>-->
                         <!--<FormItem>-->
                             <div style="width: 80%;margin: 0px auto;margin-bottom: 15px;">
                                 <Button type="primary" long @click="handleSubmit('formValidate')">注册</Button>
@@ -66,14 +85,37 @@
 export default {
         name: 'forum',
         data() {
+
+
+            const validateDate = (rule, value, callback, source, options) => {
+                if (value === '') {
+                    callback(new Error('请选择出生日期'));
+                }  else {
+                    callback();
+                }
+            };
+
+            const validateNumber = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('不能为空'));
+                } else if( value<1 ) {
+                    callback(new Error('不能小于1'));
+                } else {
+                    callback();
+                }
+            };
+
             return {
                formValidate: {
                     name: '',
                     signature:'',
                     mail: '',
-                    city: '',
+                   blood: '',
                     gender: '',
-                    interest: [],
+//                    interest: [],
+                    date:'',
+                    height:'',
+                    weight:'',
 //                    time: '',
                 },ruleValidate: {
                     name: [
@@ -86,19 +128,28 @@ export default {
                         { required: true, message: '邮箱不能为空', trigger: 'blur' },
                         { type: 'email', message: '请正确输入邮箱格式', trigger: 'blur' }
                     ],
-                    city: [
-                        { required: true, message: '请选择一个城市', trigger: 'change' }
+                    blood: [
+                        { required: true, message: '请选择您的血型', trigger: 'change' }
                     ],
                     gender: [
                         { required: true, message: '请选择身份', trigger: 'change' }
                     ],
-                    interest: [
-                        { required: true, type: 'array', min: 1, message: '至少选择一个爱好', trigger: 'change' },
-                        { type: 'array', max: 3, message: '最多选择三个爱好', trigger: 'change' }
+                    height: [
+                        {validator: validateNumber, trigger: 'number',required: true}
+//                        { required: true, message: '身高不能为空', trigger: 'blur' }
                     ],
-//                    time: [
-//                        { required: true, type: 'string', message: 'Please select time', trigger: 'change' }
+                    weight: [
+                        {validator: validateNumber, trigger: 'number',required: true}
+//                        { required: true, message: '体重不能为空', trigger: 'blur' }
+                    ],
+//                    interest: [
+//                        { required: true, type: 'array', min: 1, message: '至少选择一个爱好', trigger: 'change' },
+//                        { type: 'array', max: 3, message: '最多选择三个爱好', trigger: 'change' }
 //                    ],
+                    date: [
+                        {validator: validateDate, trigger: 'blur',required: true}
+//                        { required: true, type: 'date', message: '出生日期不能为空', trigger: 'change' }
+                    ],
                 }
             }
         },
@@ -110,6 +161,10 @@ export default {
 
         },
         methods: {
+
+            date(e){
+                this.formValidate.date = e;
+            },
         
              handleSubmit (name) {
                 this.$refs[name].validate((valid) => {
@@ -144,10 +199,10 @@ export default {
 
     .register-form{
         float:left;
-        margin-top:160px;
+        margin-top:90px;
         margin-left:-50px;
         width: 33%;
-        height: 460px;
+        /*height: 460px;*/
         background:#fff;
         box-shadow: 0 0 3px #000;
         border-radius: 5px;
