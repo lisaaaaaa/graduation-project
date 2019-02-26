@@ -44,7 +44,7 @@ export default new Router({
       component: user,
       meta: {
         title: '健康中心系统',
-        requireAuth: false,
+        requireAuth: true,
       }
     },
     {
@@ -203,7 +203,7 @@ export default new Router({
       name:'medical_History',
       component:medical_History,
       meta:{
-        requireAuth:false,
+        requireAuth:true,
       }
     },
   ]
