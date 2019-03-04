@@ -22,6 +22,7 @@ import backend_Administrator from '@/pages/backend_Administrator/backend_Adminis
 import system_Management from '@/pages/system_Management/system_Management'
 import system_Setting from '@/pages/system_Setting/system_Setting'
 import medical_History from '@/pages/medical_History/medical_History'
+import add_medical_History from '@/pages/medical_History/add_medical_History'
 
 Vue.use(Router)
 
@@ -202,6 +203,14 @@ export default new Router({
       path:'/medical_History',
       name:'medical_History',
       component:medical_History,
+      meta:{
+        requireAuth:true,
+      }
+    },
+    {
+      path:'/add_medical_History',
+      name:'add_medical_History',
+      component:add_medical_History,
       meta:{
         requireAuth:true,
       }

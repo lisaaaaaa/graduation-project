@@ -745,7 +745,9 @@
 
 //            删除病史
             remove_medical(id){
-
+                if(confirm("确认删除吗？")){
+                    console.log('删除' + id)
+                }
             },
 
             detail_medical(id){
@@ -754,7 +756,7 @@
 
 //            添加病史
             medical_history(){
-
+                this.$router.push({'name':'test'})
             },
 
 
@@ -983,7 +985,7 @@
         bottom: 0%;
     }
 
-    .ivu-icon-ios-arrow-down{
+    #user .ivu-icon-ios-arrow-down{
         font-size: 60px;
         font-weight: bold;
         color: #fff;
