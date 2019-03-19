@@ -184,14 +184,35 @@
                         <h2 data-wow-delay="0.5s">观看视频
                             <small>没有健康生活不是生命; 它只是一种流浪和痛苦的状态 - 一种死亡的形象。</small>
                         </h2>
-                        <a href="#">
-                            <Icon type="logo-youtube" />
-                        </a>
-                        <small><em>视频: 健康小贴士</em></small>
+                         <Icon type="logo-youtube" @click.native="videoClick" style="cursor: pointer;"/>
+                        <!--<small><em>视频: 健康小贴士</em></small>-->
                     </div>
                 </div>
             </div>
         </section>
+
+        <!--视频播放-->
+
+        <Modal v-model="video" class-name="video_res" width="720">
+            <p slot="header" style="color:#f60;text-align:center">
+
+            </p>
+            <div style="">
+
+                <video controls="controls" id="video">
+                    <source src="./../videos/full_new.mp4" type="video/ogg" />
+                    <source src="./../videos/full_new.mp4" type="video/mp4" />
+                    <source src="./../videos/full_new.mp4" type="video/webm" />
+                    <object data="./../videos/full_new.mp4" width="320" height="240">
+                        <embed width="320" height="240" src="./../videos/full_new.mp4" />
+                    </object>
+                </video>
+
+            </div>
+            <div slot="footer">
+
+            </div>
+        </Modal>
 
         <!--第六部分-心灵鸡汤-->
         <section id="part-6" class="part-six part-four" style="background: rgb(247,247,247);">
@@ -332,6 +353,7 @@
         name: 'index',
         data() {
             return {
+                video:false,
                 footer_hide:true,
                 carousel:0,
                 value:0,
@@ -361,6 +383,11 @@
         created() {
         },
         methods: {
+            //视频播放
+            videoClick(){
+//                console.log('点击')
+                this.video = true;
+            },
             handleScroll () {
                 var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
                 if(scrollTop>0){
@@ -404,12 +431,27 @@
                 this.$router.push({name:'registered'})
             }
         },
+        watch: {
+            video(val) {
+                var myVideo=document.getElementById("video");
+                if(val == true){
+                    myVideo.play();
+                }else{
+                    myVideo.currentTime = 0;
+                    myVideo.pause();
+                }
+            }
+        }
 
     }
 
 
 </script>
 <style type="text/css">
+
+    .video_res .ivu-modal-body{
+        padding: 0px;
+    }
 
     .fixed{
         background: white;

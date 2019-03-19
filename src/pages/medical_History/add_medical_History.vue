@@ -7,43 +7,88 @@
             <div class="medical-body">
                 <div class="basic" style="background: #dcdee2">
                     <div class="medical-body-basic-msg" style="display: flex;padding: 15px">
-                        <div class="msg">
-                            <span class="msg-name">姓名：</span>
-                            <Input v-model="patient_name" placeholder="Enter something..." style="width:200px;" />
-                        </div>
-                        <div class="msg">
-                            <span class="msg-name">出生日期：</span>
-                            <DatePicker type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="date"></DatePicker>
-                        </div>
-                        <div class="msg">
-                            <span class="msg-name">诊断时间：</span>
-                            <DatePicker type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="treatment_time"></DatePicker>
-                        </div>
-                        <div class="msg">
-                            <span class="msg-name">诊疗结果：</span>
-                            <Input v-model="treatment_outcome" placeholder="Enter something..." style="width: 200px" />
-                        </div>
+                        <Form ref="formValidate_ori" :model="formValidate_ori" :rules="ruleValidate_ori" :label-width="90">
+                            <FormItem label="姓名：" prop="name">
+                                <Input v-model="formValidate_ori.name" placeholder="Enter your name" style="width:75%"></Input>
+                            </FormItem>
+                            <FormItem label="出生日期：" prop="date">
+                                <Row>
+                                    <Col span="11">
+                                        <DatePicker type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="date" style="width:141%"></DatePicker>
+                                    </Col>
+                                </Row>
+                            </FormItem>
+                            <FormItem label="诊断时间：" prop="date">
+                                <Row>
+                                    <Col span="11">
+                                    <DatePicker type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="treatment_time" style="width:141%"></DatePicker>
+                                    </Col>
+                                </Row>
+                            </FormItem>
+                            <FormItem label="诊疗结果：" prop="treatment_outcome">
+                                <Input v-model="formValidate_ori.treatment_outcome" placeholder="Enter your diagnosis results" style="width:75%"></Input>
+                            </FormItem>
+                            <FormItem label="医师：" prop="doctor">
+                                <Input v-model="formValidate_ori.doctor" placeholder="Enter your doctor's name" style="width:75%"></Input>
+                            </FormItem>
+                            <FormItem label="就诊医院：" prop="hospital">
+                                <Input v-model="formValidate_ori.hospital" placeholder="Enter your hospital" style="width:75%"></Input>
+                            </FormItem>
+                            <FormItem label="备注：" prop="remark">
+                                <Input v-model="formValidate_ori.remark" placeholder="Enter your remark" style="width:75%"></Input>
+                            </FormItem>
+                        </Form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <!--<div class="msg">-->
-                        <!--<span class="msg-name">诊断时间：</span><span class="msg-other">2018-01-07</span>-->
+                            <!--<span class="msg-name">姓名：</span>-->
+                            <!--<Input v-model="patient_name" placeholder="Enter something..." style="width:200px;" />-->
                         <!--</div>-->
+                        <!--<div class="msg">-->
+                            <!--<span class="msg-name">出生日期：</span>-->
+                            <!--<DatePicker type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="date"></DatePicker>-->
+                        <!--</div>-->
+                        <!--<div class="msg">-->
+                            <!--<span class="msg-name">诊断时间：</span>-->
+                            <!--<DatePicker type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="treatment_time"></DatePicker>-->
+                        <!--</div>-->
+                        <!--<div class="msg">-->
+                            <!--<span class="msg-name">诊疗结果：</span>-->
+                            <!--<Input v-model="treatment_outcome" placeholder="Enter something..." style="width: 200px" />-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;<div class="msg">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="msg-name">诊断时间：</span><span class="msg-other">2018-01-07</span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
                     </div>
-                    <div class="medical-body-basic-msg" style="display: flex;padding: 15px">
-                        <div class="msg">
-                            <span class="msg-name">医师：</span>
-                            <Input v-model="doctor" placeholder="Enter something..." style="width: 300px" />
-                            <!--<span class="msg-other">小熊医生</span>-->
-                        </div>
-                        <div class="msg">
-                            <span class="msg-name">就诊医院：</span>
-                            <Input v-model="hospital" placeholder="Enter something..." style="width: 300px" />
-                            <!--<span class="msg-other">四川省人民医院</span>-->
-                        </div>
-                        <div class="msg">
-                            <span class="msg-name">备注：</span>
-                            <Input v-model="remark" placeholder="Enter something..." style="width: 300px" />
-                            <!--<span class="msg-other">内容包含主诉、诊断、治疗史信息供治疗参考</span>-->
-                        </div>
-                    </div>
+                    <!--<div class="medical-body-basic-msg" style="display: flex;padding: 15px">-->
+                        <!--<div class="msg">-->
+                            <!--<span class="msg-name">医师：</span>-->
+                            <!--<Input v-model="doctor" placeholder="Enter something..." style="width: 300px" />-->
+                            <!--&lt;!&ndash;<span class="msg-other">小熊医生</span>&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--<div class="msg">-->
+                            <!--<span class="msg-name">就诊医院：</span>-->
+                            <!--<Input v-model="hospital" placeholder="Enter something..." style="width: 300px" />-->
+                            <!--&lt;!&ndash;<span class="msg-other">四川省人民医院</span>&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--<div class="msg">-->
+                            <!--<span class="msg-name">备注：</span>-->
+                            <!--<Input v-model="remark" placeholder="Enter something..." style="width: 300px" />-->
+                            <!--&lt;!&ndash;<span class="msg-other">内容包含主诉、诊断、治疗史信息供治疗参考</span>&ndash;&gt;-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -101,7 +146,7 @@
                 </div>
             </div>
             <div class="foot" style="text-align: center;background: rgb(220, 222, 226);padding: 10px;">
-                <Button type="success" style="text-align: center" @click="save">保存</Button>
+                <Button type="success" style="text-align: center" @click="save('formValidate_ori')">保存</Button>
             </div>
         </div>
 
@@ -148,6 +193,39 @@
             };
 
             return {
+                formValidate_ori: {
+                    name: '',
+                    treatment_outcome:'',
+                    doctor:'',
+                    hospital:'',
+                    remark:'',
+                    date:'',
+                    birth_date:'',     //出生日期
+                    treatment_data:'',   //治疗时间
+                },ruleValidate_ori: {
+                    name: [
+                        { required: true, message: '名称不能为空', trigger: 'blur' }
+                    ],
+                    treatment_outcome: [
+                        { required: true, message: '诊疗结果不能为空', trigger: 'blur' }
+                    ],
+                    doctor: [
+                        { required: true, message: '医师不能为空', trigger: 'blur' }
+                    ],
+                    hospital: [
+                        { required: true, message: '就诊医院不能为空', trigger: 'blur' }
+                    ],
+                    remark: [
+                        { required: false, message: '', trigger: 'blur' }
+                    ],
+                    date: [
+                        {validator: validateDate, trigger: 'blur',required: true}
+                    ],
+                },
+
+
+
+
                 patient_name:'',   //姓名
                 treatment_outcome:'',   //治疗结果
                 doctor:'',    //医师
@@ -226,11 +304,11 @@
         methods: {
 
             date(e){
-                this.birth_date = e;
+                this.formValidate_ori.birth_date = e;
             },
 
-            treatment_time(){
-                this.treatment_data = e;
+            treatment_time(e){
+                this.formValidate_ori.treatment_data = e;
             },
 
             add_date(e){
@@ -266,9 +344,17 @@
                 this.allergies_modal = false;
             },
 
-            save(){
-                this.$Message.success("保存成功")
-                this.$router.push({'name':'user'})
+            save(name){
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.data2.push(this.formValidate)
+                        console.log(this.formValidate)
+                        this.$Message.success("保存成功")
+                        this.$router.push({'name':'user'})
+                    } else {
+                        this.$Message.error('请正确填写表单信息');
+            }
+            })
             }
 
         },
@@ -317,5 +403,9 @@
         padding: 25px;
         font-size: 12px;
         font-weight: bold;
+    }
+
+    #medical .ivu-form-item{
+        float:left;
     }
 </style>

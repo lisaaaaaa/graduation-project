@@ -23,6 +23,12 @@ Vue.use(Echarts)
 Vue.config.productionTip = false
 Vue.use(iView) //使用iview组件
 
+
+import VideoPlayer from 'vue-video-player'
+Vue.use(VideoPlayer)
+require('video.js/dist/video-js.css')
+require('vue-video-player/src/custom-theme.css')
+
 //使用Vuex监控登录状态，权限
 const store = new Vuex.Store({
   state: {

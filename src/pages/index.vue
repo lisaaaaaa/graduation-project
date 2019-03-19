@@ -169,9 +169,7 @@
                         <h2 class="wow fadeInUp" data-wow-delay="0.5s">观看视频
                             <small>没有健康生活不是生命; 它只是一种流浪和痛苦的状态 - 一种死亡的形象。</small>
                         </h2>
-                        <a href="#" >
-                            <Icon type="logo-youtube" />
-                        </a>
+                        <Icon type="logo-youtube" @click.native="videoClick" />
                         <small><em>视频: 健康小贴士</em></small>
                     </div>
                 </div>
@@ -287,29 +285,64 @@
             </div>
         </div>
 
+        <!--视频播放-->
+
+        <Modal v-model="video" width="360">
+            <p slot="header" style="color:#f60;text-align:center">
+
+            </p>
+            <div style="">
+
+                <video width="320" height="240" controls="controls" autoplay="autoplay">
+                    <source src="./../../videos/full.mp4" type="video/ogg" />
+                    <source src="./../../videos/full.mp4" type="video/mp4" />
+                    <source src="./../../videos/full.mp4" type="video/webm" />
+                    <object data="./../../videos/full.mp4" width="320" height="240">
+                        <embed width="320" height="240" src="./../../videos/full.mp4" />
+                    </object>
+                </video>
+
+            </div>
+            <div slot="footer">
+
+            </div>
+        </Modal>
+
     </div>
 </template>
 <script>
+
+
+
 
     export default {
         name: 'index',
         data() {
             return {
-                carousel:0,
-                value:0,
-                radius_dot:false,
-                speed:4000000,
-                value_speed:5000,
-                fix1:false,
-                fix2:false,
-            }
+                video:false,
+                carousel: 0,
+                value: 0,
+                radius_dot: false,
+                speed: 4000000,
+                value_speed: 5000,
+                fix1: false,
+                fix2: false,
+            },
         },
+
         mounted () {
             window.addEventListener('scroll', this.handleScroll)
         },
         created() {
         },
         methods: {
+
+            //视频播放
+            videoClick(){
+                console.log('点击')
+                this.video = true;
+            },
+
             handleScroll () {
                 var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
                 if(scrollTop>0){

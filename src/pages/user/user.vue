@@ -455,36 +455,52 @@
                     <div style="display: flex;margin-top: 15px;">
                         <div style="width: 40%;margin-left:20px;">
                             <p style="font-size: 12px;font-weight:bold;color:#626269bd">每周给自己定一个小目标吧
-                                <Icon type="md-hand" size="22px" style="cursor:pointer;color:#ff00a3;margin-left: 5px;" title="开始制定"/>
+                                <Icon type="md-hand" size="22px" style="cursor:pointer;color:#ff00a3;margin-left: 5px;" title="开始制定" @click.native="set_goal"/>
                             </p>
                             <div class="goal-body">
                                 <div style="width: 95%;text-align: center;padding: 20px;background: #eacca6;border-radius: 10px;">
                                     <div>
                                         <div style=" margin-bottom: 10px;">
                                             <span>蔬菜</span>
-
+                                                <input :disabled="target_disabled" type="number" :value="target_vegetables" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
                                             <span>克</span>
                                         </div>
-                                        <Input v-model="target_vegetables" style=" margin-bottom: 10px;">
-                                        <span slot="prepend">蔬菜</span>
-                                        <span slot="append">克</span>
-                                        </Input>
-                                        <Input v-model="target_fruit" style=" margin-bottom: 10px;">
-                                        <span slot="prepend">水果</span>
-                                        <span slot="append">克</span>
-                                        </Input>
-                                        <Input v-model="target_meat" style=" margin-bottom: 10px;">
-                                        <span slot="prepend">肉类</span>
-                                        <span slot="append">克</span>
-                                        </Input>
-                                        <Input v-model="target_others" style=" margin-bottom: 10px;">
-                                        <span slot="prepend">其他</span>
-                                        <span slot="append">克</span>
-                                        </Input>
+                                        <div style=" margin-bottom: 10px;">
+                                            <span>水果</span>
+                                            <input :disabled="target_disabled" type="number" :value="target_fruit" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <span>克</span>
+                                        </div>
+                                        <div style=" margin-bottom: 10px;">
+                                            <span>肉类</span>
+                                            <input :disabled="target_disabled" type="number" :value="target_meat" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <span>克</span>
+                                        </div>
+                                        <div style=" margin-bottom: 10px;">
+                                            <span>其他</span>
+                                            <input :disabled="target_disabled" type="number" :value="target_others" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <span>克</span>
+                                        </div>
+
+                                        <!--<Input v-model="target_vegetables" :disabled="target_disabled" style=" margin-bottom: 10px;text-align: center">-->
+                                        <!--<span slot="prepend">蔬菜</span>-->
+                                        <!--<span slot="append">克</span>-->
+                                        <!--</Input>-->
+                                        <!--<Input v-model="target_fruit" :disabled="target_disabled" style=" margin-bottom: 10px;text-align: center">-->
+                                        <!--<span slot="prepend">水果</span>-->
+                                        <!--<span slot="append">克</span>-->
+                                        <!--</Input>-->
+                                        <!--<Input v-model="target_meat" :disabled="target_disabled" style=" margin-bottom: 10px;text-align: center">-->
+                                        <!--<span slot="prepend">肉类</span>-->
+                                        <!--<span slot="append">克</span>-->
+                                        <!--</Input>-->
+                                        <!--<Input v-model="target_others" :disabled="target_disabled" style=" margin-bottom: 10px;text-align: center">-->
+                                        <!--<span slot="prepend">其他</span>-->
+                                        <!--<span slot="append">克</span>-->
+                                        <!--</Input>-->
                                     </div>
                                     <div class="footer" style="">
-                                        <Button type="warning" @click="leave_ok" size="small">ok</Button>
-                                        <Button type="warning" ghost @click="leave_cancel" size="small">no</Button>
+                                        <Button type="warning" @click="target_ok" size="small">ok</Button>
+                                        <!--<Button type="warning" ghost @click="target_cancel" size="small">no</Button>-->
                                     </div>
                                 </div>
                             </div>
@@ -494,26 +510,54 @@
                             <div class="goal-body">
                                 <div style="width: 95%;text-align: center;padding: 20px;background: #bbb9da;border-radius: 10px;">
                                     <div>
-                                        <Input v-model="eat_vegetables" type="number" style=" margin-bottom: 10px;">
-                                        <span slot="prepend">蔬菜</span>
-                                        <span slot="append">克</span>
-                                        </Input>
-                                        <Input v-model="eat_fruit" style=" margin-bottom: 10px;">
-                                        <span slot="prepend">水果</span>
-                                        <span slot="append">克</span>
-                                        </Input>
-                                        <Input v-model="eat_meat" style=" margin-bottom: 10px;">
-                                        <span slot="prepend">肉类</span>
-                                        <span slot="append">克</span>
-                                        </Input>
-                                        <Input v-model="eat_others" style=" margin-bottom: 10px;">
-                                        <span slot="prepend">其他</span>
-                                        <span slot="append">克</span>
-                                        </Input>
+
+
+                                        <div style=" margin-bottom: 10px;">
+                                            <span>蔬菜</span>
+                                            <input type="number" :value="eat_vegetables" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <span>克</span>
+                                        </div>
+                                        <div style=" margin-bottom: 10px;">
+                                            <span>水果</span>
+                                            <input type="number" :value="eat_fruit" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <span>克</span>
+                                        </div>
+                                        <div style=" margin-bottom: 10px;">
+                                            <span>肉类</span>
+                                            <input type="number" :value="eat_meat" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <span>克</span>
+                                        </div>
+                                        <div style=" margin-bottom: 10px;">
+                                            <span>其他</span>
+                                            <input type="number" :value="eat_others" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <span>克</span>
+                                        </div>
+
+
+
+
+                                        <!--<Input v-model="eat_vegetables"  style=" margin-bottom: 10px;">-->
+                                        <!--<span slot="prepend">蔬菜</span>-->
+                                        <!--<span slot="append">克</span>-->
+                                        <!--</Input>-->
+                                        <!--<Input v-model="eat_fruit" style=" margin-bottom: 10px;">-->
+                                        <!--<span slot="prepend">水果</span>-->
+                                        <!--<span slot="append">克</span>-->
+                                        <!--</Input>-->
+                                        <!--<Input v-model="eat_meat" style=" margin-bottom: 10px;">-->
+                                        <!--<span slot="prepend">肉类</span>-->
+                                        <!--<span slot="append">克</span>-->
+                                        <!--</Input>-->
+                                        <!--<Input v-model="eat_others" style=" margin-bottom: 10px;">-->
+                                        <!--<span slot="prepend">其他</span>-->
+                                        <!--<span slot="append">克</span>-->
+                                        <!--</Input>-->
+
+
                                     </div>
                                     <div class="footer" style="">
-                                        <Button type="success" @click="leave_ok" size="small">ok</Button>
-                                        <Button type="success" ghost @click="leave_cancel" size="small">no</Button>
+                                        <Button type="success" @click="eat_ok" size="small">ok</Button>
+                                        <!--<Button type="success" ghost @click="eat_cancel" size="small">no</Button>-->
                                     </div>
                                 </div>
                             </div>
@@ -558,6 +602,7 @@
         name: 'user',
         data() {
             return {
+                target_disabled:true,
                 formValidate:{
                     id:'',
                     name:'',
@@ -672,14 +717,14 @@
                         medicine:'无',
                     },
                 ],
-                target_vegetables:'',
-                target_fruit:'',
-                target_meat:'',
-                target_others:'',
-                eat_vegetables:'',
-                eat_fruit:'',
-                eat_meat:'',
-                eat_others:'',
+                target_vegetables:'1',
+                target_fruit:'1',
+                target_meat:'1',
+                target_others:'1',
+                eat_vegetables:'1',
+                eat_fruit:'1',
+                eat_meat:'1',
+                eat_others:'1',
                 foods_modal:false,
                 user_name:'',
                 drawer:false,
@@ -717,6 +762,39 @@
 
         },
         methods: {
+
+            //制定目标
+            set_goal(){
+                this.target_disabled = false;
+            },
+            target_ok(){
+                if(this.target_vegetables == '' || this.target_fruit == '' || this.target_meat == '' || this.target_others == ''){
+                    this.$Message.warning('请正确填写目标表单信息')
+                }else{
+                    this.$Message.success('制定目标成功');
+                    this.target_disabled = true;
+                }
+            },
+            target_cancel(){
+                this.target_vegetables = '1'
+                this.target_fruit = '1'
+                this.target_meat = '1'
+                this.target_others = '1'
+            },
+            eat_ok(){
+                if(this.eat_vegetables == '' || this.eat_fruit == '' || this.eat_meat == '' || this.eat_others == ''){
+                    this.$Message.warning('请正确填写今日表单机械能系')
+                }else{
+                    this.$Message.success('填写成功');
+                    this.target_disabled = true;
+                }
+            },
+            eat_cancel(){
+                this.eat_vegetables = '1'
+                this.eat_fruit = '1'
+                this.eat_meat = '1'
+                this.eat_others = '1'
+            },
 
 //            删除过敏史
             remove_allergen(id){
@@ -756,7 +834,7 @@
 
 //            添加病史
             medical_history(){
-                this.$router.push({'name':'test'})
+                this.$router.push({'name':'add_medical_History'})
             },
 
 
