@@ -4,6 +4,25 @@
  *  
  * */
 
+
+/**
+ * 深拷贝
+ */
+export const deepCopy = (p, c) => {
+    var self = this;
+    var c = c || [];
+    for (var i in p) {
+        if (typeof p[i] === 'object') {
+            c[i] = (p[i] === Array) ? [] : {};
+            deepCopy(p[i], c[i]);
+        } else {
+            c[i] = p[i];
+        }
+    }
+    return c;
+}
+
+
 /**
  * 存储localStorage
  */
