@@ -9,13 +9,14 @@
             </div>
 
             <div class="register-form" style=""> 
-                <div class="register-container" style="padding:24px;">
+                <div class="register-container" style="padding:10px;">
                     <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="90">
                         <FormItem label="名称：" prop="name">
                             <Input v-model="formValidate.name" placeholder="Enter your name" style="width:75%"></Input>
                         </FormItem>
                         <FormItem label="密码：" prop="pwd">
                             <Input v-model="formValidate.pwd" placeholder="Enter your password" style="width:75%"></Input>
+                            <span style="display: block;color: #6a737d;font-size: 12px;">至少包含一个数字，字母，长度大于6</span>
                         </FormItem>
                         <FormItem label="签名：" prop="signature">
                             <Input v-model="formValidate.signature" placeholder="Enter your signature" style="width:75%"></Input>
@@ -67,7 +68,7 @@
                             <!--</CheckboxGroup>-->
                         <!--</FormItem>-->
                         <!--<FormItem>-->
-                            <div style="width: 80%;margin: 0px auto;margin-bottom: 15px;">
+                            <div style="width: 80%;margin: -15px auto;margin-bottom: 15px;">
                                 <Button type="primary" long @click="handleSubmit('formValidate')">注册</Button>
                                 <!--<Button @click="handleReset('formValidate')" style="margin-left: 8px">取消</Button>-->
                             </div>
@@ -111,8 +112,8 @@ export default {
             const validatePwd = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('不能为空'));
-                } else if( value<1 ) {
-                    callback(new Error('不能小于1'));
+                } else if( !/^(?!(?:\d+|[a-zA-Z]+)$)[\da-zA-Z]{6,}$/.test(value) ) {
+                    callback(new Error('请按规则正确输入密码'));
                 } else {
                     callback();
                 }
@@ -124,7 +125,7 @@ export default {
                     signature:'',
                     mail: '',
                    blood: '',
-                    gender: '',
+                    gender: 'male',
 //                    interest: [],
                     date:'',
                     height:'',
@@ -222,6 +223,10 @@ export default {
         background:#fff;
         box-shadow: 0 0 3px #000;
         border-radius: 5px;
+    }
+
+    #registered .ivu-form-item{
+        margin-bottom: 15px;
     }
 
 

@@ -17,7 +17,7 @@
                             <TabPane :label="label_3" name="name3"></TabPane>
                             <TabPane :label="label_4" name="name4"></TabPane>
                             <TabPane :label="label_5" name="name5"></TabPane>
-                            <TabPane :label="label_6" name="name6"></TabPane>
+                            <!--<TabPane :label="label_6" name="name6"></TabPane>-->
                             <TabPane :label="label_7" name="name7"></TabPane>
                         </Tabs>
                     </div>
@@ -34,7 +34,7 @@
                             <div class="carousel-content" style="">
                                 <h2>
                                     <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">幸福只不过是身体健康，记忆力差</font>
+                                        <font style="vertical-align: inherit;">一个人需要有一个目标来达到真正健康</font>
                                     </font>
                                 </h2>
                             </div>
@@ -46,7 +46,7 @@
                             <div class="carousel-content" style="">
                                 <h2>
                                     <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">健康是真正的财富，而不是黄金和白银</font>
+                                        <font style="vertical-align: inherit;">健康是人生第一财富</font>
                                     </font>
                                 </h2>
                             </div>
@@ -62,36 +62,36 @@
                 <div class="row" style="margin: auto;width: 100%;">
                     <div class="row-item-1" style="margin: 0px auto;">
                         <div class="row-item-head" style="text-align: center;">
-                            <h2><small>健康咨询</small>享受生活 享受健康 我们给你整个服务</h2>
+                            <h2><small>服务</small>享受生活 享受健康 我们给你整个服务</h2>
                         </div>
                     </div>
                     <div class="row-item-2" style="max-width: 80%;float: left">
                         <div class="row-item-list" style="margin-right: -15px;margin-left: -15px;">
                             <div class="row-item-list-1 msg">
                                 <Icon type="md-add" />
-                                <h3>医疗健康</h3>
-                                <p>运动的保障前提是有医疗的保障。好指导好医生一路保障你的健身之行。</p>
+                                <h3>运动记录</h3>
+                                <p>以一周的时间为周期，根据用户的输入，记录用户一周的运动状态，包括参与运动的类型，消耗的时间等。</p>
                             </div>
                         </div>
                         <div class="row-item-list" style="margin-right: -15px;margin-left: -15px;">
                             <div class="row-item-list-1 msg">
                                 <Icon type="md-bicycle" />
-                                <h3>单车</h3>
-                                <p>骑单车不仅可以沿途观赏美丽的风景，还十分的锻炼自己的腿部肌肉.</p>
+                                <h3>医疗健康</h3>
+                                <p>记录用户的个人身体健康记录，包括病例，过敏原等，历史健康记录让用户更加清晰的了解自己的健康状况.</p>
                             </div>
                         </div>
                         <div class="row-item-list" style="margin-right: -15px;margin-left: -15px;">
                             <div class="row-item-list-1 msg">
                                 <Icon type="ios-body" />
-                                <h3>良好的睡眠</h3>
-                                <p>劳逸要结合。足够的运动消耗体能同时也需要足够的休息睡眠时间保障身体的健康。</p>
+                                <h3>BMI指数</h3>
+                                <p>根据用户输入的身高，体重信息计算得出BMI指数的值。</p>
                             </div>
                         </div>
                         <div class="row-item-list" style="margin-right: -15px;margin-left: -15px;">
                             <div class="row-item-list-1 msg">
                                 <Icon type="ios-baseball" />
-                                <h3>打球</h3>
-                                <p>打球可以带动全身的运动，唤起全身的运动细胞，运动流汗之后留下的是一身轻松，当然记得休息一会儿后冲个澡。</p>
+                                <h3>贴身建议</h3>
+                                <p>根据用户一周的运动量，食品热量，是否达到自己定制的目标，身体是否处于健康状态，系统会给出合理的健康贴士。</p>
                             </div>
                         </div>
                     </div>
@@ -110,12 +110,12 @@
                         <h2><small>我们是谁</small>关于<br>我们的论坛</h2>
                     </div>
                     <div  class="row-item-4">
-                        <p>To enjoy good health, to bring true happiness to one's family, to bring peace to all, one must first discipline and control one's own mind. If a man can control his mind he can find the way to Enlightenment, and all wisdom and virtue will naturally come to him.</p>
-                        <p>Saving our planet, lifting people out of poverty, advancing economic growth... these are one and the same fight. We must connect the dots between climate change, water scarcity, energy shortages, global health, food security and women's empowerment. Solutions to one problem must be solutions for all.</p>
+                        <p>在这里，所有的用户都汇聚一堂.</p>
+                        <p>用户可以根据文章的title，搜索文章。这里汇聚了所有用户的优质文章，并且会向你推送一些文章.</p>
                     </div>
                     <div class="row-item-5">
-                        <p>Our greatest happiness does not depend on the condition of life in which chance has placed us, but is always the result of a good conscience, good health, occupation, and freedom in all just pursuits.</p>
-                        <p>Being in control of your life and having realistic expectations about your day-to-day challenges are the keys to stress management, which is perhaps the most important ingredient to living a happy, healthy and rewarding life.</p>
+                        <p>论坛的设置初衷是为了更大程度的增加用户之间的交流，让每一个使用的用户都能感受到这是一个大家庭的存在.</p>
+                        <p>为了你的健康，即刻加入我们，一起走进健康中心系统！</p>
                         <p><a @click="login" class="btn btn-more">了解更多</a></p>
                     </div>
                 </div>
@@ -138,14 +138,14 @@
                                         <h3 class="blog-title">
                                             <small>
                                                 <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">Lisa</font>
+                                                    <font style="vertical-align: inherit;">陈莉莎</font>
                                                 </font>
                                             </small>
                                         </h3>
                                     </div>
                                     <p class="blog-content">
                                         <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">我们最大的幸福并不取决于生活条件</font>
+                                            <font style="vertical-align: inherit;">电子科技大学成都学院-2015级云计算2班</font>
                                         </font>
                                     </p>
                                 </div>
@@ -157,14 +157,14 @@
                                         <h3 class="blog-title">
                                             <small>
                                                 <font style="vertical-align: inherit;">
-                                                    <font style="vertical-align: inherit;">TanLin</font>
+                                                    <font style="vertical-align: inherit;">谭伶</font>
                                                 </font>
                                             </small>
                                         </h3>
                                     </div>
                                     <p class="blog-content">
                                         <font style="vertical-align: inherit;">
-                                            <font style="vertical-align: inherit;">我们最大的幸福并不取决于生活条件</font>
+                                            <font style="vertical-align: inherit;">电子科技大学成都学院-2015级大数据4班</font>
                                         </font>
                                     </p>
                                 </div>
@@ -182,7 +182,7 @@
                 <div class="row" style="margin: auto;">
                     <div class="row-item-6">
                         <h2 data-wow-delay="0.5s">观看视频
-                            <small>没有健康生活不是生命; 它只是一种流浪和痛苦的状态 - 一种死亡的形象。</small>
+                            <small>健康是这样一个东西，它使你感到现在是一年中最好的时光。</small>
                         </h2>
                          <Icon type="logo-youtube" @click.native="videoClick" style="cursor: pointer;"/>
                         <!--<small><em>视频: 健康小贴士</em></small>-->
@@ -215,7 +215,7 @@
         </Modal>
 
         <!--第六部分-心灵鸡汤-->
-        <section id="part-6" class="part-six part-four" style="background: rgb(247,247,247);">
+       <!--<section id="part-6" class="part-six part-four" style="background: rgb(247,247,247);">
             <div class="container">
                 <div class="row" style="margin: auto;width: 100%;">
                     <div class="row-item-2" style="max-width: 100%;float: left">
@@ -257,7 +257,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
 
         <!--第七部分-联系我们-->
         <section id="part-7" class="part-seven">
@@ -265,30 +265,30 @@
                 <div class="row" style="margin: 0px auto;">
                     <div class="row-item-1">
                         <div class="row-item-head" style="text-align: center;">
-                            <h2 style="color: #fff"><small style="color: #fff">联系</small>我们的工作是展示我们的能力.</h2>
+                            <h2 style="color: #222;"><small style="">联系</small>我们的工作是展示我们的能力.</h2>
                         </div>
                     </div>
                     <div class="row-item-7">
                         <div class="form-group">
-                            <label for="exampleName">名称</label>
-                            <input type="text" class="form-control" id="exampleName" aria-describedby="emailHelp">
+                            <label for="exampleName" style="color: #222;">名称</label>
+                            <input type="text" style="border-bottom: 1px solid #222;" class="form-control" id="exampleName" aria-describedby="emailHelp">
                         </div>
                     </div>
                     <div class="row-item-7">
                         <div class="form-group">
-                            <label for="examplePhone">电话号码</label>
-                            <input type="text" class="form-control" id="examplePhone" aria-describedby="emailHelp">
+                            <label for="examplePhone" style="color: #222;">电话号码</label>
+                            <input type="text" style="border-bottom: 1px solid #222;" class="form-control" id="examplePhone" aria-describedby="emailHelp">
                         </div>
                     </div>
                     <div class="row-item-7">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">电子邮件</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <label for="exampleInputEmail1" style="color: #222;">电子邮件</label>
+                            <input type="email" style="border-bottom: 1px solid #222;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">我们绝不会与其他任何人分享您的电子邮件.</small> </div>
                     </div>
                     <div class="row-item-8" style="display: inline-table;width: 100%;">
-                        <label for="exampleTextarea">输入您的消息</label>
-                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                        <label for="exampleTextarea" style="color: #222;">输入您的消息</label>
+                        <textarea style="border-bottom: 1px solid #222;" class="form-control" id="exampleTextarea" rows="3"></textarea>
                     </div>
                     <div class="row-item-8 text-xs-center action-block"> <a href="#" class="btn btn-capsul btn-aqua">提交</a> </div>
                 </div>
@@ -363,11 +363,10 @@
                 fix1:false,
                 fix2:false,
                 label_1:(h) => {return h('a',{domProps:{href:'#home'},attrs:{class: (this.fix1 == true ? 'fixed2' : '') }},'主页')},
-                label_2:(h) => {return h('a',{domProps:{href:'#part-2'},attrs:{class: (this.fix1 == true ? 'fixed2' : '') }},'建议')},
+                label_2:(h) => {return h('a',{domProps:{href:'#part-2'},attrs:{class: (this.fix1 == true ? 'fixed2' : '') }},'服务')},
                 label_3:(h) => {return h('a',{domProps:{href:'#part-3'},attrs:{class: (this.fix1 == true ? 'fixed2' : '') }},'论坛')},
                 label_4:(h) => {return h('a',{domProps:{href:'#part-4'},attrs:{class: (this.fix1 == true ? 'fixed2' : '') }},'关于')},
-                label_5:(h) => {return h('a',{domProps:{href:'#part-5'},attrs:{class: (this.fix1 == true ? 'fixed2' : '') }},'视频')},
-                label_6:(h) => {return h('a',{domProps:{href:'#part-6'},attrs:{class: (this.fix1 == true ? 'fixed2' : '') }},'鸡汤')},
+                label_5:(h) => {return h('a',{domProps:{href:'#part-5'},attrs:{class: (this.fix1 == true ? 'fixed2' : '') }},'能量')},
                 label_7:(h) => {return h('a',{domProps:{href:'#part-7'},attrs:{class: (this.fix1 == true ? 'fixed2' : '') }},'联系')},
                 login_modal:false,
                 modal_loading:false,

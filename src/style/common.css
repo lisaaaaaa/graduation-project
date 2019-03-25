@@ -253,7 +253,7 @@ hr {
 }
 
 .part-seven {
-    background: url('./../images/contact-bg.jpg') no-repeat 0 bottom;
+    /*background: url('./../images/contact-bg.jpg') no-repeat 0 bottom;*/
     background-size: cover;
 }
 
