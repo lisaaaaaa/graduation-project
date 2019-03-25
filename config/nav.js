@@ -44,16 +44,16 @@ export const backend_nav = {
         "level": '1',
         "icon":'ios-contact'
     },
-    "system_Management": {
-        "name": "系统管理",
-        "uri": "system_Management",
-        "level": '2',
-        "icon":'ios-briefcase'
-    },
-    "system_Setting": {
-        "name": "设置",
-        "uri": "system_Setting",
-        "level": '3',
-        "icon":'ios-build'
-    },
+    // "system_Management": {
+    //     "name": "系统管理",
+    //     "uri": "system_Management",
+    //     "level": '2',
+    //     "icon":'ios-briefcase'
+    // },
+    // "system_Setting": {
+    //     "name": "设置",
+    //     "uri": "system_Setting",
+    //     "level": '3',
+    //     "icon":'ios-build'
+    // },
 }
