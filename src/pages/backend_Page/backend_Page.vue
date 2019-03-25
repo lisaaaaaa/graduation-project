@@ -24,18 +24,18 @@
 
             <div id="nav-tip" style="margin-bottom: 0;position: fixed;width: 100%;top: 0px;z-index: 9;">
                 <div class="nav-top" style="height:60px;background:#3E4B5E">
-                    <div style="display: flex;float: right;line-height: 60px;width: 35%;">
+                    <div style="display: flex;float: right;line-height: 60px;width: 15%;">
                         <div style="margin-right: 18%;">
+                            <!--<div class="top-icon">-->
+                                <!--<Input search size="small" placeholder="Enter something..." />-->
+                            <!--</div>-->
+                            <!--<div class="top-icon">-->
+                                <!--<Badge :count="2" type="warning" size="5" overflow-count="99">-->
+                                    <!--<Icon type="md-notifications" size="20"/>-->
+                                <!--</Badge>-->
+                            <!--</div>-->
                             <div class="top-icon">
-                                <Input search size="small" placeholder="Enter something..." />
-                            </div>
-                            <div class="top-icon">
-                                <Badge :count="2" type="warning" size="5" overflow-count="99">
-                                    <Icon type="md-notifications" size="20"/>
-                                </Badge>
-                            </div>
-                            <div class="top-icon">
-                                <Badge :count="5" type="error" overflow-count="99" >
+                                <Badge :count="5" type="warning" overflow-count="99" >
                                     <Icon type="ios-mail" size="20"/>
                                 </Badge>
                             </div>
