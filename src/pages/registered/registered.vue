@@ -14,6 +14,9 @@
                         <FormItem label="名称：" prop="name">
                             <Input v-model="formValidate.name" placeholder="Enter your name" style="width:75%"></Input>
                         </FormItem>
+                        <FormItem label="密码：" prop="pwd">
+                            <Input v-model="formValidate.pwd" placeholder="Enter your password" style="width:75%"></Input>
+                        </FormItem>
                         <FormItem label="签名：" prop="signature">
                             <Input v-model="formValidate.signature" placeholder="Enter your signature" style="width:75%"></Input>
                         </FormItem>
@@ -105,6 +108,16 @@ export default {
                 }
             };
 
+            const validatePwd = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('不能为空'));
+                } else if( value<1 ) {
+                    callback(new Error('不能小于1'));
+                } else {
+                    callback();
+                }
+            };
+
             return {
                formValidate: {
                     name: '',
@@ -120,6 +133,9 @@ export default {
                 },ruleValidate: {
                     name: [
                         { required: true, message: '名称不能为空', trigger: 'blur' }
+                    ],
+                    pwd: [
+                        { validator: validatePwd, trigger: 'blur',required: true }
                     ],
                     signature: [
                         { required: true, message: '签名不能为空', trigger: 'blur' }
@@ -199,7 +215,7 @@ export default {
 
     .register-form{
         float:left;
-        margin-top:90px;
+        margin-top:35px;
         margin-left:-50px;
         width: 33%;
         /*height: 460px;*/

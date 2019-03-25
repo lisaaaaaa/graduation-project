@@ -7,7 +7,8 @@
                 <div class="right-box-content">
                     <div class="avatar" style="float: left;text-align: center;margin-right: 16px;cursor: pointer;">
                         <img src="./../../images/forum/man.png"/>
-                        <p><a>修改头像</a></p>
+                        <!--<router-link :to="health_Record">健康记录</router-link>-->
+                        <p><a :href=" '/#/basic_info/health_Record' ">健康记录</a></p>
                     </div>
                     <div class="person-info" style="float: right;width:85%;text-align: left;">
                         <div class="title" style="height:60px;border-bottom: 1px solid #e0e0e0;">

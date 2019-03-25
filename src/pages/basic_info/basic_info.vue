@@ -29,39 +29,39 @@
 
             <div class="basic-content" style="width: 100%;min-height:500px;background: #f5f6f7;">
                 <div style="width:70%;margin:0px auto;display: flex;text-align: center;padding: 15px;">
-                    <div id="left-box" class="left-box" style="">
-                        <Menu :theme="theme" active-name="1" :open-names="['1']">
-                            <template v-for="list in this.subitems">
-                                <router-link :to="list.uri">
+                    <!--<div id="left-box" class="left-box" style="">-->
+                        <!--<Menu :theme="theme" active-name="1" :open-names="['1']">-->
+                            <!--&lt;!&ndash;<template v-for="list in this.subitems">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<router-link :to="list.uri">&ndash;&gt;-->
 
-                                    <MenuItem :name="list.level"><Icon :type="list.icon" />{{list.name}}</MenuItem>
-                                </router-link>
-                            </template>
+                                    <!--&lt;!&ndash;<MenuItem :name="list.level"><Icon :type="list.icon" />{{list.name}}</MenuItem>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</router-link>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</template>&ndash;&gt;-->
 
-                            <!--<MenuItem name="2">-->
-                                <!--<Icon type="md-trending-up" />-->
-                                <!--健康记录-->
-                            <!--</MenuItem>-->
-                            <!--<MenuItem name="3">-->
-                                    <!--<Icon type="ios-heart" />-->
-                                    <!--我的关注-->
-                                <!--</MenuItem>-->
-                            <!--<MenuItem name="4">-->
-                                    <!--<Icon type="ios-star" />-->
-                                    <!--我的收藏-->
-                                <!--</MenuItem>-->
-                            <!--<MenuItem name="5">-->
-                                <!--<Icon type="ios-people" />-->
-                                <!--我的粉丝-->
-                            <!--</MenuItem>-->
-                            <!--<MenuItem name="6">-->
-                                    <!--<Icon type="ios-paw" />-->
-                                    <!--我的足迹-->
-                                <!--</MenuItem>-->
-                        </Menu>
-                    </div>
+                            <!--&lt;!&ndash;<MenuItem name="2">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<Icon type="md-trending-up" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;健康记录&ndash;&gt;-->
+                            <!--&lt;!&ndash;</MenuItem>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<MenuItem name="3">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<Icon type="ios-heart" />&ndash;&gt;-->
+                                    <!--&lt;!&ndash;我的关注&ndash;&gt;-->
+                                <!--&lt;!&ndash;</MenuItem>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<MenuItem name="4">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<Icon type="ios-star" />&ndash;&gt;-->
+                                    <!--&lt;!&ndash;我的收藏&ndash;&gt;-->
+                                <!--&lt;!&ndash;</MenuItem>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<MenuItem name="5">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<Icon type="ios-people" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;我的粉丝&ndash;&gt;-->
+                            <!--&lt;!&ndash;</MenuItem>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<MenuItem name="6">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<Icon type="ios-paw" />&ndash;&gt;-->
+                                    <!--&lt;!&ndash;我的足迹&ndash;&gt;-->
+                                <!--&lt;!&ndash;</MenuItem>&ndash;&gt;-->
+                        <!--</Menu>-->
+                    <!--</div>-->
 
-                    <div id="right-box" class="right-box" style="width:80%;background-color: #fff;min-height:460px;box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);">
+                    <div id="right-box" class="right-box" style="margin: 0px auto;width: 95%;background-color: #fff;min-height:460px;box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);">
                         <transition>
                             <router-view></router-view>
                         </transition>
