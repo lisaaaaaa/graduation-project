@@ -47,19 +47,22 @@
                                             <DropdownItem name="peronal">
                                                 <Icon type="ios-contact" />
                                                 个人信息</DropdownItem>
-                                            <DropdownItem name="focus">
+                                            <DropdownItem name="health">
                                                 <Icon type="ios-heart" />
-                                                我的关注</DropdownItem>
-                                            <DropdownItem name="collection">
-                                                <Icon type="ios-star" />
-                                                我的收藏</DropdownItem>
-                                            <DropdownItem name="fan">
-                                                <!--<Icon type="ios-help-circle" />-->
-                                                <Icon type="md-people" />
-                                                我的粉丝</DropdownItem>
-                                            <DropdownItem name="foot">
-                                                <Icon type="ios-paw" />
-                                                我的足迹</DropdownItem>
+                                                我的健康</DropdownItem>
+                                            <!--<DropdownItem name="focus">-->
+                                                <!--<Icon type="ios-heart" />-->
+                                                <!--我的关注</DropdownItem>-->
+                                            <!--<DropdownItem name="collection">-->
+                                                <!--<Icon type="ios-star" />-->
+                                                <!--&lt;!&ndash;我的收藏</DropdownItem>&ndash;&gt;-->
+                                            <!--<DropdownItem name="fan">-->
+                                                <!--&lt;!&ndash;<Icon type="ios-help-circle" />&ndash;&gt;-->
+                                                <!--<Icon type="md-people" />-->
+                                                <!--我的粉丝</DropdownItem>-->
+                                            <!--<DropdownItem name="foot">-->
+                                                <!--<Icon type="ios-paw" />-->
+                                                <!--我的足迹</DropdownItem>-->
                                             <DropdownItem name="blog">
                                                 <!--<Icon type="ios-help-circle" />-->
                                                 <Icon type="ios-people" />
@@ -888,7 +891,10 @@
                     this.$router.push({name:'index'})
                 }else if(name == 'blog'){
                     this.$router.push({name:'forum'})
+                }else if(name == 'health'){
+                    this.$router.push({name:'health_Record'})
                 }
+
             },
 
 //            handleRemove (file) {
