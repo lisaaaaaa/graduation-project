@@ -11,18 +11,18 @@
                 <FormItem label="密码：" style="margin-left:11px;">
                     <a href="#" style="text-decoration:underline;text-align:right;" @click="change_pwd">修改密码</a>
                 </FormItem>
-                <FormItem label="联系人：" prop="contact">
-                    <Input v-model="formValidate.contact" placeholder="Enter your contact" style="width:400px;"></Input>
-                </FormItem>
-                <FormItem label="电话：" prop="phone">
-                    <Input v-model="formValidate.phone" placeholder="Enter your phone" style="width:400px;"></Input>
-                </FormItem>
-                <FormItem label="邮箱：" prop="mail">
-                    <Input v-model="formValidate.mail" placeholder="Enter your e-mail" style="width:400px;"></Input>
-                </FormItem>
-                <FormItem label="备注：" prop="remarks">
-                    <Input v-model="formValidate.remarks" placeholder="Enter your remarks" style="width:400px;"></Input>
-                </FormItem>
+                <!--<FormItem label="联系人：" prop="contact">-->
+                    <!--<Input v-model="formValidate.contact" placeholder="Enter your contact" style="width:400px;"></Input>-->
+                <!--</FormItem>-->
+                <!--<FormItem label="电话：" prop="phone">-->
+                    <!--<Input v-model="formValidate.phone" placeholder="Enter your phone" style="width:400px;"></Input>-->
+                <!--</FormItem>-->
+                <!--<FormItem label="邮箱：" prop="mail">-->
+                    <!--<Input v-model="formValidate.mail" placeholder="Enter your e-mail" style="width:400px;"></Input>-->
+                <!--</FormItem>-->
+                <!--<FormItem label="备注：" prop="remarks">-->
+                    <!--<Input v-model="formValidate.remarks" placeholder="Enter your remarks" style="width:400px;"></Input>-->
+                <!--</FormItem>-->
             </Form>
 
             <div class="footer" style="float: right">
@@ -142,10 +142,10 @@
                 login_name:'',
                 formValidate: {
                     name: 'lisa',
-                    contact:'莉莎',
-                    phone:'13511111111',
-                    mail: 'lisa.wow@outlook.com',
-                    remarks:'这是一个测试',
+//                    contact:'莉莎',
+//                    phone:'13511111111',
+//                    mail: 'lisa.wow@outlook.com',
+//                    remarks:'这是一个测试',
                 },
                 formItem1: {
                     old_password: '',
@@ -162,30 +162,30 @@
                     confirm_password: [
                         {validator: validatePassCheck, trigger: 'blur',required: true}
                     ],
-                    contact: [
-                        {validator: validateContact, trigger: 'blur',required: true}
-                    ],
-                    name: [
-                        {validator: validateInput, trigger: 'blur',required: true}
-                    ],
-                    phone: [
-                        { required: true, message: '电话不能为空', trigger: 'blur' },
-                        { type: 'number', message: '请填写正确的手机号', trigger: 'blur',transform(value){
-                            var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
-                            if(!myreg.test(value)){
-                                return false;
-                            }else{
-                                return Number(value);
-                            }
-                        } }
-                    ],
-                    mail: [
-                        { required: true, message: '邮箱不能为空', trigger: 'blur' },
-                        { type: 'email', message: '请正确输入邮箱格式', trigger: 'blur' }
-                    ],
-                    remarks: [
-                        { required: false, message: '', trigger: 'blur' }
-                    ],
+//                    contact: [
+//                        {validator: validateContact, trigger: 'blur',required: true}
+//                    ],
+//                    name: [
+//                        {validator: validateInput, trigger: 'blur',required: true}
+//                    ],
+//                    phone: [
+//                        { required: true, message: '电话不能为空', trigger: 'blur' },
+//                        { type: 'number', message: '请填写正确的手机号', trigger: 'blur',transform(value){
+//                            var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+//                            if(!myreg.test(value)){
+//                                return false;
+//                            }else{
+//                                return Number(value);
+//                            }
+//                        } }
+//                    ],
+//                    mail: [
+//                        { required: true, message: '邮箱不能为空', trigger: 'blur' },
+//                        { type: 'email', message: '请正确输入邮箱格式', trigger: 'blur' }
+//                    ],
+//                    remarks: [
+//                        { required: false, message: '', trigger: 'blur' }
+//                    ],
                 }
 
 

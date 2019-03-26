@@ -18,6 +18,7 @@ import article_one from '@/pages/article/article_one'
 import article_edit from '@/pages/article/article_edit'
 import backend_Page from '@/pages/backend_Page/backend_Page'
 import user_Management from '@/pages/user_Management/user_Management'
+import user_Management_msg from '@/pages/user_Management_msg/user_Management_msg'
 import backend_Administrator from '@/pages/backend_Administrator/backend_Administrator'
 import system_Management from '@/pages/system_Management/system_Management'
 import system_Setting from '@/pages/system_Setting/system_Setting'
@@ -169,6 +170,14 @@ export default new Router({
           path: 'user_Management',
           name: 'user_Management',
           component: user_Management,
+          meta: {
+            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+          },
+        },
+        {
+          path:'user_Management_msg',
+          name: 'user_Management_msg',
+          component: user_Management_msg,
           meta: {
             requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
           },

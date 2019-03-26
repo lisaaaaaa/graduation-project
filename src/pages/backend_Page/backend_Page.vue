@@ -36,7 +36,7 @@
                             <!--</div>-->
                             <div class="top-icon">
                                 <Badge :count="5" type="warning" overflow-count="99" >
-                                    <Icon type="ios-mail" size="20"/>
+                                    <a :href=" '#/backend_Page/user_Management_msg' " style="color:#fff" title="留言信息"><Icon type="ios-mail" size="20"/></a>
                                 </Badge>
                             </div>
                         </div>
