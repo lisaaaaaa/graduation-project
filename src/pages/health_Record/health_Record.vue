@@ -3,10 +3,10 @@
         <div style="width: 85%;min-height:620px;margin:40px auto;text-align: center">
             <div class="record-1" style="width:20%;height:100%;position: absolute;margin-top: -20px;">
                 <div style="width: 100%;height:210px;background-color: #e5e4e0;box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2);">
-                    <div style="padding: 20px;">
+                    <div style="padding: 35px;">
                         <p style="color:#fff;font-size: 20px;font-weight: bold;">岁月漫长，然而值得等待</p>
-                        <p style="font-size: 13px">你已坚持<span style="color:darkred;font-size: 21px;font-weight: bold;">10</span>天</p>
-                        <p style="font-size: 13px">你与<span style="color:coral;font-size: 21px;font-weight: bold;">21520</span>位用户一起努力着！</p>
+                        <!--<p style="font-size: 13px">你已坚持<span style="color:darkred;font-size: 21px;font-weight: bold;">10</span>天</p>-->
+                        <p style="font-size: 13px;margin-top: 35px">你与<span style="color:coral;font-size: 21px;font-weight: bold;">21520</span>位用户一起努力着！</p>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 </div>
 
                 <div style="width: 100%">
-                    <div style="width:100%">
+                    <div style="width:100%;margin-top: 35px;">
                         <span class="text-line"></span>
                         <span class="text-name">累计训练</span>
                     </div>
@@ -28,16 +28,16 @@
                         <span style="color:#fff;font-size: 44px;font-weight: 700;">32</span>
                         <span style="font-size: 12px;color: #8e8893;margin-left:8px;">小时</span>
                     </div>
-                    <div class="" style="margin-top: 11px;">
-                        <span style="color: #fff;">
-                            <span class="" style="font-size: 26px;font-weight: 700;">4.93</span>
-                            <span style="font-size: 12px;color: #8e8893;margin-left:8px;">亿次</span>
-                        </span>
-                        <span style="color: #fff;margin-left: 25px;">
-                            <span class="" class="" style="font-size: 26px;font-weight: 700;">388.56</span>
-                            <span class="" style="font-size: 12px;color: #8e8893;margin-left:8px;">亿千卡</span>
-                        </span>
-                    </div>
+                    <!--<div class="" style="margin-top: 11px;">-->
+                        <!--<span style="color: #fff;">-->
+                            <!--<span class="" style="font-size: 26px;font-weight: 700;">4.93</span>-->
+                            <!--<span style="font-size: 12px;color: #8e8893;margin-left:8px;">亿次</span>-->
+                        <!--</span>-->
+                        <!--<span style="color: #fff;margin-left: 25px;">-->
+                            <!--<span class="" class="" style="font-size: 26px;font-weight: 700;">388.56</span>-->
+                            <!--<span class="" style="font-size: 12px;color: #8e8893;margin-left:8px;">亿千卡</span>-->
+                        <!--</span>-->
+                    <!--</div>-->
                 </div>
             </div>
             <div class="record-3" style="width:35px;float: left">

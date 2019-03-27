@@ -116,26 +116,52 @@
                             </div>
                         </div>
                         <div class="health-img" style="display:-webkit-inline-box;margin-top:30px;width:100%;height:245px;background: radial-gradient(#648880, #293f50);color:#fff;">
-                            <div class="bg" style="width:100%;margin: 65px auto;">
-                                <div style="width:75%;margin:0px auto;">
-                                    <div class="sports other " style="">
-                                        <Icon type="md-bicycle" />
-                                        <span class="time" style="font-family: sans-serif;color: #fff;">27</span>min
-                                        <p>骑自行车</p>
-                                    </div>
+                            <div class="bg" style="width:100%;margin: 0px auto;">
+                                <div style="width: 200px;height: 100%;">
+                                    <div class="record-1" style="position: relative;margin: 15px;">
+                                        <div style="width: 100%;height:210px;background-color: #e5e4e0;box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2);">
+                                            <div class="sports-card">
+                                                <span>运动卡片</span>
+                                            </div>
+                                            <div style="padding: 20px;padding-top: 37px;">
+                                                <div style="margin-bottom: 10px;">
+                                                    <Select v-model="Sports_type" style="width:130px" filterable>
+                                                        <Option v-for="item in Sports_list" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                                    </Select>
+                                                </div>
+                                                <div style="margin-bottom: 10px;">
+                                                    <InputNumber :min="1" v-model="sports_time"></InputNumber><span>min</span>
+                                                </div>
+                                                <div>
+                                                    <Button type="warning" size="small" style="float: right">添加</Button>
+                                                </div>
+                                            </div>
+                                            <div style="float: right;width: 200px;">
 
-                                    <div class="sports other" style="">
-                                        <Icon type="ios-baseball" />
-                                        <span class="time">30</span>min
-                                        <p>户外运动</p>
-                                    </div>
-
-                                    <div class="sports other walk" style="">
-                                        <Icon type="ios-body" />
-                                        <span class="time">500</span>min
-                                        <p>散步</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <!--<div style="width:75%;margin:0px auto;">-->
+
+                                    <!--<div class="sports other " style="">-->
+                                        <!--<Icon type="md-bicycle" />-->
+                                        <!--<span class="time" style="font-family: sans-serif;color: #fff;">27</span>min-->
+                                        <!--<p>骑自行车</p>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="sports other" style="">-->
+                                        <!--<Icon type="ios-baseball" />-->
+                                        <!--<span class="time">30</span>min-->
+                                        <!--<p>户外运动</p>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="sports other walk" style="">-->
+                                        <!--<Icon type="ios-body" />-->
+                                        <!--<span class="time">500</span>min-->
+                                        <!--<p>散步</p>-->
+                                    <!--</div>-->
+                                <!--</div>-->
 
 
                             </div>
@@ -605,6 +631,26 @@
         name: 'user',
         data() {
             return {
+                Sports_type:'',
+                sports_time:1,
+                Sports_list:[
+                    {
+                        value: 'run',
+                        label: '跑步'
+                    },
+                    {
+                        value: 'basketball',
+                        label: '篮球'
+                    },
+                    {
+                        value: 'New',
+                        label: '羽毛球'
+                    },
+                    {
+                        value: 'walk',
+                        label: '竞走'
+                    },
+                ],
                 target_disabled:true,
                 formValidate:{
                     id:'',
@@ -1321,6 +1367,17 @@
 
     .foods-img{
         width:20%
+    }
+
+    .sports-card{
+        width: 70px;
+        height: 32px;
+        position: absolute;
+        top: -19px;
+        left: 11px;
+        background-color: orange;
+        color: black;
+        text-align: center;
     }
 
 </style>
