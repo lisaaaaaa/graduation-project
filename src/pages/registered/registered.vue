@@ -110,10 +110,15 @@ export default {
             };
 
             const validatePwd = (rule, value, callback) => {
+                var reg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
                 if (value === '') {
                     callback(new Error('不能为空'));
-                } else if( !/^(?!(?:\d+|[a-zA-Z]+)$)[\da-zA-Z]{6,}$/.test(value) ) {
-                    callback(new Error('请按规则正确输入密码'));
+                } else if(!reg.test(value)) {
+                    callback(new Error('只能含有英文大小写字母、下划线、数字、中文'));
+                } else if (value.length < 6) {
+                    callback(new Error('至少6个字符'));
+                } else if (value.length >= 35) {
+                    callback(new Error('应35个字符以内'));
                 } else {
                     callback();
                 }

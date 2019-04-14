@@ -128,7 +128,7 @@
         components: {basic_nav},
         mounted() {
             this.subitems = basic_nav
-            window.addEventListener('scroll', this.handleScroll)
+//            window.addEventListener('scroll', this.handleScroll)
         },
         created() {
 

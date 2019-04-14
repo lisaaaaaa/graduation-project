@@ -755,61 +755,63 @@
                         <!--<hr style="border-top: 1px solid rgb(242, 242, 242)">-->
                     </div>
                 </div>
-                <div class="part weather-forecast">
-                    <span class="line"></span>
-                    <h3 style="font-weight: 600;font-size: 20px;">天气预报</h3>
-                    <div>
-                        <div class="address">
-                            <Icon type="ios-pin" />
-                            <span>成都</span>
-                            <em style="padding: 0 36px 0 8px;color: #999999;font-size: 12px;">[切换]</em>
-                            <div style="float:right;color: #999999;font-size: 12px;line-height: 24px;">12.06<span>更新</span></div>
-                        </div>
-                        <div class="temperature" style="display: flex;flex-direction:row;">
-                            <div style="color: #3388ff;padding-bottom: 20px;position: relative;left: 24px;">
-                                <span style="font-size: 78px;">11</span><em style="font-size: 30px;position: absolute;top: 21px;left: 70px;">℃</em>
-                                <p class="p2" style="display: block;width: 130px;height: 20px;background: #8ccd26; border-radius: 10px;text-align: center;line-height: 20px;color: #fff;font-size: 12px;">72 良 </p>
-                            </div>
-                            <div style="position: relative;right: -30px;">
-                                <p style="text-align: center;font-size: 24px;color: #333;padding-top: 20px;">多云</p>
-                                <p style="font-size: 12px;color: #333;padding-left: 19px;;">
-                                    <Icon type="ios-nuclear-outline" />西风 1级</p>
-                                <p style="font-size: 12px;color: #333;padding-left: 19px;">
-                                    <Icon type="ios-water-outline" />相对湿度 65%</p>
-                            </div>
-                        </div>
-                        <hr style="border-top: 1px solid rgb(242, 242, 242)">
-                        <div>
-                          <ul class="prediction-weather" style="display: flex;flex-direction:row;">
-                              <li>
-                                 <p>周三</p>
-                                  <Icon type="ios-cloud" />
-                                  <p>12℃</p>
-                              </li>
-                              <li>
-                                  <p>周四</p>
-                                  <Icon type="ios-partly-sunny" />
-                                  <p>12℃</p>
-                              </li>
-                              <li>
-                                  <p>周五</p>
-                                  <Icon type="ios-rainy" />
-                                  <p>12℃</p>
-                              </li>
-                              <li>
-                                  <p>周六</p>
-                                  <Icon type="ios-thunderstorm" />
-                                  <p>12℃</p>
-                              </li>
-                              <li>
-                                  <p>周天</p>
-                                  <Icon type="ios-sunny" />
-                                  <p>12℃</p>
-                              </li>
-                          </ul>
-                        </div>
-                    </div>
-                </div>
+
+                <!--天气预报-->
+                <!--<div class="part weather-forecast">-->
+                    <!--<span class="line"></span>-->
+                    <!--<h3 style="font-weight: 600;font-size: 20px;">天气预报</h3>-->
+                    <!--<div>-->
+                        <!--<div class="address">-->
+                            <!--<Icon type="ios-pin" />-->
+                            <!--<span>成都</span>-->
+                            <!--<em style="padding: 0 36px 0 8px;color: #999999;font-size: 12px;">[切换]</em>-->
+                            <!--<div style="float:right;color: #999999;font-size: 12px;line-height: 24px;">12.06<span>更新</span></div>-->
+                        <!--</div>-->
+                        <!--<div class="temperature" style="display: flex;flex-direction:row;">-->
+                            <!--<div style="color: #3388ff;padding-bottom: 20px;position: relative;left: 24px;">-->
+                                <!--<span style="font-size: 78px;">11</span><em style="font-size: 30px;position: absolute;top: 21px;left: 70px;">℃</em>-->
+                                <!--<p class="p2" style="display: block;width: 130px;height: 20px;background: #8ccd26; border-radius: 10px;text-align: center;line-height: 20px;color: #fff;font-size: 12px;">72 良 </p>-->
+                            <!--</div>-->
+                            <!--<div style="position: relative;right: -30px;">-->
+                                <!--<p style="text-align: center;font-size: 24px;color: #333;padding-top: 20px;">多云</p>-->
+                                <!--<p style="font-size: 12px;color: #333;padding-left: 19px;;">-->
+                                    <!--<Icon type="ios-nuclear-outline" />西风 1级</p>-->
+                                <!--<p style="font-size: 12px;color: #333;padding-left: 19px;">-->
+                                    <!--<Icon type="ios-water-outline" />相对湿度 65%</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<hr style="border-top: 1px solid rgb(242, 242, 242)">-->
+                        <!--<div>-->
+                          <!--<ul class="prediction-weather" style="display: flex;flex-direction:row;">-->
+                              <!--<li>-->
+                                 <!--<p>周三</p>-->
+                                  <!--<Icon type="ios-cloud" />-->
+                                  <!--<p>12℃</p>-->
+                              <!--</li>-->
+                              <!--<li>-->
+                                  <!--<p>周四</p>-->
+                                  <!--<Icon type="ios-partly-sunny" />-->
+                                  <!--<p>12℃</p>-->
+                              <!--</li>-->
+                              <!--<li>-->
+                                  <!--<p>周五</p>-->
+                                  <!--<Icon type="ios-rainy" />-->
+                                  <!--<p>12℃</p>-->
+                              <!--</li>-->
+                              <!--<li>-->
+                                  <!--<p>周六</p>-->
+                                  <!--<Icon type="ios-thunderstorm" />-->
+                                  <!--<p>12℃</p>-->
+                              <!--</li>-->
+                              <!--<li>-->
+                                  <!--<p>周天</p>-->
+                                  <!--<Icon type="ios-sunny" />-->
+                                  <!--<p>12℃</p>-->
+                              <!--</li>-->
+                          <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <div class="part ">
                     <span class="line"></span>

@@ -62,6 +62,9 @@
                         <FormItem label="名称：" prop="name">
                             <Input v-model="formValidate.name" placeholder="Enter your name" style="width:75%"></Input>
                         </FormItem>
+                        <FormItem label="密码：" style="margin-left:11px;">
+                            <a href="#" style="text-decoration:underline;text-align:right;" @click="change_pwd">修改密码</a>
+                        </FormItem>
                         <FormItem label="签名：" prop="signature">
                             <Input v-model="formValidate.signature" placeholder="Enter your signature" style="width:75%"></Input>
                         </FormItem>
@@ -112,6 +115,31 @@
                 </Modal>
             </div>
 
+
+            <Modal
+                    v-model="modal1"
+                    title="修改密码"
+                    @on-ok=""
+                    @on-cancel="">
+                <Form ref="formItem1" :model="formItem1" :rules="ruleValidate" label-position="left" :label-width="94">
+                    <FormItem label="旧密码：" prop="old_password">
+                        <Input type="password" v-model="formItem1.old_password" placeholder=""></Input>
+                    </FormItem>
+                    <FormItem label="新密码：" prop="new_password">
+                        <Input type="password" v-model="formItem1.new_password" placeholder=""></Input>
+                    </FormItem>
+                    <FormItem label="确认新密码：" prop="confirm_password">
+                        <Input type="password" v-model="formItem1.confirm_password" placeholder=""></Input>
+                    </FormItem>
+                </Form>
+                <div slot="footer">
+                    <Button type="text" @click="cancel">取消</Button>
+                    <Button type="primary" @click="setPassword('formItem1')">确定</Button>
+                </div>
+            </Modal>
+
+
+
         </div>
 </template>
 
@@ -142,7 +170,56 @@
             };
 
 
+            const validatePass1 = (rule, value, callback) => {
+                var reg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
+                if (value === '') {
+                    callback(new Error('请输入旧密码'));
+                } else if(!reg.test(value)) {
+                    callback(new Error('只能含有英文大小写字母、下划线、数字、中文'));
+                } else if (value.length < 6) {
+                    callback(new Error('至少6个字符'));
+                } else if (value.length >= 35) {
+                    callback(new Error('应35个字符以内'));
+                } else {
+                    callback();
+                }
+            };
+            const validatePass2 = (rule, value, callback) => {
+                var reg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
+                if (value === '') {
+                    callback(new Error('请输入新密码'));
+                } else if(!reg.test(value)) {
+                    callback(new Error('只能含有英文大小写字母、下划线、数字、中文'));
+                } else if (value.length < 6) {
+                    callback(new Error('至少6个字符'));
+                } else if (value.length >= 35) {
+                    callback(new Error('应35个字符以内'));
+                } else {
+                    callback();
+                }
+            };
+            const validatePassCheck = (rule, value, callback) => {
+                var reg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
+                if (value === '') {
+                    callback(new Error('请再次输入密码'));
+                } else if(!reg.test(value)) {
+                    callback(new Error('只能含有英文大小写字母、下划线、数字、中文'));
+                } else if (value !== this.formItem1.new_password) {
+                    callback(new Error('两次密码不一致!'));
+                } else {
+                    callback();
+                }
+            };
+
+
             return {
+                modal1:false,
+                formItem1: {
+                    old_password: '',
+                    new_password: '',
+                    confirm_password: ''
+                },
+
 
                 formValidate: {
                     name: 'lisa',
@@ -154,6 +231,15 @@
                     height:'152',
                     weight:'42',
                 },ruleValidate: {
+                    old_password: [
+                        {validator: validatePass1, trigger: 'blur',required: true}
+                    ],
+                    new_password: [
+                        {validator: validatePass2, trigger: 'blur',required: true}
+                    ],
+                    confirm_password: [
+                        {validator: validatePassCheck, trigger: 'blur',required: true}
+                    ],
                     name: [
                         { required: true, message: '名称不能为空', trigger: 'blur' }
                     ],
@@ -196,6 +282,9 @@
         },
         methods: {
 
+            change_pwd(){
+                this.modal1 = true;
+            },
 
             date(e){
                 this.formValidate.date = e;
@@ -204,13 +293,35 @@
             edit_msg(){
                 this.edit_person_msg = true;
             },
-            edit_ok(){
-                this.$Messgae.success('修改成功');
+            edit_ok(name){
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$Message.success('密码修改成功！')
+                        this.modal1 = false;
+                    }
+                })
                 this.edit_person_msg = false;
             },
             edit_cancel(){
                 this.edit_person_msg = false;
             },
+
+            cancel() {
+                this.formItem1.old_password = "";
+                this.formItem1.new_password = "";
+                this.formItem1.confirm_password = "";
+                this.modal1 = false;
+            },
+
+            setPassword(name) {
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.$Message.success('密码修改成功！')
+                        this.modal1 = false;
+                    }
+                })
+            },
+
 
         }
     }
