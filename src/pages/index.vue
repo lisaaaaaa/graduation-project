@@ -250,7 +250,7 @@
                         <label for="exampleTextarea">输入您的消息</label>
                         <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
                     </div>
-                    <div class="col-md-12 text-xs-center action-block"> <a href="#" class="btn btn-capsul btn-aqua">提交</a> </div>
+                    <div class="col-md-12 text-xs-center action-block"> <a href="#" class="btn btn-capsul btn-aqua" v-on:click="leavemsg">提交</a> </div>
                 </div>
             </div>
         </section>
@@ -353,6 +353,11 @@
                     this.fix2 = false;
                 }
             },
+
+            leavemsg(){
+                 this.$Message.success('提交成功！');
+            }
+
         },
 
     }

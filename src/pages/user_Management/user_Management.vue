@@ -3,7 +3,7 @@
         <div style="margin-bottom: 15px;">
             <span style="margin-left: 15px;color:#676262">管理员管理</span>
         </div>
-        <div style="width: 100%;height: 50px;line-height: 50px;background: #f5f4f4;box-shadow: 0.2px 0.3px 0.2px rgba(0, 21, 41, 0.35);">
+        <!--<div style="width: 100%;height: 50px;line-height: 50px;background: #f5f4f4;box-shadow: 0.2px 0.3px 0.2px rgba(0, 21, 41, 0.35);">
             <div>
                 <div class="toolbar-left">
                     <span style="font-size: 12px;line-height: 1.5;color: #495060;">关键字：</span>
@@ -13,7 +13,7 @@
                     <Button type="primary" icon="ios-search" @click="seek">搜索</Button>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div style="width:100%;height:auto;margin-top: 15px;background: rgb(245, 244, 244);">
 
             <div style="height: 60px;width: 100%;padding-top: 15px;">
@@ -44,6 +44,9 @@
                     <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100">
                         <FormItem label="管理员账号：" prop="name">
                             <Input v-model="formValidate.name" placeholder="Enter your name" style="width:400px;"></Input>
+                        </FormItem>
+                        <FormItem label="密码：" prop="passwd">
+                            <Input v-model="formValidate.passwd" placeholder="Enter your password" style="width:400px;"></Input>
                         </FormItem>
                         <FormItem label="联系人：" prop="contact">
                             <Input v-model="formValidate.contact" placeholder="Enter your contact" style="width:400px;"></Input>
@@ -85,6 +88,9 @@
                             </FormItem>
                             <FormItem label="密码：" prop="pass">
                                 <Input v-model="formReset.pass" type="password" placeholder="输入密码" style="width:400px;"></Input>
+                            </FormItem>
+                            <FormItem label="确认密码：" prop="againpass">
+                                <Input v-model="formReset.againpass" type="password" placeholder="输入密码" style="width:400px;"></Input>
                             </FormItem>
                             <FormItem label="新密码：" prop="newpass">
                                 <Input v-model="formReset.newpass" type="password" placeholder="确认密码" style="width:400px;"></Input>
@@ -190,14 +196,18 @@
                         { required: false}
                     ],
                     pass: [
-                        {validator: validatePass2, trigger: 'blur',required: true}
+                        {trigger: 'blur',required: true}
+                    ],
+                    againpass: [
+                        {validator: validatePassCheck, trigger: 'blur',required: true}
                     ],
                     newpass: [
-                        {validator: validatePassCheck, trigger: 'blur',required: true}
+                        {validator: validatePass2, trigger: 'blur',required: true}
                     ],
                 },
                 formValidate: {
                     name: '',
+                    passwd:'',
                     contact:'',
                     phone:'',
                     mail: '',
@@ -205,6 +215,9 @@
                     single:'false'
                 },ruleValidate: {
                     name: [
+                        {validator: validateInput, trigger: 'blur',required: true}
+                    ],
+                    passwd: [
                         {validator: validateInput, trigger: 'blur',required: true}
                     ],
                     contact: [
@@ -307,24 +320,7 @@
                         ]
                     },
                 ],
-                table_data:[
-                    {
-                        'admin_id':1,
-                        'admin_name':'test',
-                        'contact_person':'lisa',
-                        'admin_cellphone':'123456789',
-                        'admin_email':'lisa.wow@outlook.com',
-                        'admin_status':'启用'
-                    },
-                    {
-                        'admin_id':2,
-                        'admin_name':'test2',
-                        'contact_person':'莉莎',
-                        'admin_cellphone':'123456789',
-                        'admin_email':'lisa.wow@outlook.com',
-                        'admin_status':'禁用'
-                    },
-                ],
+                table_data:[],
                 table_columns:[
                     {
                         type: 'selection',
@@ -332,8 +328,8 @@
                         align: 'center'
                     },
                     {
-                        title: '管理员账号',
-                        key: 'admin_name',
+                        title: '用户账号',
+                        key: 'name',
 //                        width: 80,
                         render:(create,data) => {
                         return create('div',{
@@ -344,50 +340,32 @@
                                 whiteSpace: 'nowrap'
                             },
                             domProps: {
-                                title:data.row.admin_name
+                                title:data.row.name
                             }
-                        },data.row.admin_name)
+                        },data.row.name)
                     }
             },
-//            {
-//                title: '管理员类型',
-//                key: 'admin_type',
-////                width: 80,
-//                render:(create,data) => {
-//                return create('div',{
-//                    style: {
-//                        width: '100%',
-//                        overflow: 'hidden',
-//                        textOverflow: 'ellipsis',
-//                        whiteSpace: 'nowrap'
-//                    },
-//                    domProps: {
-//                        title:data.row.admin_type
-//                    }
-//                },data.row.admin_type)
-//            }
-//        },
-            {
-                title: '联系人',
-                        key: 'contact_person',
-//                width: 80,
-                        render:(create,data) => {
-                    return create('div',{
-                        style: {
-                            width: '100%',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap'
-                        },
-                        domProps: {
-                            title:data.row.contact_person
-                        }
-                    },data.row.contact_person)
-                }
-            },
+//             {
+//                 title: '联系人',
+//                 key: 'contact',
+// //                width: 80,
+//                         render:(create,data) => {
+//                     return create('div',{
+//                         style: {
+//                             width: '100%',
+//                             overflow: 'hidden',
+//                             textOverflow: 'ellipsis',
+//                             whiteSpace: 'nowrap'
+//                         },
+//                         domProps: {
+//                             title:data.row.contact
+//                         }
+//                     },data.row.contact)
+//                 }
+//             },
             {
                 title: '电话',
-                        key: 'admin_cellphone',
+                        key: 'telephone',
 //                width: 80,
                     render:(create,data) => {
                 return create('div',{
@@ -398,14 +376,14 @@
                         whiteSpace: 'nowrap'
                     },
                     domProps: {
-                        title:data.row.admin_cellphone
+                        title:data.row.telephone
                     }
-                },data.row.admin_cellphone)
+                },data.row.telephone)
             }
             },
             {
                 title: '邮箱',
-                        key: 'admin_email',
+                        key: 'email',
 //                width: 80,
                     render:(create,data) => {
                 return create('div',{
@@ -416,16 +394,16 @@
                         whiteSpace: 'nowrap'
                     },
                     domProps: {
-                        title:data.row.admin_email
+                        title:data.row.email
                     }
-                },data.row.admin_email)
+                },data.row.email)
             }
             },
             {
                 title: '备注',
-                        key: 'comment',
+                key: 'remark',
 //                width: 80,
-                    render:(create,data) => {
+                render:(create,data) => {
                 return create('div',{
                     style: {
                         width: '100%',
@@ -434,14 +412,14 @@
                         whiteSpace: 'nowrap'
                     },
                     domProps: {
-                        title:data.row.comment
+                        title:data.row.remark
                     }
-                },data.row.comment)
+                },data.row.remark)
             }
             },
             {
                 title: '状态',
-                        key: 'admin_status',
+                key: 'enable',
 //                width: 80,
                     render:(create,data) => {
                 return create('div',{
@@ -452,9 +430,9 @@
                         whiteSpace: 'nowrap'
                     },
                     domProps: {
-                        title:data.row.admin_status
+                        title:data.row.enable
                     }
-                },data.row.admin_status)
+                },data.row.enable)
             }
             },
             {
@@ -464,21 +442,21 @@
                 align: 'center',
                     render: (create,params) => {
                 return create('div', [
-                    create(modalButton, {
-                        props:{
-                            title:(params.row.admin_status == "启用") ? '禁用' : '启用',
-//                            title: '禁用',
-                            functions: this.disable,
-                            params:[params.row.admin_id,params.row.admin_name],
-                            isPower:this.isPower,
-                        }
-                    }),
+//                     create(modalButton, {
+//                         props:{
+//                             title:(params.row.enable == "启用") ? '禁用' : '启用',
+// //                            title: '禁用',
+//                             functions: this.disable,
+//                             params:[params.row.id,params.row.enable],
+//                             isPower:this.isPower,
+//                         }
+//                     }),
                     create(modalButton, {
                         props:{
 //                            title:(params.row.admin_status == "启用" && params.row.admin_type != '系统管理员' && params.row.admin_name != 'config' && params.row.admin_name != 'audit') ? '重置' : '不可重置',
                             title: '重置',
                             functions: this.reset,
-                            params:[params.row.admin_id,params.row.admin_name],
+                            params:[params.row.id,params.row.admin_name],
                             isPower:this.isPower,
                         }
                     }),
@@ -487,7 +465,7 @@
 //                            title:(params.row.admin_status == "启用" && params.row.admin_type != '系统管理员' && params.row.admin_name != 'config' && params.row.admin_name != 'audit') ? '删除' : '不可删除',
                             title: '删除',
                             functions: this.delete,
-                            params:[params.row.admin_id],
+                            params:[params.row.id],
                             isPower:this.isPower,
                         }
                     }),
@@ -505,7 +483,8 @@
         props:['name'],
         components: {},
         mounted() {
-            this.login_name = getStore('user_name')
+            this.login_name = getStore('user_name');
+            this.getStore();
         },
         created() {
 
@@ -521,15 +500,15 @@
 //                console.log(self.selection)
                 if(typeof self.selection=="object"&&self.selection.constructor==Array&&self.selection.length >0){
                     for (var i = 0; i < self.selection.length; i++) {
-                        checked_items_id.push(self.selection[i].admin_id);
-                        checked_items_name.push(self.selection[i].admin_name);
+                        checked_items_id.push(self.selection[i].id);
+                        // checked_items_name.push(self.selection[i].admin_name);
                     }
                     var ids = checked_items_id.join("&");
-                    var names = checked_items_name.join("&");
+                    // var names = checked_items_name.join("&");
 //                    console.log(ids,names)
                     self.delete(ids)
                 }else{
-                    this.$Message.warning('请选择需要删除的管理员！');
+                    this.$Message.warning('请选择需要删除的用户！');
                 }
             },
             startmodel(admin_ids, name){
@@ -540,25 +519,27 @@
                 if(typeof self.selection=="object"&&self.selection.constructor==Array&&self.selection.length >0){
                     for (var i = 0; i < self.selection.length; i++) {
                         checked_items_id.push(self.selection[i].id);
-                        checked_items_name.push(self.selection[i].admin_name);
+                        checked_items_name.push(self.selection[i].enable);
                     }
                     var ids = checked_items_id.join("&");
                     var names = checked_items_name.join("&");
 //                    console.log(ids,names)
-                    if(confirm("确认要启用这些管理员吗？")){
-//                        enable_items(admin_ids, name).then(res => {
-////                            console.log(res)
-//                            if(res.status == 0){
-//                            self.$Message.success("启用成功!");
-//                        }else{
-//                            self.$Message.error(res.mesg);
-//                        }
-//                    })
+                    if(confirm("确认要启用吗？")){
+                        this.$http.post('http://47.107.125.48:8010/api/v1_0/user/enable',{
+                            id: ids,
+                            enable: names,
+                        },{emulateJSON:true}).then(function(data){
+                        if(data.status === 200){
+                        this.$Message.success('禁用成功！');
+                        }
+                        }).catch(function(error){
+                            this.$Message.success('禁用失败！' + error);
+                        });
                     }else{
                         self.selection = [];
                     }
                 }else{
-                    self.$Message.warning('请选择要启用的管理员！');
+                    self.$Message.warning('请选择要启用的用户！');
                 }
                 self.getStore();
             },
@@ -568,15 +549,14 @@
                 var checked_items_name = [];
                 if(typeof self.selection=="object"&&self.selection.constructor==Array&&self.selection.length >0){
                     for (var i = 0; i < self.selection.length; i++) {
-                        checked_items_id.push(self.selection[i].admin_id);
-                        checked_items_name.push(self.selection[i].admin_name);
+                        checked_items_id.push(self.selection[i].id);
+                        checked_items_name.push(self.selection[i].enable);
                     }
                     var ids = checked_items_id.join("&");
                     var names = checked_items_name.join("&");
-//                    console.log(ids,names)
                     self.disable(ids,names)
                 }else{
-                    this.$Message.warning('请选择需要禁用的管理员！');
+                    this.$Message.warning('请选择需要禁用的用户！');
                 }
             },
             select(){},
@@ -596,47 +576,70 @@
             add_ok(name){
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.$Message.success('添加成功!');
+                        var x = this.formValidate
+                        this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator',{
+                        user_name: x.name,
+                        passwd: x.passwd,
+                        email: x.mail,
+                        contact: x.contact,
+                        telephone: x.phone,
+                        remark: x.remarks,
+                        enable: x.enable == true ? '启用' : '禁用',
+                        },{emulateJSON:true}).then(function(data){
+                        if(data.status === 200){
+                        this.$Message.success('添加成功！');
+                        this.modal_add = false;
+                        }
+                        //  console.log(data); 
+                        }).catch(function(error){
+                            this.$Message.success('添加失败！' + error);
+                        });
                     } else {
                         this.$Message.error('请正确填写表单!');
-            }
+                }
             })
+            this.getStore();
             },
             getStore (){
 
             },
             delete(admin_ids){
                 var self = this;
-                if(confirm("确认要删除管理员吗？")){
-                      console.log(admin_ids)
-//                    delete_data(admin_ids, name).then(res => {
-////                        console.log(res)
-//                        if(res.status == 0){
-//                        self.$Message.success("删除成功!");
-//                    }else{
-//                        self.$Message.error(res.mesg);
-//                    }
-//                })
+                if(confirm("确认要删除用户吗？")){
+                    //   console.log('admin_ids' + admin_ids);
+                      this.$http.post('http://47.107.125.48:8010/api/v1_0/user/delete',{
+                            id: admin_ids,
+                        },{emulateJSON:true}).then(function(data){
+                        if(data.status === 200){
+                        this.$Message.success('删除成功！');
+                        }
+                        }).catch(function(error){
+                            this.$Message.success('删除失败！' + error);
+                        });
                 }else{
                     self.selection = [];
                 }
+                this.getStore();
             },
             disable(admin_ids, name){
                 var self = this;
-                if(confirm("确认要禁用管理员吗？")){
-                    console.log(admin_ids, name)
-//                    disable_items(admin_ids, name).then(res => {
-////                        console.log(res)
-//                        if(res.status == 0){
-//                        self.$Message.success("禁用成功!");
-//                    }else{
-//                        self.$Message.error(res.mesg);
-//                    }
-//                })
+                if(confirm("确认要禁用吗？")){
+                    console.log('admin_ids' + admin_ids);
+                    // console.log('enable' + name);
+                      this.$http.post('http://47.107.125.48:8010/api/v1_0/user/enable',{
+                            id: admin_ids,
+                            enable: name,
+                        },{emulateJSON:true}).then(function(data){
+                        if(data.status === 200){
+                        this.$Message.success('禁用成功！');
+                        }
+                        }).catch(function(error){
+                            this.$Message.success('禁用失败！' + error);
+                        });
                 }else{
                     self.selection = [];
                 }
-//                self.getStore();
+               self.getStore();
             },
             reset(id,name){
                 this.formReset.admin_id = id;
@@ -644,19 +647,31 @@
                 this.modal_reset = true;
             },
             reset_ok(){
-                console.log('修改成功')
+                this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator/password',{
+                    id: this.formReset.admin_id,
+                    passwd: this.formReset.newpass,
+                },{emulateJSON:true}).then(function(data){
+                    if(data.status === 200){
+                        this.$Message.success('重置成功！');
+                        }
+                        }).catch(function(error){
+                            this.$Message.success('重置失败！' + error);
+                        });
                 this.modal_reset = false;
-//                if(self.formReset.new_pass != self.formReset.pass){
-//                    self.$Message.error('两次密码不一致！');
-//                    return;
-//                }
-
                 self.getStore();
             },
             reset_cancel(){
                 this.modal_reset = false;
             },
-            getStore(){},
+            getStore(){
+                this.$http.get('http://47.107.125.48:8010/api/v1_0/user').then(
+                    function (data) {
+                        this.table_data = data.body.detail;
+                        console.log(data)
+                    }).catch(function (error) {
+                        console.log(error)
+                    })
+            },
 
         },
         beforeDestroy:function(){

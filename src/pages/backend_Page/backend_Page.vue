@@ -35,7 +35,7 @@
                                 <!--</Badge>-->
                             <!--</div>-->
                             <div class="top-icon">
-                                <Badge :count="5" type="warning" overflow-count="99" >
+                                <Badge :count="msgcount" type="warning" overflow-count="99" >
                                     <a :href=" '#/backend_Page/user_Management_msg' " style="color:#fff" title="留言信息"><Icon type="ios-mail" size="20"/></a>
                                 </Badge>
                             </div>
@@ -78,6 +78,7 @@
                 backend_nav:{},    //菜单
                 subitems: {},
                 scrollTop:'',
+                msgcount: 0
         }
         },
         props:[],
@@ -85,7 +86,8 @@
         mounted() {
             this.subitems = backend_nav;
             this.login_name = getStore('user_name')
-            window.addEventListener('scroll', this.handleScroll)
+            window.addEventListener('scroll', this.handleScroll);
+            this.getNumber();
         },
         created() {
 
@@ -108,7 +110,17 @@
             exit(){
                 this.$store.commit('logout');
                 this.$router.push({name:'index'})
+            },
+            getNumber(){
+                 this.$http.get('http://47.107.125.48:8010/api/v1_0/level_msg').then(
+                    function (data) {
+                        this.msgcount = data.body.detail.length;
+                        console.log(data)
+                    }).catch(function (error) {
+                        console.log(error)
+                    })
             }
+
 
         },
         beforeDestroy:function(){

@@ -180,7 +180,7 @@ export default {
            
         },
         created() {
-
+            console.log(process.env.API_ROOT);
         },
         methods: {
 
@@ -191,13 +191,30 @@ export default {
              handleSubmit (name) {
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        console.log(this.formValidate)
-//                        this.$Message.success('Success!');
-                    } else {
-                        this.$Message.error('请正确填写表单信息');
-                    }
-                })
-            },
+                        var x = this.formValidate;
+                        // console.log(this.formValidate)
+                        this.$http.post('http://47.107.125.48:8010/api/v1_0/auth/register',{
+                            user_name: x.name,
+                            user_password: x.pwd,
+                            email: x.mail,
+                            signature: x.signature,
+                            sex: x.gender,
+                            height: x.height,
+                            weight: x.weight,
+                            birthday: x.date,                                blood: x.blood
+                        },{emulateJSON:true}).then(function(data){
+                        if(data.status === 200){
+                        this.$Message.success('注册成功！');
+                        }
+                         console.log(data); 
+                        }).catch(function(error){
+                            this.$Message.success('注册失败！' + error);
+                        });
+                        } else {
+                            this.$Message.error('请正确填写表单信息');
+                        }
+                    })
+                },
             handleReset (name) {
                 this.$refs[name].resetFields();
             }

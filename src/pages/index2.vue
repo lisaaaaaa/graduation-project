@@ -290,7 +290,7 @@
                         <label for="exampleTextarea" style="color: #222;">输入您的消息</label>
                         <textarea style="border-bottom: 1px solid #222;" class="form-control" id="exampleTextarea" rows="3"></textarea>
                     </div>
-                    <div class="row-item-8 text-xs-center action-block"> <a href="#" class="btn btn-capsul btn-aqua">提交</a> </div>
+                    <div class="row-item-8 text-xs-center action-block"> <a href="#" class="btn btn-capsul btn-aqua" v-on:click="leavemsg">提交</a> </div>
                 </div>
             </div>
         </section>
@@ -428,6 +428,24 @@
 //            },
             register(){
                 this.$router.push({name:'registered'})
+            },
+            leavemsg(){
+                console.log(document.getElementById('exampleName').value);
+                console.log(document.getElementById('examplePhone').value);
+                console.log(document.getElementById('exampleInputEmail1').value);
+                console.log(document.getElementById('exampleTextarea').value);
+                this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator/enable',{
+                    level_msg: document.getElementById('exampleTextarea').value,
+                    email: document.getElementById('exampleInputEmail1').value,
+                    mobilephone: document.getElementById('examplePhone').value,
+                    user_name: document.getElementById('exampleName').value
+                        },{emulateJSON:true}).then(function(data){
+                        if(data.status === 200){
+                        this.$Message.success('留言成功！');
+                        }
+                        }).catch(function(error){
+                            this.$Message.success('留言失败！' + error);
+                        });
             }
         },
         watch: {

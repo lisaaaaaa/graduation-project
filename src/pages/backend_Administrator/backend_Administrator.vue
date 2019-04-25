@@ -26,7 +26,7 @@
             </Form>
 
             <div class="footer" style="float: right">
-                <Button type="primary" size="large" @click="edit_ok('formValidate')" class="tdrcvp_btn">修改</Button>
+                <!--<Button type="primary" size="large" @click="edit_ok('formValidate')" class="tdrcvp_btn">修改</Button>-->
                 <Button type="primary" ghost size="large" @click="edit_cancel" class="tdrcvp_btn">返回</Button>
             </div>
         </div>
@@ -217,10 +217,20 @@
             change_pwd(){
                 this.modal1 = true;
             },
-            setPassword(name) {
-                this.$refs[name].validate((valid) => {
+            setPassword(value) {
+                this.$refs[value].validate((valid) => {
                     if (valid) {
-                        this.$Message.success('密码修改成功！')
+                        this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator/password',{
+                           id: value.id,
+                           passwd: value.passwd,
+                        },{emulateJSON:true}).then(function(data){
+                        if(data.status === 200){
+                        this.$Message.success('修改成功！');
+                        }
+                         console.log(data); 
+                        }).catch(function(error){
+                            this.$Message.success('修改失败！' + error);
+                        });
                         this.modal1 = false;
                     }
                 })

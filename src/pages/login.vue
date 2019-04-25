@@ -131,25 +131,60 @@
                 if(this.checkL_yzma()){
                     this.modal_loading = true;
                     setTimeout(() => {
-                        this.modal_loading = false;
-                        console.log(this.formCustom)
-                        if( this.formCustom.user == 'lisa' && this.formCustom.passwd == '123'){
-                            this.$Message.success('登录成功！');
-                            this.$store.commit('login');     //改变token状态
-                            setStore('user_name', this.formCustom.user);
-                            if (this.change == 1) {
-                                this.$store.commit('setPower1');    //设置权限,普通用户
-                                this.$router.push({name: 'user', params: {name:this.formCustom.user}});
+                    this.modal_loading = false;
+                    // console.log(this.formCustom)
+                    if(this.change == 1){
+                    this.$http.post('http://47.107.125.48:8010/api/v1_0/auth/login',{
+                     user_name:this.formCustom.user,
+                     user_password:this.formCustom.passwd
+                    },{emulateJSON:true}).then(function(data){
+                     if(data.status === 200){
+                        this.$Message.success('登录成功！');
+                        this.$store.commit('login');     //改变token状态
+                        setStore('user_name', this.formCustom.user);
+                        this.$store.commit('setPower1');    //设置权限,普通用户
+                        this.$router.push({name: 'user', params: {name:this.formCustom.user}});
+                     }
+                      console.log(data); 
+                    }).catch(function(error){
+                     this.$Message.success('登录失败！' + error);
+                    });
+                    }else if(this.change == 2){
+                    this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator/login',{
+                     user_name:this.formCustom.user,
+                     passwd:this.formCustom.passwd
+                 },{emulateJSON:true}).then(function(data){
+                     if(data.status === 200){
+                        this.$Message.success('登录成功！');
+                        this.$store.commit('login');     //改变token状态
+                        setStore('user_name', this.formCustom.user);
+                        this.$store.commit('setPower2');    //设置权限，管理员用户
+                        this.$router.push({name: 'user_Management', params: {name:this.formCustom.user}});
+                     }
+                      console.log(data); 
+                 }).catch(function(error){
+                     this.$Message.success('登录失败！' + error);
+                });
+                    }
+                   
 
-                            }else if(this.change == 2){
-                                this.$store.commit('setPower2');    //设置权限，管理员用户
-                                this.$router.push({name: 'user_Management', params: {name:this.formCustom.user}});
-                            }
+                        // if( this.formCustom.user == 'lisa' && this.formCustom.passwd == '123'){
+                        //     this.$Message.success('登录成功！');
+                        //     this.$store.commit('login');     //改变token状态
+                        //     setStore('user_name', this.formCustom.user);
+                        //     if (this.change == 1) {
+                        //         this.$store.commit('setPower1');    //设置权限,普通用户
+                        //         this.$router.push({name: 'user', params: {name:this.formCustom.user}});
+
+                        //     }else if(this.change == 2){
+                        //         this.$store.commit('setPower2');    //设置权限，管理员用户
+                        //         this.$router.push({name: 'user_Management', params: {name:this.formCustom.user}});
+                        //     }
 
 
-                        }else{
-                            this.$Message.success('登录失败！');
-                        }
+                        // }else{
+                        //     this.$Message.success('登录失败！');
+                        // }
 
 
                         }, 2000);

@@ -24,6 +24,9 @@ Vue.config.productionTip = false
 Vue.use(iView) //使用iview组件
 
 
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
+
 import VideoPlayer from 'vue-video-player'
 Vue.use(VideoPlayer)
 require('video.js/dist/video-js.css')
