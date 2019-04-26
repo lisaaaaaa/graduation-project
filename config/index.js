@@ -10,7 +10,19 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {    //将www.exaple.com印射为/apis
+          target: 'http://47.107.125.48:8010',  // 接口域名
+          changeOrigin: true,  //是否跨域
+          pathRewrite: {
+              '^/api': ''   //需要rewrite的,
+          },
+          secure: false,
+          headers: {
+              Referer: 'http://47.107.125.48:8010'
+          }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
