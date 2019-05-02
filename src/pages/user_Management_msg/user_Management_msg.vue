@@ -48,6 +48,7 @@
                 total_num: 0,
                 current_page: 1,
                 page_size: 15,
+                del_id: '',
                 columns:[
                     {
                         type: 'expand',
@@ -83,7 +84,7 @@
                                 },
                                 on: {
                                     click: () => {
-                                        this.remove(params.row.userid)
+                                        this.remove(params.row.user_id)
                                     }
                                 }
                             }, '删除')
@@ -119,29 +120,44 @@
         props:[],
         components: {},
         mounted() {
-
+            this.getStore();
         },
         created() {
 
         },
         methods: {
             remove(index){
-                console.log(index)
                 this.modal = true;
                 this.index = index;
             },
             del_ok(){
                 console.log(this.index)
-                this.modal_loading = true;
-                setTimeout(() => {
-                    this.modal_loading = false;
-                this.modal = false;
-                this.$Message.success('删除成功！');
-            }, 2000);
+                // this.modal_loading = true;
+                 this.$http.post('http://47.107.125.48:8010/api/v1_0/level_msg ',{
+                     id:this.index,
+                 },{emulateJSON:true}).then(function(data){
+                     if(data.status === 200){
+                        this.$Message.success('删除成功！');
+                     }
+                      console.log(data); 
+                 }).catch(function(error){
+                     this.$Message.success('删除失败！' + error);
+                });
+            this.modal = false;
+            this.getStore();
             },
             change(page) {
                 this.current_page = page;
-//                this.getStore();
+               this.getStore();
+            },
+            getStore(){
+                this.$http.get('http://47.107.125.48:8010/api/v1_0/level_msg').then(
+                    function (data) {
+                        this.data = data.body.detail;
+                        console.log(data)
+                    }).catch(function (error) {
+                        console.log(error)
+                    })
             }
 
 

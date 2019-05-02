@@ -17,32 +17,32 @@
                                 <a :href=" '/#/user' "  style="float: right;font-size: 14px;color: #3399ea;padding-right: 9.3px;">个人主页></a>
                             </div>
                             <div style="margin-top: 8px;margin-bottom: 16px; color: rgb(77, 77, 77);font-size: 14px;">
-                                <span>签名：</span><span>然而岁月漫长，总之值得等待</span>
+                                <span>签名：</span><span>{{ this.userdata.signature }}</span>
                             </div>
                         </div>
                         <div class="person-list" style="margin-top: 10px;">
                             <ul style="color: rgb(77, 77, 77);font-size: 14px;">
                                 <li>
-                                    <span>性别：</span><span>女</span>
+                                    <span>性别：</span><span>{{ this.userdata.sex }}</span>
                                     <a style="float: right;font-size: 14px;color: #3399ea;padding-right: 9.3px;" v-on:click="edit_msg()">修改资料</a>
                                 </li>
                                 <!--<li>-->
                                     <!--<span>生日：</span><span>1990/2/14</span>-->
                                 <!--</li>-->
                                 <li>
-                                    <span>邮箱：</span><span>lisa.wow@outlook.com</span>
+                                    <span>邮箱：</span><span>{{ this.userdata.email }}</span>
                                 </li>
                                 <li>
-                                    <span>出生日期：</span><span>2019-02-01</span>
+                                    <span>出生日期：</span><span>{{ this.userdata.birthday }}</span>
                                 </li>
                                 <li>
-                                    <span>身高：</span><span>152<em>cm</em></span>
+                                    <span>身高：</span><span>{{ this.userdata.height }}<em>cm</em></span>
                                 </li>
                                 <li>
-                                    <span>体重：</span><span>42<em>kg</em></span>
+                                    <span>体重：</span><span>{{ this.userdata.weight }}<em>kg</em></span>
                                 </li>
                                 <li>
-                                    <span>血型：</span><span>A型</span>
+                                    <span>血型：</span><span>{{ this.userdata.blood }}型</span>
                                 </li>
 
                                 <!--<li>-->
@@ -68,13 +68,13 @@
                         <FormItem label="签名：" prop="signature">
                             <Input v-model="formValidate.signature" placeholder="Enter your signature" style="width:75%"></Input>
                         </FormItem>
-                        <FormItem label="邮箱：" prop="mail">
-                            <Input v-model="formValidate.mail" placeholder="Enter your e-mail" style="width:75%"></Input>
+                        <FormItem label="邮箱：" prop="email">
+                            <Input v-model="formValidate.email" placeholder="Enter your e-mail" style="width:75%"></Input>
                         </FormItem>
-                        <FormItem label="性别：" prop="gender">
-                            <RadioGroup v-model="formValidate.gender">
-                                <Radio label="male">男</Radio>
-                                <Radio label="female">女</Radio>
+                        <FormItem label="性别：" prop="sex">
+                            <RadioGroup v-model="formValidate.sex">
+                                <Radio label="男">男</Radio>
+                                <Radio label="女">女</Radio>
                             </RadioGroup>
                         </FormItem>
                         <FormItem label="身高：" prop="height">
@@ -90,10 +90,10 @@
                             <!--<span>kg</span>-->
                             <!--<Input v-model="formValidate.name" placeholder="Enter your weight"></Input>-->
                         </FormItem>
-                        <FormItem label="出生日期：" prop="date">
+                        <FormItem label="出生日期：" prop="birthday">
                             <Row>
                                 <Col span="11">
-                                <DatePicker v-model="formValidate.date" type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="date"></DatePicker>
+                                <DatePicker v-model="formValidate.birthday" type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="date"></DatePicker>
                                 </Col>
                                 <!--<Col span="2" style="text-align: center">-</Col>-->
                             </Row>
@@ -219,18 +219,8 @@
                     new_password: '',
                     confirm_password: ''
                 },
-
-
-                formValidate: {
-                    name: 'lisa',
-                    signature:'然而岁月漫长，总之值得等待',
-                    mail: 'lisa.wow@outlook.com',
-                    blood: 'A',
-                    gender: 'female',
-                    date:'2019-02-01',
-                    height:'152',
-                    weight:'42',
-                },ruleValidate: {
+                userdata:{},
+                formValidate: {},ruleValidate: {
                     old_password: [
                         {validator: validatePass1, trigger: 'blur',required: true}
                     ],
@@ -246,14 +236,14 @@
                     signature: [
                         { required: true, message: '签名不能为空', trigger: 'blur' }
                     ],
-                    mail: [
+                    email: [
                         { required: true, message: '邮箱不能为空', trigger: 'blur' },
                         { type: 'email', message: '请正确输入邮箱格式', trigger: 'blur' }
                     ],
                     blood: [
                         { required: true, message: '请选择您的血型', trigger: 'change' }
                     ],
-                    gender: [
+                    sex: [
                         { required: true, message: '请选择身份', trigger: 'change' }
                     ],
                     height: [
@@ -263,7 +253,7 @@
                         {validator: validateNumber, trigger: 'number',required: true}
                     ],
 
-                    date: [
+                    birthday: [
                         {validator: validateDate, trigger: 'blur',required: true}
                     ],
                 },
@@ -275,12 +265,46 @@
         props:[],
         mounted() {
             this.user_name = getStore('user_name')
-
+            this.getData();
         },
         created() {
 
         },
         methods: {
+            getData(){
+                this.userdata = {
+                    name: 'lisa',
+                    signature:'然而岁月漫长，总之值得等待',
+                    email: 'lisa.wow@outlook.com',
+                    blood: 'A',
+                    sex: '女',
+                    birthday:'2019-02-01',
+                    height:'152',
+                    weight:'42'
+                };
+                        this.formValidate = this.userdata;
+                this.$http.get('http://47.107.125.48:8010/api/v1_0/user ',{
+                    params: {
+                        id:'' },},{
+                        emulateJSON: true
+                    }).then(
+                    function (data) {
+                        console.log(data)
+                        this.userdata = {
+                            name: 'lisa',
+                            signature:'然而岁月漫长，总之值得等待',
+                            email: 'lisa.wow@outlook.com',
+                            blood: 'A',
+                            sex: '女',
+                            birthday:'2019-02-01',
+                            height:'152',
+                            weight:'42'
+                        };
+                        this.formValidate = this.userdata;
+                    }).catch(function (error) {
+                        console.log('获取用户信息失败',error);
+                    })
+            },
 
             change_pwd(){
                 this.modal1 = true;
@@ -296,7 +320,24 @@
             edit_ok(name){
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.$Message.success('密码修改成功！')
+                        this.$http.post('http://47.107.125.48:8010/api/v1_0/user/edit ',{
+                        user_name: this.formValidate.name,   
+                        user_password: this.formItem1.new_password !== "" ? this.formItem1.new_password : this.formItem1.old_password,
+                        signature: this.formValidate.signature,
+                        email: this.formValidate.email,
+                        sex: this.formValidate.sex,    
+                        height: this.formValidate.height,   
+                        weight: this.formValidate.weight,   
+                        birthday: this.formValidate.birthday,  
+                        blood: this.formValidate.blood
+                 },{emulateJSON:true}).then(function(data){
+                     if(data.status === 200){
+                        this.$Message.success('修改成功！');
+                     }
+                      console.log(data); 
+                 }).catch(function(error){
+                     this.$Message.success('修改失败！' + error);
+                });
                         this.modal1 = false;
                     }
                 })

@@ -46,7 +46,7 @@ export default new Router({
       component: user,
       meta: {
         title: '健康中心系统',
-        requireAuth: true,
+        requireAuth: false,
       }
     },
     {
@@ -64,7 +64,7 @@ export default new Router({
       component: forum,
       meta: {
         title: '健康中心系统',
-        requireAuth: true,
+        requireAuth: false,
       }
     },{
       path: '/basic_info',
@@ -72,7 +72,7 @@ export default new Router({
       component: basic_info,
       meta: {
         title: '健康中心系统',
-        requireAuth: true,
+        requireAuth: false,
       },
       children: [
         {
@@ -80,7 +80,7 @@ export default new Router({
           name: 'personal_Information',
           component: personal_Information,
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           },
         },
         {
@@ -88,7 +88,7 @@ export default new Router({
           name: 'my_Focus',
           component: my_Focus,
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           },
         },
         {
@@ -96,7 +96,7 @@ export default new Router({
           name: 'my_Collection',
           component: my_Collection,
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           },
         },
         {
@@ -104,7 +104,7 @@ export default new Router({
           name: 'my_Fans',
           component: my_Fans,
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           },
         },
         {
@@ -112,7 +112,7 @@ export default new Router({
           name: 'my_Footprint',
           component: my_Footprint,
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           },
         },
       ]
@@ -122,7 +122,7 @@ export default new Router({
       name: 'health_Record',
       component: health_Record,
       meta: {
-        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+        requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
       },
     },
     {
@@ -130,7 +130,7 @@ export default new Router({
       name:'article',
       component:article,
       metd:{
-        requireAuth:true,
+        requireAuth:false,
       },
       children: [
         {
@@ -138,7 +138,7 @@ export default new Router({
           name: 'article_all',
           component: article_all,
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           },
         },
         {
@@ -146,14 +146,14 @@ export default new Router({
           name: 'article_one',
           component: article_one,
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           },
         },{
           path: 'article_edit',
           name: 'article_edit',
           component: article_edit,
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           },
         },
       ]
@@ -163,7 +163,7 @@ export default new Router({
       component: backend_Page,
       meta: {
         title: '健康中心系统',
-        requireAuth: true,
+        requireAuth: false,
       },
       children: [
         {
@@ -171,7 +171,7 @@ export default new Router({
           name: 'user_Management',
           component: user_Management,
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           },
         },
         {
@@ -179,7 +179,7 @@ export default new Router({
           name: 'user_Management_msg',
           component: user_Management_msg,
           meta: {
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           },
         },
         {
@@ -187,7 +187,7 @@ export default new Router({
           name:'backend_Administrator',
           component:backend_Administrator,
           meta:{
-            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+            requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
           }
         },
         {
@@ -195,7 +195,7 @@ export default new Router({
           name:'system_Management',
           component:system_Management,
           meta:{
-            requireAuth:true,
+            requireAuth:false,
           }
         },
         {
@@ -203,7 +203,7 @@ export default new Router({
           name:'system_Setting',
           component:system_Setting,
           meta:{
-            requireAuth:true,
+            requireAuth:false,
           }
         }
       ]
@@ -213,7 +213,7 @@ export default new Router({
       name:'medical_History',
       component:medical_History,
       meta:{
-        requireAuth:true,
+        requireAuth:false,
       }
     },
     {
@@ -221,7 +221,7 @@ export default new Router({
       name:'add_medical_History',
       component:add_medical_History,
       meta:{
-        requireAuth:true,
+        requireAuth:false,
       }
     },
   ]

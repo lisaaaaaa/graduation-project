@@ -430,10 +430,10 @@
                 this.$router.push({name:'registered'})
             },
             leavemsg(){
-                console.log(document.getElementById('exampleName').value);
-                console.log(document.getElementById('examplePhone').value);
-                console.log(document.getElementById('exampleInputEmail1').value);
-                console.log(document.getElementById('exampleTextarea').value);
+                // console.log(document.getElementById('exampleName').value);
+                // console.log(document.getElementById('examplePhone').value);
+                // console.log(document.getElementById('exampleInputEmail1').value);
+                // console.log(document.getElementById('exampleTextarea').value);
                 this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator/enable',{
                     level_msg: document.getElementById('exampleTextarea').value,
                     email: document.getElementById('exampleInputEmail1').value,

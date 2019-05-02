@@ -24,7 +24,7 @@
 
 
 
-            <Drawer :closable="false" v-model="drawer" width="966">
+            <Drawer :closable="false" v-model="drawer" width="1024">
 
                 <div id="user-msg">
                     <div class="user-main" style="">
@@ -76,6 +76,7 @@
                             </div>
                             <div class="person-signature" style="margin-top: 10px;">
                                 <!--<h1>关于我</h1>-->
+                            <span style="margin-top: 10px;">{{ this.signature }}</span>
                             <span style="margin-top: 10px;">我是一颗小小小小草，怎么长也长也不高。我寻寻觅觅，寻寻觅觅，只为找到一颗太阳，那样就可以又长高。
                                 啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</span>
                             </div>
@@ -117,7 +118,7 @@
                         </div>
                         <div class="health-img" style="display:-webkit-inline-box;margin-top:30px;width:100%;height:245px;background: radial-gradient(#648880, #293f50);color:#fff;">
                             <div class="bg" style="width:100%;margin: 0px auto;">
-                                <div style="width: 200px;height: 100%;">
+                                <div style="width: 20%;height: 100%;float: left;">
                                     <div class="record-1" style="position: relative;margin: 15px;">
                                         <div style="width: 100%;height:210px;background-color: #e5e4e0;box-shadow: 0 4px 16px 0 rgba(0,0,0,0.2);">
                                             <div class="sports-card">
@@ -133,14 +134,14 @@
                                                     <InputNumber :min="1" v-model="sports_time"></InputNumber><span>min</span>
                                                 </div>
                                                 <div>
-                                                    <Button type="warning" size="small" style="float: right">添加</Button>
+                                                    <Button type="warning" size="small" style="float: right" @click="addsports">添加</Button>
                                                 </div>
-                                            </div>
-                                            <div style="float: right;width: 200px;">
-
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div style="float: right;width: 75%;margin-top: 20px;">
+                                    <Table height="200" :columns="columns_sports" :data="data_sports"></Table>
                                 </div>
                                 <!--<div style="width:75%;margin:0px auto;">-->
 
@@ -177,38 +178,16 @@
                                 </div>
                                 <div style="display: flex;width: 90%;margin: 0px auto;">
 
-                                    <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
+                                    <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;" v-for="item in artical_msg">
                                         <div class="" style="text-align: center;">
                                             <div class="article-title">
-                                                <h5>导致肥胖的原因？</h5>
+                                                <h5>{{ item.title }}</h5>
                                             </div>
                                             <div class="article-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
+                                                <p>{{ item.content }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
-                                        <div class="" style="text-align: center;">
-                                            <div class="article-title">
-                                                <h5>减肥是一项长久以来的大工程</h5>
-                                            </div>
-                                            <div class="article-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;">
-                                        <div class="" style="text-align: center;">
-                                            <div class="article-title">
-                                                <h5>坚持就是胜利啊，加油哦</h5>
-                                            </div>
-                                            <div class="article-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hendrerit libero ac accumsan lobortis.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
 
                             </div>
@@ -289,47 +268,26 @@
                                     <hr>
                                 </div>
                                 <div>
-                                    <div class="message">
+                                    <div class="message" v-for="item in leave_msg">
                                         <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
                                             <div class="icon" style="margin-top: 15px;">
                                                 <Icon type="md-contact" />
                                             </div>
                                             <div class="info" style="margin-left: 10px;">
-                                                <p>陈小草</p>
-                                                <p style="margin-top: -15px;">2019.1.2</p>
+                                                <p>{{ item.author }}</p>
+                                                <p style="margin-top: -15px;">{{ item.time }}</p>
                                             </div>
                                         </div>
                                         <div class="commenter-msg" style="width: 65%;">
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                In hendrerit libero ac accumsan lobortis.
-                                                Nam sem lacus, vulputate ut turpis vel, viverra porta ante
-                                            </p>
-                                            <hr>
-                                        </div>
-                                    </div>
-                                    <div class="message">
-                                        <div class="commenter" style="width: 30%;display: -webkit-inline-box;">
-                                            <div class="icon" style="margin-top: 15px;">
-                                                <Icon type="md-contact" />
-                                            </div>
-                                            <div class="info" style="margin-left: 10px;">
-                                                <p>陈小草</p>
-                                                <p style="margin-top: -15px;">2019.1.2</p>
-                                            </div>
-                                        </div>
-                                        <div class="commenter-msg" style="width: 65%;">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                In hendrerit libero ac accumsan lobortis.
-                                                Nam sem lacus, vulputate ut turpis vel, viverra porta ante
+                                                {{ item.msg }}
                                             </p>
                                             <hr>
                                         </div>
                                     </div>
 
                                     <div style="text-align: center;">
-                                        <Button type="primary" @click="leave_msg">我要留言</Button>
+                                        <Button type="primary" @click="addleave_msg">我要留言</Button>
                                     </div>
 
                                 </div>
@@ -534,7 +492,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="width: 55%;float: right">
+                    <div style="width: 55%;float: right;margin-top: 25px;">
                             <p style="font-size: 12px;font-weight:bold;color:#626269bd;">今天你吃了多少？</p>
                             <div class="goal-body">
                                 <div style="width: 95%;text-align: center;padding: 20px;background: #bbb9da;border-radius: 10px;">
@@ -605,7 +563,7 @@
         <!--过敏史-->
         <div class="allergies-modal">
             <Modal v-model="allergies_modal" title="记录您的过敏史">
-                <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="90">
+                <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100">
                     <FormItem label="过敏原：" prop="name">
                         <Input v-model="formValidate.name" placeholder="Enter the name" style="width:75%"></Input>
                     </FormItem>
@@ -631,25 +589,63 @@
         name: 'user',
         data() {
             return {
+                birthday:'',
+                signature:'',
                 Sports_type:'',
                 sports_time:1,
                 Sports_list:[
                     {
-                        value: 'run',
+                        value: '跑步',
                         label: '跑步'
                     },
                     {
-                        value: 'basketball',
+                        value: '篮球',
                         label: '篮球'
                     },
                     {
-                        value: 'New',
+                        value: '羽毛球',
                         label: '羽毛球'
                     },
                     {
-                        value: 'walk',
+                        value: '竞走',
                         label: '竞走'
                     },
+                ],
+                columns_sports:[
+                     {
+                        title: '运动类型',
+                        key: 'type'
+                    },
+                    {
+                        title: '运动时间（min）',
+                        key: 'time'
+                    },
+                    {
+                        title:'操作',
+                        key: 'action',
+                        align: 'center',
+                        render: (h, params) => {
+                        return h('div', [
+                            h('Button', {
+                                props: {
+                                    type: 'error',
+                                    size: 'small'
+                                },
+                                on: {
+                                    click: () => {
+                                        this.deletesports(params.index)
+                                    }
+                                }
+                            }, '删除'),
+                            ]);
+                         }
+                     }
+                ],
+                data_sports:[
+                    {
+                        type:'跑步',
+                        time:'10'
+                    }
                 ],
                 target_disabled:true,
                 formValidate:{
@@ -795,7 +791,27 @@
                 visible: false,
                 uploadList: [],
                 newList:'',
-
+                leave_msg:[
+                    {
+                        author:'lisa',
+                        time:'2019-04-25',
+                        msg:'留言测试'
+                    }
+                ],
+                artical_msg:[
+                    {
+                        title:'文章1',
+                        content:'文章内容测试文章内容测试文章内容测试',
+                    },
+                    {
+                        title:'文章2',
+                        content:'文章内容测试文章内容测试文章内容测试',
+                    },
+                    {
+                        title:'文章3',
+                        content:'文章内容测试文章内容测试文章内容测试',
+                    }
+                ],
             }
         },
 //        props: ['tariff', 'area', 'tariff_id', 'specification'],
@@ -806,12 +822,69 @@
             window.addEventListener('scroll', this.handleScroll)
             this.uploadList = this.$refs.upload.fileList;
 //            console.log(this.uploadList)
+            this.getData();
+            this.getLeaveMsg();
         },
         created() {
 
         },
         methods: {
 
+            //添加运动
+            addsports(){
+                this.data_sports.push({
+                    time:this.sports_time,
+                    type:this.Sports_type
+                });
+            },
+
+            deletesports(index){
+                this.data_sports.pop(index); 
+            },
+
+            //获取用户数据
+            getData(){
+                this.birthday = '2018-1-1';
+                this.$http.get('http://47.107.125.48:8010/api/v1_0/user',{
+                    params: {
+                        id:'' },},{
+                        emulateJSON: true
+                    }).then(
+                    function (data) {
+                        
+                        console.log(data)
+                    }).catch(function (error) {
+                        console.log('获取用户信息失败',error);
+                    })
+            },
+            //获取用户过敏原
+            getAllergy(){
+                this.$http.get('http://47.107.125.48:8010/api/v1_0/allergy ',{
+                    params: {
+                        user_id:'' },},{
+                        emulateJSON: true
+                    }).then(
+                    function (data) {
+                        this.data2 = data.body.detail;
+                        console.log(data)
+                    }).catch(function (error) {
+                        console.log('获取用户信息失败',error);
+                    })
+            },
+            //获取留言信息
+            getLeaveMsg(){
+                this.$http.get('http://47.107.125.48:8010/api/v1_0/allergy ',{
+                    params: {
+                        user_id:'' },},{
+                        emulateJSON: true
+                    }).then(
+                    function (data) {
+                        this.data2 = data.body.detail;
+                        console.log(data)
+                    }).catch(function (error) {
+                        console.log('获取留言信息失败',error);
+                    })
+            },
             //制定目标
             set_goal(){
                 this.target_disabled = false;
@@ -848,6 +921,16 @@
 //            删除过敏史
             remove_allergen(id){
                 if(confirm("确认删除吗？")){
+                    this.$http.post('http://47.107.125.48:8010/api/v1_0/allergy',{
+                     id:id,
+                 },{emulateJSON:true}).then(function(data){
+                     if(data.status === 200){
+                        this.$Message.success('删除成功！');
+                     }
+                      console.log(data); 
+                 }).catch(function(error){
+                     this.$Message.success('删除失败！' + error);
+                });
                     console.log('删除' + id)
                 }
             },
@@ -858,7 +941,20 @@
             allergies_ok(name){
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.data2.push(this.formValidate)
+                        this.$http.post('http://47.107.125.48:8010/api/v1_0/allergy',{
+                             user_id: this.formValidate,
+                             allergy_source: this.formValidate.name,
+                             medicine: this.formValidate.medical
+                            },{emulateJSON:true}).then(function(data){
+                        if(data.status === 200){
+                            this.$Message.success('添加成功！');
+                            this.data2.push(this.formValidate);
+                            this.getAllergy();
+                        }
+                        console.log(data); 
+                        }).catch(function(error){
+                         this.$Message.success('添加失败！' + error);
+                        });
                         console.log(this.formValidate)
 //                        this.$Message.success('Success!');
                     } else {
@@ -874,6 +970,16 @@
             remove_medical(id){
                 if(confirm("确认删除吗？")){
                     console.log('删除' + id)
+                    this.$http.post('http://47.107.125.48:8010/api/v1_0/medical_history ',{
+                     id:id,
+                 },{emulateJSON:true}).then(function(data){
+                     if(data.status === 200){
+                        this.$Message.success('删除成功！');
+                     }
+                      console.log(data); 
+                 }).catch(function(error){
+                     this.$Message.success('删除失败！' + error);
+                });
                 }
             },
 
@@ -883,16 +989,35 @@
 
 //            添加病史
             medical_history(){
-                this.$router.push({'name':'add_medical_History'})
+                this.$router.push({'name':'add_medical_History', params: {name: this.user_name, date: this.birthday}})
             },
 
 
-            leave_msg(){
+            addleave_msg(){
                 this.comments_modal = true;
             },
 
             leave_ok(){
                 this.comments_modal = false;
+                if(this.leave_comments === ""){
+                    this.$Message.error('留言内容不能为空');
+                    return false;
+                }else{
+                    this.$http.post('http://47.107.125.48:8010/api/v1_0/feedback ',{
+                        user_id: "xxx",    
+                        level_msg: "xx",  
+                        email: "xx",
+                        mobilephone: "xxx",
+                        user_name: "xxx" 
+                 },{emulateJSON:true}).then(function(data){
+                     if(data.status === 200){
+                        this.$Message.success('留言成功！');
+                     }
+                      console.log(data); 
+                 }).catch(function(error){
+                     this.$Message.success('留言失败！' + error);
+                });
+                }
             },
 
             leave_cancel(){
@@ -1370,7 +1495,7 @@
     }
 
     .sports-card{
-        width: 70px;
+        width: 75px;
         height: 32px;
         position: absolute;
         top: -19px;

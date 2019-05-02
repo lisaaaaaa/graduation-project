@@ -7,18 +7,19 @@
             <div class="medical-body">
                 <div class="basic" style="background: #dcdee2">
                     <div class="medical-body-basic-msg" style="display: flex;padding: 15px">
-                        <Form ref="formValidate_ori" :model="formValidate_ori" :rules="ruleValidate_ori" :label-width="90">
+                        <Form ref="formValidate_ori" :model="formValidate_ori" :rules="ruleValidate_ori" :label-width="130">
                             <FormItem label="姓名：" prop="name">
-                                <Input v-model="formValidate_ori.name" placeholder="Enter your name" style="width:75%"></Input>
+                                <div style="width: 130px;">{{  this.formValidate_ori.name }}</div>
                             </FormItem>
                             <FormItem label="出生日期：" prop="date">
-                                <Row>
+                                <div style="width: 130px;">{{  this.formValidate_ori.date }}</div>
+                                <!--<Row>
                                     <Col span="11">
                                         <DatePicker type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="date" style="width:141%"></DatePicker>
                                     </Col>
-                                </Row>
+                                </Row>-->
                             </FormItem>
-                            <FormItem label="诊断时间：" prop="date">
+                            <FormItem label="诊断时间：" prop="treatment_data">
                                 <Row>
                                     <Col span="11">
                                     <DatePicker type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="treatment_time" style="width:141%"></DatePicker>
@@ -153,7 +154,7 @@
         <!--添加手术记录-->
         <div class="allergies-modal">
             <Modal v-model="allergies_modal" title="记录您的治疗历程">
-                <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="90">
+                <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100">
                     <FormItem label="时间：" prop="date">
                         <Row>
                             <Col span="11">
@@ -169,6 +170,29 @@
                 <div slot="footer">
                     <Button type="primary" @click="allergies_ok('formValidate')">确认</Button>
                     <Button type="primary" ghost @click="allergies_cancel">取消</Button>
+                </div>
+            </Modal>
+        </div>
+
+        <!--添加放疗记录-->
+        <div class="allergies-modal">
+            <Modal v-model="radiotherapy_modal" title="记录您的治疗历程">
+                <Form ref="formValidate_ra" :model="formValidate_ra" :rules="ruleValidate_ra" :label-width="100">
+                    <FormItem label="时间：" prop="date">
+                        <Row>
+                            <Col span="11">
+                                <DatePicker type="date" format="yyyy-MM-dd" placeholder="Select date" @on-change="add_date_ra"></DatePicker>
+                            </Col>
+                        </Row>
+                    </FormItem>
+                    <FormItem label="类型：" prop="medical">
+                        <Input v-model="formValidate_ra.medical" placeholder="Enter the medical" style="width:75%"></Input>
+                    </FormItem>
+                </Form>
+
+                <div slot="footer">
+                    <Button type="primary" @click="radiotherapy_ok('formValidate_ra')">确认</Button>
+                    <Button type="primary" ghost @click="radiotherapy_cancel">取消</Button>
                 </div>
             </Modal>
         </div>
@@ -194,17 +218,17 @@
 
             return {
                 formValidate_ori: {
-                    name: '',
+                    name: this.$route.params.name,
                     treatment_outcome:'',
                     doctor:'',
                     hospital:'',
                     remark:'',
-                    date:'',
+                    date: this.$route.params.date,
                     birth_date:'',     //出生日期
                     treatment_data:'',   //治疗时间
                 },ruleValidate_ori: {
-                    name: [
-                        { required: true, message: '名称不能为空', trigger: 'blur' }
+                    treatment_data: [
+                        { required: true, message: '诊疗时间不能为空', trigger: 'blur' }
                     ],
                     treatment_outcome: [
                         { required: true, message: '诊疗结果不能为空', trigger: 'blur' }
@@ -251,8 +275,19 @@
                         { required: true, message: '请填写治疗类型', trigger: 'blur' }
                     ],
                 },
-
-
+                formValidate_ra:{
+                    id:'',
+                    date:'',
+                    medical:''
+                },
+                ruleValidate_ra: {
+                    date: [
+                        {validator: validateDate, trigger: 'blur',required: true}
+                    ],
+                    medical: [
+                        { required: true, message: '请填写治疗类型', trigger: 'blur' }
+                    ],
+                },
 
                 treatment_name_surgery_value:'ok',
                 treatment_name_radiotherapy_value:'ok',
@@ -264,11 +299,11 @@
                     },
                     {
                         title: '时间',
-                        key: 'time'
+                        key: 'date'
                     },
                     {
                         title: '手术类型',
-                        key: 'type'
+                        key: 'medical'
                     }
                 ],
                 data_surgery:[],
@@ -279,15 +314,15 @@
                     },
                     {
                         title: '时间',
-                        key: 'time'
+                        key: 'date'
                     },
                     {
-                        title: '手术类型',
-                        key: 'type'
+                        title: '放疗类型',
+                        key: 'medical'
                     }
                 ],
                 data_radiotherapy:[],
-
+                radiotherapy_modal:false,
 
 
             }
@@ -303,6 +338,22 @@
         },
         methods: {
 
+            //取消放疗
+            radiotherapy_cancel(){
+                this.radiotherapy_modal = false;
+            },
+            //添加放疗
+            radiotherapy_ok(name){
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+                        this.data_radiotherapy.push(this.formValidate_ra)
+                    } else {
+                        this.$Message.error('请正确填写表单信息');
+            }
+            })
+             this.radiotherapy_modal = false;
+            },
+
             date(e){
                 this.formValidate_ori.birth_date = e;
             },
@@ -314,6 +365,9 @@
             add_date(e){
                 this.formValidate.date = e;
             },
+            add_date_ra(e){
+                this.formValidate_ra.date = e;
+            },
 
             add_surgery(){
                 if(this.add_1){
@@ -324,7 +378,7 @@
 
             add_radiotherapy(){
                 if(this.add_2){
-                    this.allergies_modal = true;
+                    this.radiotherapy_modal = true;
                     this.model = '放疗'
                 }
             },
@@ -332,24 +386,42 @@
             allergies_ok(name){
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.data2.push(this.formValidate)
-                        console.log(this.formValidate)
-//                        this.$Message.success('Success!');
+                        console.log(this.formValidate);
+                        this.data_surgery.push(this.formValidate)
                     } else {
                         this.$Message.error('请正确填写表单信息');
             }
             })
+             this.allergies_modal = false;
             },
             allergies_cancel(){
                 this.allergies_modal = false;
             },
 
             save(name){
+                console.log('保存')
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.data2.push(this.formValidate)
-                        console.log(this.formValidate)
-                        this.$Message.success("保存成功")
+                        console.log(this.formValidate_ori)
+                        this.$http.post('http://47.107.125.48:8010/api/v1_0/medical_history ',{
+                            user_id: "xxx",
+                            name: this.formValidate_ori.name,
+                            birthday: this.formValidate_ori.date,
+                            diagnosis_time: this.formValidate_ori.treatment_data,
+                            diagnosis_result: this.formValidate_ori.treatment_outcome,
+                            doctor: this.formValidate_ori.doctor,
+                            hospital: this.formValidate_ori.hospital,
+                            remark: this.formValidate_ori.remark,
+                            operation: this.this.data_surgery,
+                            radiotherapy: this.data_radiotherapy, 
+                            },{emulateJSON:true}).then(function(data){
+                        if(data.status === 200){
+                            this.$Message.success('添加成功！');
+                        }
+                        console.log(data); 
+                        }).catch(function(error){
+                         this.$Message.success('添加失败！' + error);
+                        });
                         this.$router.push({'name':'user'})
                     } else {
                         this.$Message.error('请正确填写表单信息');

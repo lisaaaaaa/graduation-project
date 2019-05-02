@@ -113,17 +113,28 @@
         name: 'article',
         data() {
             return {
-
+                article_data:{
+                    name: '',
+                    content: ''
+                }
             }
         },
         mounted () {
-
+            this.getData();
         },
         components: {},
         created() {
         },
         methods: {
-
+            getData(){
+                this.$http.get('http://47.107.125.48:8010/api/v1_0/allergy ').then(
+                    function (data) {
+                        this.data2 = data.body.detail;
+                        console.log(data)
+                    }).catch(function (error) {
+                        console.log('获取用户信息失败',error);
+                    })
+            }
         },
         beforeDestroy:function(){
 

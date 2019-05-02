@@ -25,7 +25,7 @@
                         <span class="text-name">累计训练</span>
                     </div>
                     <div class="" style="margin-top: 16px;">
-                        <span style="color:#fff;font-size: 44px;font-weight: 700;">32</span>
+                        <span style="color:#fff;font-size: 44px;font-weight: 700;">{{ this.alltime }}</span>
                         <span style="font-size: 12px;color: #8e8893;margin-left:8px;">小时</span>
                     </div>
                     <!--<div class="" style="margin-top: 11px;">-->
@@ -48,12 +48,12 @@
             </div>
             <div class="record-4" style="width:30%;float: right;">
                 <div style="width:100%;min-height: 300px;margin-top: 100px;">
-                    <span>近一z周的热量摄入情况</span>
+                    <span>近一周的热量摄入情况</span>
                     <div id="heat-img" style="height:233px; width: 100%; padding: 10px"></div>
                 </div>
                 <div style="width:100%;text-align: left">
                     <span style="font-size: 16px;color: #fff;font-weight: bold;">健康小建议</span>
-                    <p style="margin-top:10px;font-size: 14px;color: #8e8893;margin: 16px 0 36px;line-height: 1.6;">考虑到最近你摄入了大量的热量，而运动较少，建议你接下来的日子要多吃蔬菜，少吃肉类，多运动，保持健康哦！</p>
+                    <p style="margin-top:10px;font-size: 14px;color: #8e8893;margin: 16px 0 36px;line-height: 1.6;">{{ this.suggest}}</p>
                 </div>
             </div>
         </div>
@@ -66,17 +66,89 @@
         name: 'health_Record',
         data() {
             return {
+                BMIdata:[],
+                sportsData:[],
+                foodData: [],
+                alltime:0,
+                suggest:'',
             }
         },
         props:[],
         mounted() {
-            this.showBMI();
-            this.showHeat();
+            this.getBMI();
+            this.getFood();
+            this.getSuggest();
         },
         created() {
 
         },
         methods: {
+
+            //获取近一周BMI指数
+            getBMI(){
+                this.BMIdata = [28, 28.3, 28, 28.3, 28, 27.9,28];
+                // this.$http.get('http://47.107.125.48:8010/api/v1_0/user',{
+                //     params: {
+                //         id:'' },},{
+                //         emulateJSON: true
+                //     }).then(
+                //     function (data) {
+
+                //         console.log(data)
+                //     }).catch(function (error) {
+                //         console.log('获取用户信息失败',error);
+                // })
+                this.showBMI();
+            },
+
+            //获取一周食物热量
+            getFood(){
+                this.foodData = [1, 1.5, 0.5, 0.7, 1.2, 0.6, 1.2];
+                this.getSports();
+            },
+            //获取一周运动量
+            getSports(){
+                this.sportsData = [1.4, 1, 1.2, 1, 0.4, 0.9, 1.1];
+                this.showHeat();
+                for (var i=0;i<this.sportsData.length ;i++ )
+                {
+                    this.alltime+=this.sportsData[i];
+                    console.log(this.alltime);
+                }
+                this.alltime = this.alltime.toFixed(2);
+            },
+
+            //获取健康建议
+            getSuggest(){
+                var sport = (this.alltime / 7).toFixed(2);
+                // console.log(this.alltime)
+                var bmi,sug1,sug2;
+                for (var i=0;i<this.BMIdata.length ;i++ )
+                {
+                    bmi+=this.BMIdata[i];
+                }
+                if(sport >= 1){
+                    sug1 = '您的运动达标啦！'
+                }else {
+                    sug1 = '最近运动的时长不够哦！快抓紧时间锻炼身体吧！'
+                }
+
+//BMI指数过轻：低于18.5
+//                            //正常：18.5-23.9
+//                            //过重：24-27
+//                            //肥胖：28-32
+//                            //非常肥胖, 高于32
+                if(bmi < 18.5){
+                    sug2 = '你最近身体比较虚弱，需要多吃一点肉类食品让自己更加强大起来哦！'
+                }else if(bmi > 24){
+                    sug2 = '你是不是偷吃了很多东西呢！体重超标啦！注意饮食哦要记得多吃蔬菜水果哦！'
+                }else {
+                    sug2 = '您的BMI指数是正常的哦！'
+                }
+
+                this.suggest = '系统根据你最近一周的数据得出：' + sug1 + sug2 + '请根据我们的建议保持身体健康吧！祝你好运~';
+            },
+
             showBMI(){
                 var self = this;
                 var echarts = require('echarts');
@@ -125,7 +197,7 @@
                             }else if( data > 18.5 && data < 24){
                                 x = '正常：'
                             }else if( (data > 24 && data < 28) || data == 24){
-
+                                 x = "过重："
                             }else if( (data > 28 && data < 32) || data == 28) {
                                 x = "肥胖："
                             }else{
@@ -137,7 +209,7 @@
                     xAxis: [{
                         type: 'category',
                         boundaryGap: false,
-                        data: ['9.23', '10.3', '10.11', '10.15', '10.26', '12.26', '10'],
+                        // data: ['9.23', '10.3', '10.11', '10.15', '10.26', '12.26', '10'],
                         axisLabel: {
                             show: true,
                             interval:0,
@@ -198,7 +270,8 @@
                                 fontSize: 10
                             }
                         },
-                        data: [28, 28.3, 28, 28.3, 28, 27.9,28]
+                        // data: [28, 28.3, 28, 28.3, 28, 27.9,28]
+                        data: this.BMIdata
                     }, ]
 
                 });
@@ -247,7 +320,7 @@
                         axisTick: {
                             show: false,
                         },
-                        data: ['2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', ],
+                        // data: ['2.1', '2.2', '2.3', '2.4', '2.5', '2.6', '2.7', ],
                     }],
                     yAxis: [{
                         show:false,
@@ -339,7 +412,7 @@
                                 shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
                             }
                         },
-                        data: [1.5, 2.1, 1.8, 3.1, 1.3, 2.3, 2.6]
+                        data: this.foodData
                     }, {
                         name: '运动量(小时)',
                         type: 'bar',
@@ -370,7 +443,7 @@
                                 }
                             }
                         },
-                        data: [0.3, 1, 0.5, 1, 0.2, 0.5, 0.2]
+                        data:this.sportsData
                     }]
                 });
                 window.addEventListener("resize", () => { heat_Chart.resize();});
