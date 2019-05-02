@@ -11,7 +11,9 @@
                     <span>阅读数：</span><span style="margin-right:20px;">11110</span>
                     <span>收藏：</span>
                     <Rate v-model="star" :count = "star_count" :clearable="clearable" />
-                    <span style="float: right"><Button type="primary" size="small" ghost @click="edit">编辑</Button></span>
+                    <span style="float: right">
+                        <Button type="primary" size="small" ghost @click="edit" v-if="show">编辑</Button>
+                    </span>
                 </div>
             </div>
         </div>
@@ -20,14 +22,14 @@
                 <p>{{ this.article_body }}</p>
             </div>
         </div>
-        <div class="leave-msg">
+        <!--<div class="leave-msg">
             <div style="width: 95%;margin: 25px auto;">
                 <img src="./../../images/banner4.jpg"/>
                 <Input type="textarea" v-model="leave_msg" :rows="4" placeholder="相对作者说点什么？" style="width: 72%;margin-left:5px;" />
                 <Button type="error" size="small" style="margin-top: 50px;margin-left: 10px;">确认评论</Button>
             </div>
 
-        </div>
+        </div>-->
     </div>
 </template>
 
@@ -43,6 +45,7 @@
                 star_count:1,
                 clearable:true,
                 leave_msg:'',
+                show: true,
             }
         },
         mounted () {
@@ -53,7 +56,11 @@
             if(this.$route.params.article_body != 'undefined' && this.$route.params.article_body){
                 this.article_body = this.$route.params.article_body
             }
-
+            if(this.$route.params.origin === 'content'){
+                this.show = true;
+            }else{
+                this.show = false;
+            }
 
         },
         components: {},

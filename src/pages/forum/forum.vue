@@ -37,8 +37,9 @@
                 <h3>
                     <font>有一个问题？</font>
                 </h3>
-                <p style="margin-top:15px;color:#fff;font-style:italic">如果您有任何疑问，可以在下面询问或输入您要找的内容！</p>
-                <Input style="margin-top: 20px;width: 70%;" search placeholder="Enter something..." />
+                <p style="margin-top:15px;color:#fff;font-style:italic">如果您有任何疑问，可以在下面输入您要找的内容！</p>
+                <Input v-model="searchVal" style="margin-top: 20px;width: 70%;" placeholder="Enter something..."/>
+                <Button @click="search" type="warning" ghost style="margin-top:20px">搜索</Button>
             </div>
 
         </div>
@@ -61,651 +62,32 @@
             </div>
             <div id="center" classs="detail-center" style="width:61%;background-color: #fff;margin-left: 1%;">
                 <ul style="padding: 15px;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;">
-                    <li>
+                    <li v-for="item in showArtical">
                         <div class="listing-main">
                             <div class="title">
                                 <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
+                                 <div style="color:#3b4348 ;cursor: pointer;font-weight: bold;display: -webkit-inline-box;">
+                                    <Button style="vertical-align: inherit;border:none" @click="artical_one(item.id)">{{ item.title }}</Button>
+                                </div>
+                                <!--<a href="javascript:void(0);" style="color:#3b4348 ;cursor: pointer;font-weight: bold;" onclick="artical_one()">
                                     <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
+                                        <font style="vertical-align: inherit;">{{ item.title}}</font>
                                     </font>
-                                </a>
+                                </a>-->
                                 <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
                         <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
+                            <Icon type="ios-calendar" />{{ item.time }}
                         </span>
                         <span class="list">
-                            <Icon type="ios-contact" />莉莎
+                            <Icon type="ios-contact" />{{ item.author }}
                         </span>
                         <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
+                            <Icon type="ios-chatboxes" />{{ item.comment }}<span>评论</span>
                         </span>
                                 </div>
                             </div>
                             <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="listing-main">
-                            <div class="title">
-                                <Icon type="ios-paper" />
-                                <a href="" style="color:#3b4348 ;cursor: pointer;font-weight: bold;">
-                                    <font style="vertical-align: inherit;">
-                                        <font style="vertical-align: inherit;">将WordPress与您的网站集成</font>
-                                    </font>
-                                </a>
-                                <div class="list-author" style="margin-top: 10px;padding: 4px 3px 4px 0px;border-top: 1px solid #f2f2f2;border-bottom: 1px solid #f2f2f2;margin-bottom: 15px;font-size: 12px;">
-                        <span class="list">
-                            <Icon type="ios-calendar" />2019年2月13日
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-contact" />莉莎
-                        </span>
-                        <span class="list">
-                            <Icon type="ios-chatboxes" />13<span>评论</span>
-                        </span>
-                                </div>
-                            </div>
-                            <p class="cont" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                                我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿，永无止境。
-                                然后这一天结束了，我们筋疲力尽，而且我们往往很少有人表现出来。然后我们开始下一个
+                                {{ item.content }}
                             </p>
                         </div>
                     </li>
@@ -721,34 +103,13 @@
                         <span class="line"></span>
                         <h3 style="font-weight: 600;font-size: 20px;">今日推荐</h3>
                         <ul style="margin-top: 20px;">
-                            <li style="margin-bottom: 15px;">
+                            <li style="margin-bottom: 15px;" v-for="item in recommend">
                                 <img style="width: 64px;height: 48px;border-radius: 5px;" src="./../../images/forum/man.png" />
-                                <div style="float:right;width: 75%">
-                                    <a style="display: block;font-size: 14px;color: #3d3d3d;max-width: 200px;overflow: hidden;cursor: pointer;font-weight: bold;">关注亚健康问题，巴拉看一下这是什么鬼？</a>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px;">
-                                <img style="width: 64px;height: 48px;border-radius: 5px;" src="./../../images/forum/man.png" />
-                                <div style="float:right;width: 75%">
-                                    <a style="display: block;font-size: 14px;color: #3d3d3d;max-width: 200px;overflow: hidden;cursor: pointer;font-weight: bold;">关注亚健康问题，巴拉看一下这是什么鬼？</a>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px;">
-                                <img style="width: 64px;height: 48px;border-radius: 5px;" src="./../../images/forum/man.png" />
-                                <div style="float:right;width: 75%">
-                                    <a style="display: block;font-size: 14px;color: #3d3d3d;max-width: 200px;overflow: hidden;cursor: pointer;font-weight: bold;">关注亚健康问题，巴拉看一下这是什么鬼？</a>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px;">
-                                <img style="width: 64px;height: 48px;border-radius: 5px;" src="./../../images/forum/man.png" />
-                                <div style="float:right;width: 75%">
-                                    <a style="display: block;font-size: 14px;color: #3d3d3d;max-width: 200px;overflow: hidden;cursor: pointer;font-weight: bold;">关注亚健康问题，巴拉看一下这是什么鬼？</a>
-                                </div>
-                            </li>
-                            <li style="margin-bottom: 15px;">
-                                <img style="width: 64px;height: 48px;border-radius: 5px;" src="./../../images/forum/man.png" />
-                                <div style="float:right;width: 75%">
-                                    <a style="display: block;font-size: 14px;color: #3d3d3d;max-width: 200px;overflow: hidden;cursor: pointer;font-weight: bold;">关注亚健康问题，巴拉看一下这是什么鬼？</a>
+                                <div style="float:right;width: 75%;">
+                                    <!--<a style="display: block;font-size: 14px;color: #3d3d3d;max-width: 200px;overflow: hidden;cursor: pointer;font-weight: bold;">{{ item.title }}</a>-->
+                                    <div style="color:#3b4348 ;cursor: pointer;font-weight: bold;display: -webkit-inline-box;">
+                                        <Button style="vertical-align: inherit;border:none" @click="artical_one(item.id)">{{ item.title }}</Button>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
@@ -821,22 +182,21 @@
                             <CarouselItem>
                                 <div class="demo-carousel">
                                     <div style="font-size: 13px;max-height: 100px;width: 200px;margin: 0px auto;">
-                                        枸杞配水水水水水水水水啊啊啊啊啊啊啊啊啊
-                                        啊的顶顶顶顶顶什么什么的有助于眼镜的哈
+                                        巧用牙膏:若有小面积皮肤损伤或烧伤、烫伤，抹上少许牙膏，可止血止痛
                                     </div>
                                 </div>
                             </CarouselItem>
                             <CarouselItem>
                                 <div class="demo-carousel">
                                     <div style="font-size: 13px;max-height: 100px;width: 200px;margin: 0px auto;">
-                                        aaaaaaaaaaaaaa
+                                        巧除纱窗油腻:可将洗衣粉、吸烟剩下的烟头一起放在水里
                                     </div>
                                 </div>
                             </CarouselItem>
                             <CarouselItem>
                                 <div class="demo-carousel">
                                     <div style="font-size: 13px;max-height: 100px;width: 200px;margin: 0px auto;">
-                                        dddddddddddddddddddddddddd
+                                        粉刺、祛痘土豆片敷点脸上，土豆片有消炎的功效
                                     </div>
                                 </div>
                             </CarouselItem>
@@ -888,7 +248,7 @@
     <!--</div>-->
 
 
-    <Modal v-model="modal_bmi" width="650" title="免费计算你的身体质量指数 (BMI)">
+    <Modal v-model="modal_bmi" width="880" title="免费计算你的身体质量指数 (BMI)">
         <div>
             <div id="bmi" style="display: none">
                 <div style="width: 100%;height:35px;background-color: #ffa;border:1px dotted #ddd;font-size: 15px;color: black;">
@@ -936,7 +296,7 @@
                     </div>
                 </div>
 
-                <div style="width: 210px;margin-left: 20px;">
+                <div style="width: 370px;;margin-left: 20px;">
                     <div>
                         <p style="font-size: 15px;color:black;font-weight: bold">BMI 中国标准</p>
                         <div>
@@ -976,6 +336,60 @@
         name: 'forum',
         data() {
             return {
+                searchVal:'',   
+                showArtical:[],
+                artical:[
+                    {
+                        id:0,
+                        title:'文章标题',
+                        content: '我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿啊啊啊啊',
+                        time: '2018-1-1',
+                        comment: '12',
+                        author: 'lisa'
+                    },
+                    {
+                        id:1,
+                        title:'文章标题1',
+                        content: '我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿啊啊啊啊',
+                        time: '2018-1-1',
+                        comment: '12',
+                        author: 'lisa'
+                    },
+                    {
+                        id:2,
+                        title:'文章标题2',
+                        content: '我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿啊啊啊啊',
+                        time: '2018-1-1',
+                        comment: '12',
+                        author: 'lisa'
+                    }
+                ],
+                recommend:[
+                    {
+                        id:0,
+                        title:'今日推荐0',
+                        content: '我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿啊啊啊啊',
+                        time: '2018-1-1',
+                        comment: '12',
+                        author: 'lisa'
+                    },
+                    {
+                        id:1,
+                        title:'今日推荐1',
+                        content: '我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿啊啊啊啊',
+                        time: '2018-1-1',
+                        comment: '12',
+                        author: 'lisa'
+                    },
+                    {
+                        id:2,
+                        title:'今日推荐2',
+                        content: '我们中的许多人工作在无休止的任务，浏览器任务，社交媒体，电子邮件，会议，从一件事情到另一件事，从不停顿啊啊啊啊',
+                        time: '2018-1-1',
+                        comment: '12',
+                        author: 'lisa'
+                    }
+                ],
                 user_name:'',
                 weight:'',  //体重
                 height:'',  //身高
@@ -1037,11 +451,47 @@
             this.user_name = getStore('user_name')
             window.addEventListener('scroll', this.handleScroll)
             this.info();
+            this.getArtical();
         },
         components: {loginpage},
         created() {
         },
         methods: {
+            //搜索
+            search(){
+                console.log(this.searchVal);
+                // str.indexOf("3") != -1
+                var newarr = [];
+                for (var i=0; i< this.artical.length; i++){
+                    if(this.artical[i].title.indexOf(this.searchVal) != -1){
+                        newarr.push(this.artical[i]);
+                    }
+                }
+                this.showArtical = newarr;
+            },
+            //获取文章
+            getArtical(){
+                this.$http.get('http://47.107.125.48:8010/api/v1_0/article ',{
+                    params: {
+                        id:'' },},{
+                        emulateJSON: true
+                    }).then(
+                    function (data) {
+                        this.artical = data.body.detail;
+                        console.log(data)
+                    }).catch(function (error) {
+                        console.log('获取用户信息失败',error);
+                    })
+                    this.showArtical = this.artical;
+            },
+
+            //文章跳转
+            artical_one(id){
+                // console.log('lisa');
+                // console.log(id);
+                this.$router.push({name:'article_one', params: {article_title:this.artical[id].title,article_body: this.artical[id].content,origin:'forum'}})
+         },
+            //计算BMI指数
             info (nodesc) {
                 this.$Notice.info({
                     title: '即刻测试你的BMI指数',

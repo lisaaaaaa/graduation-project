@@ -87,25 +87,25 @@
                                 <div class="person-health-indx" style="width: 55%;">
                                     <div class="index-process">
                                         <p style="font-size: 34px;">食品摄入量
-                                            <span style="font-size: 12px">(近一周)</span>
-                                            <Button size="small" type="primary" style="" @click="food_intake">今天</Button>
+                                            <!--<span style="font-size: 12px">(今日)</span>-->
+                                            <Button size="small" type="primary" style="" @click="food_intake">记录</Button>
                                         </p>
 
                                         <div class="two" style="margin-top: 10px">
                                             <span style="display: block;font-size: 20px;">蔬菜</span>
-                                            <Progress class="health-progress" :percent="25" :stroke-width="5" />
+                                            <Progress class="health-progress" :percent="percent_vegetables" :stroke-width="5" />
                                         </div>
                                         <div class="three" style="margin-top: 10px">
                                             <span style="display: block;font-size: 20px;">水果</span>
-                                            <Progress class="health-progress" :percent="25" :stroke-width="5" />
+                                            <Progress class="health-progress" :percent="percent_fruit" :stroke-width="5" />
                                         </div>
                                         <div class="four" style="margin-top: 10px">
                                             <span style="display: block;font-size: 20px;">肉类</span>
-                                            <Progress class="health-progress" :percent="25" :stroke-width="5" />
+                                            <Progress class="health-progress" :percent="percent_meat" :stroke-width="5" />
                                         </div>
                                         <div class="one" style="margin-top: 10px">
                                             <span style="display: block;font-size: 20px;">其他</span>
-                                            <Progress style="color: #c7e7c8;" class="health-progress" :percent="25" :stroke-width="5" />
+                                            <Progress style="color: #c7e7c8;" class="health-other" :percent="percent_others" :stroke-width="5" />
                                         </div>
 
 
@@ -176,7 +176,7 @@
 
                                     <hr>
                                 </div>
-                                <div style="display: flex;width: 90%;margin: 0px auto;">
+                                <div style="display: flex;width: 92%;margin: 0px auto;">
 
                                     <div class="article-msg" style="padding:15px;width:45%;margin-left:20px;" v-for="item in artical_msg">
                                         <div class="" style="text-align: center;">
@@ -441,7 +441,7 @@
                     </div>
                     <div style="display: flex;margin-top: 15px;">
                         <div style="width: 40%;margin-left:20px;">
-                            <p style="font-size: 12px;font-weight:bold;color:#626269bd">每周给自己定一个小目标吧
+                            <p style="font-size: 12px;font-weight:bold;color:#626269bd">每天给自己定一个小目标吧
                                 <Icon type="md-hand" size="22px" style="cursor:pointer;color:#ff00a3;margin-left: 5px;" title="开始制定" @click.native="set_goal"/>
                             </p>
                             <div class="goal-body">
@@ -449,22 +449,22 @@
                                     <div>
                                         <div style=" margin-bottom: 10px;">
                                             <span>蔬菜</span>
-                                                <input :disabled="target_disabled" type="number" :value="target_vegetables" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                                <input :disabled="target_disabled" type="number" v-model="week_vegetables" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
                                             <span>克</span>
                                         </div>
                                         <div style=" margin-bottom: 10px;">
                                             <span>水果</span>
-                                            <input :disabled="target_disabled" type="number" :value="target_fruit" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <input :disabled="target_disabled" type="number"  v-model="week_fruit" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
                                             <span>克</span>
                                         </div>
                                         <div style=" margin-bottom: 10px;">
                                             <span>肉类</span>
-                                            <input :disabled="target_disabled" type="number" :value="target_meat" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <input :disabled="target_disabled" type="number" v-model="week_meat" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
                                             <span>克</span>
                                         </div>
                                         <div style=" margin-bottom: 10px;">
                                             <span>其他</span>
-                                            <input :disabled="target_disabled" type="number" :value="target_others" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <input :disabled="target_disabled" type="number" v-model="week_others" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
                                             <span>克</span>
                                         </div>
 
@@ -493,7 +493,7 @@
                             </div>
                         </div>
                     <div style="width: 55%;float: right;margin-top: 25px;">
-                            <p style="font-size: 12px;font-weight:bold;color:#626269bd;">今天你吃了多少？</p>
+                            <p style="font-size: 12px;font-weight:bold;color:#626269bd;">你吃了多少？</p>
                             <div class="goal-body">
                                 <div style="width: 95%;text-align: center;padding: 20px;background: #bbb9da;border-radius: 10px;">
                                     <div>
@@ -501,22 +501,22 @@
 
                                         <div style=" margin-bottom: 10px;">
                                             <span>蔬菜</span>
-                                            <input type="number" :value="eat_vegetables" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <input type="number" v-model="eat_vegetables" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
                                             <span>克</span>
                                         </div>
                                         <div style=" margin-bottom: 10px;">
                                             <span>水果</span>
-                                            <input type="number" :value="eat_fruit" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <input type="number" v-model="eat_fruit" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
                                             <span>克</span>
                                         </div>
                                         <div style=" margin-bottom: 10px;">
                                             <span>肉类</span>
-                                            <input type="number" :value="eat_meat" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <input type="number" v-model="eat_meat" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
                                             <span>克</span>
                                         </div>
                                         <div style=" margin-bottom: 10px;">
                                             <span>其他</span>
-                                            <input type="number" :value="eat_others" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
+                                            <input type="number" v-model="eat_others" min="1" style="text-align: center;border: 1px solid #dcdee2;height: 32px;width: 110px;" />
                                             <span>克</span>
                                         </div>
 
@@ -762,14 +762,22 @@
                         medicine:'无',
                     },
                 ],
-                target_vegetables:'1',
-                target_fruit:'1',
-                target_meat:'1',
-                target_others:'1',
-                eat_vegetables:'1',
-                eat_fruit:'1',
-                eat_meat:'1',
-                eat_others:'1',
+                target_vegetables:'',
+                target_fruit:'',
+                target_meat:'',
+                target_others:'',
+                week_vegetables:'10',
+                week_fruit:'10',
+                week_meat:'10',
+                week_others:'10',
+                eat_vegetables:'5',
+                eat_fruit:'5',
+                eat_meat:'5',
+                eat_others:'5',
+                percent_vegetables:'',
+                percent_fruit:'',
+                percent_meat:'',
+                percent_others:'',
                 foods_modal:false,
                 user_name:'',
                 drawer:false,
@@ -824,11 +832,28 @@
 //            console.log(this.uploadList)
             this.getData();
             this.getLeaveMsg();
+            this.getartical();
+            this.get_percent();
         },
         created() {
 
         },
         methods: {
+
+            //获取文章信息
+            getartical(){
+                 this.$http.get('http://47.107.125.48:8010/api/v1_0/article ',{
+                    params: {
+                        id:'' },},{
+                        emulateJSON: true
+                    }).then(
+                    function (data) {
+                        this.artical_msg = data.body.detail;
+                        console.log(data)
+                    }).catch(function (error) {
+                        console.log('获取用户信息失败',error);
+                    })
+            },
 
             //添加运动
             addsports(){
@@ -879,7 +904,7 @@
                         emulateJSON: true
                     }).then(
                     function (data) {
-                        this.data2 = data.body.detail;
+                        this.leave_msg = data.body.detail;
                         console.log(data)
                     }).catch(function (error) {
                         console.log('获取留言信息失败',error);
@@ -890,9 +915,14 @@
                 this.target_disabled = false;
             },
             target_ok(){
+                // console.log(this.target_vegetables);
                 if(this.target_vegetables == '' || this.target_fruit == '' || this.target_meat == '' || this.target_others == ''){
                     this.$Message.warning('请正确填写目标表单信息')
                 }else{
+                    this.week_vegetables = this.target_vegetables;
+                    this.week_fruit = this.target_fruit;
+                    this.week_meat = this.target_meat;
+                    this.week_others = this.target_others;
                     this.$Message.success('制定目标成功');
                     this.target_disabled = true;
                 }
@@ -909,7 +939,15 @@
                 }else{
                     this.$Message.success('填写成功');
                     this.target_disabled = true;
+                    this.get_percent();
                 }
+            },
+            get_percent(){
+                this.percent_vegetables = parseInt(((this.eat_vegetables / this.week_vegetables) * 100 ).toFixed(2));
+                this.percent_fruit = parseInt(((this.eat_fruit / this.week_fruit) * 100 ).toFixed(2));
+                this.percent_meat = parseInt(((this.eat_meat / this.week_meat) * 100 ).toFixed(2));
+                this.percent_others = parseInt(((this.eat_others / this.week_others) * 100).toFixed(2));
+                console.log(this.percent_others);
             },
             eat_cancel(){
                 this.eat_vegetables = '1'
@@ -1003,22 +1041,43 @@
                     this.$Message.error('留言内容不能为空');
                     return false;
                 }else{
+                    this.leave_msg.push({
+                        author:'lisa',
+                        time:this.getNowFormatDate(),
+                        msg:this.leave_comments
+                    })
                     this.$http.post('http://47.107.125.48:8010/api/v1_0/feedback ',{
                         user_id: "xxx",    
                         level_msg: "xx",  
                         email: "xx",
                         mobilephone: "xxx",
                         user_name: "xxx" 
-                 },{emulateJSON:true}).then(function(data){
+                    },{emulateJSON:true}).then(function(data){
                      if(data.status === 200){
                         this.$Message.success('留言成功！');
                      }
                       console.log(data); 
-                 }).catch(function(error){
+                    }).catch(function(error){
                      this.$Message.success('留言失败！' + error);
-                });
+                    });
                 }
             },
+            //获取当前时间
+            getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = year + seperator1 + month + seperator1 + strDate;
+        return currentdate;
+    },
 
             leave_cancel(){
                 this.comments_modal = false;

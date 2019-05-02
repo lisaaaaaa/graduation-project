@@ -28,8 +28,8 @@
 
             </div>
             <div style="padding: 10px;">
-                <Button style="margin-left: 60px;" type="error" ghost>发布博客</Button>
-                <Button style="margin-left: 15px;" type="error" ghost>保存为草稿</Button>
+                <Button style="margin-left: 60px;" type="error" ghost @click="save">发布博客</Button>
+                <!--<Button style="margin-left: 15px;" type="error" ghost>保存为草稿</Button>-->
                 <Button style="margin-left: 15px;" @click="goback">返回</Button>
             </div>
         </div>
@@ -61,6 +61,19 @@
         created() {
         },
         methods: {
+            save(){
+                
+                this.$http.post('http://47.107.125.48:8010/api/v1_0/allergy',{
+                     id:id,
+                 },{emulateJSON:true}).then(function(data){
+                     if(data.status === 200){
+                        this.$Message.success('编辑成功！');
+                     }
+                      console.log(data); 
+                 }).catch(function(error){
+                     this.$Message.success('编辑失败！' + error);
+                });
+            },
             goback(){
                 this.$router.push({name:'article_one',params: {article_title:this.page_title,article_body: this.page_content}})
             },
