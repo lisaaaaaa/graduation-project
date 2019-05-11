@@ -489,7 +489,7 @@
             artical_one(id){
                 // console.log('lisa');
                 // console.log(id);
-                this.$router.push({name:'article_one', params: {article_title:this.artical[id].title,article_body: this.artical[id].content,origin:'forum'}})
+                this.$router.push({name:'article_one', params: {article_title:this.recommend[id].title,article_body: this.recommend[id].content,origin:'forum'}})
          },
             //计算BMI指数
             info (nodesc) {

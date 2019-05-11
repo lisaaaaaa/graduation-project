@@ -220,7 +220,8 @@
                     confirm_password: ''
                 },
                 userdata:{},
-                formValidate: {},ruleValidate: {
+                formValidate: {},
+                ruleValidate: {
                     old_password: [
                         {validator: validatePass1, trigger: 'blur',required: true}
                     ],
@@ -273,37 +274,37 @@
         methods: {
             getData(){
                 this.userdata = {
-                    name: 'lisa',
+                    name: getStore('user_name'),
                     signature:'然而岁月漫长，总之值得等待',
                     email: 'lisa.wow@outlook.com',
                     blood: 'A',
                     sex: '女',
-                    birthday:'2019-02-01',
-                    height:'152',
-                    weight:'42'
+                    birthday:'2019-05-01',
+                    height:'160',
+                    weight:'40'
                 };
-                        this.formValidate = this.userdata;
-                this.$http.get('http://47.107.125.48:8010/api/v1_0/user ',{
-                    params: {
-                        id:'' },},{
-                        emulateJSON: true
-                    }).then(
-                    function (data) {
-                        console.log(data)
-                        this.userdata = {
-                            name: 'lisa',
-                            signature:'然而岁月漫长，总之值得等待',
-                            email: 'lisa.wow@outlook.com',
-                            blood: 'A',
-                            sex: '女',
-                            birthday:'2019-02-01',
-                            height:'152',
-                            weight:'42'
-                        };
-                        this.formValidate = this.userdata;
-                    }).catch(function (error) {
-                        console.log('获取用户信息失败',error);
-                    })
+                //         this.formValidate = this.userdata;
+                // this.$http.get('http://47.107.125.48:8010/api/v1_0/user ',{
+                //     params: {
+                //         id:'' },},{
+                //         emulateJSON: true
+                //     }).then(
+                //     function (data) {
+                //         console.log(data)
+                //         this.userdata = {
+                //             name: 'lisa',
+                //             signature:'然而岁月漫长，总之值得等待',
+                //             email: 'lisa.wow@outlook.com',
+                //             blood: 'A',
+                //             sex: '女',
+                //             birthday:'2019-02-01',
+                //             height:'152',
+                //             weight:'42'
+                //         };
+                //         this.formValidate = this.userdata;
+                //     }).catch(function (error) {
+                //         console.log('获取用户信息失败',error);
+                //     })
             },
 
             change_pwd(){
@@ -316,29 +317,33 @@
 
             edit_msg(){
                 this.edit_person_msg = true;
+                this.formValidate = this.userdata;
             },
             edit_ok(name){
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        this.$http.post('http://47.107.125.48:8010/api/v1_0/user/edit ',{
-                        user_name: this.formValidate.name,   
-                        user_password: this.formItem1.new_password !== "" ? this.formItem1.new_password : this.formItem1.old_password,
-                        signature: this.formValidate.signature,
-                        email: this.formValidate.email,
-                        sex: this.formValidate.sex,    
-                        height: this.formValidate.height,   
-                        weight: this.formValidate.weight,   
-                        birthday: this.formValidate.birthday,  
-                        blood: this.formValidate.blood
-                 },{emulateJSON:true}).then(function(data){
-                     if(data.status === 200){
                         this.$Message.success('修改成功！');
-                     }
-                      console.log(data); 
-                 }).catch(function(error){
-                     this.$Message.success('修改失败！' + error);
-                });
-                        this.modal1 = false;
+                //         this.$http.post('http://47.107.125.48:8010/api/v1_0/user/edit ',{
+                //         user_name: this.formValidate.name,   
+                //         user_password: this.formItem1.new_password !== "" ? this.formItem1.new_password : this.formItem1.old_password,
+                //         signature: this.formValidate.signature,
+                //         email: this.formValidate.email,
+                //         sex: this.formValidate.sex,    
+                //         height: this.formValidate.height,   
+                //         weight: this.formValidate.weight,   
+                //         birthday: this.formValidate.birthday,  
+                //         blood: this.formValidate.blood
+                //  },{emulateJSON:true}).then(function(data){
+                //      if(data.status === 200){
+                //         this.$Message.success('修改成功！');
+                //      }
+                //       console.log(data); 
+                //  }).catch(function(error){
+                //      this.$Message.error('修改失败！' + error);
+                // });
+                //         this.modal1 = false;
+                    }else {
+                        this.$Message.error('请正确填写表单信息！' + error);
                     }
                 })
                 this.edit_person_msg = false;

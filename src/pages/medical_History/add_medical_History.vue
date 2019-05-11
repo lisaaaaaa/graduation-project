@@ -402,27 +402,28 @@
                 console.log('保存')
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        console.log(this.formValidate_ori)
-                        this.$http.post('http://47.107.125.48:8010/api/v1_0/medical_history ',{
-                            user_id: "xxx",
-                            name: this.formValidate_ori.name,
-                            birthday: this.formValidate_ori.date,
-                            diagnosis_time: this.formValidate_ori.treatment_data,
-                            diagnosis_result: this.formValidate_ori.treatment_outcome,
-                            doctor: this.formValidate_ori.doctor,
-                            hospital: this.formValidate_ori.hospital,
-                            remark: this.formValidate_ori.remark,
-                            operation: this.this.data_surgery,
-                            radiotherapy: this.data_radiotherapy, 
-                            },{emulateJSON:true}).then(function(data){
-                        if(data.status === 200){
-                            this.$Message.success('添加成功！');
-                        }
-                        console.log(data); 
-                        }).catch(function(error){
-                         this.$Message.success('添加失败！' + error);
-                        });
-                        this.$router.push({'name':'user'})
+                        this.$Message.success('添加成功！');
+                        // console.log(this.formValidate_ori)
+                        // this.$http.post('http://47.107.125.48:8010/api/v1_0/medical_history ',{
+                        //     user_id: "xxx",
+                        //     name: this.formValidate_ori.name,
+                        //     birthday: this.formValidate_ori.date,
+                        //     diagnosis_time: this.formValidate_ori.treatment_data,
+                        //     diagnosis_result: this.formValidate_ori.treatment_outcome,
+                        //     doctor: this.formValidate_ori.doctor,
+                        //     hospital: this.formValidate_ori.hospital,
+                        //     remark: this.formValidate_ori.remark,
+                        //     operation: this.this.data_surgery,
+                        //     radiotherapy: this.data_radiotherapy, 
+                        //     },{emulateJSON:true}).then(function(data){
+                        // if(data.status === 200){
+                        //     this.$Message.success('添加成功！');
+                        // }
+                        // console.log(data); 
+                        // }).catch(function(error){
+                        //  this.$Message.success('添加失败！' + error);
+                        // });
+                        // this.$router.push({'name':'user'})
                     } else {
                         this.$Message.error('请正确填写表单信息');
             }

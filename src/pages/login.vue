@@ -154,22 +154,29 @@
                     // }).catch(function(error){
                     //  this.$Message.success('登录失败！' + error);
                     // });
-                    }else if(this.change == 2){
-                    this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator/login',{
-                     user_name:this.formCustom.user,
-                     passwd:this.formCustom.passwd
-                 },{emulateJSON:true}).then(function(data){
-                     if(data.status === 200){
+                }else if(this.change == 2){
+                    
                         this.$Message.success('登录成功！');
                         this.$store.commit('login');     //改变token状态
                         setStore('user_name', this.formCustom.user);
                         this.$store.commit('setPower2');    //设置权限，管理员用户
                         this.$router.push({name: 'user_Management', params: {name:this.formCustom.user}});
-                     }
-                      console.log(data); 
-                 }).catch(function(error){
-                     this.$Message.success('登录失败！' + error);
-                });
+
+                //     this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator/login',{
+                //      user_name:this.formCustom.user,
+                //      passwd:this.formCustom.passwd
+                //  },{emulateJSON:true}).then(function(data){
+                //      if(data.status === 200){
+                //         this.$Message.success('登录成功！');
+                //         this.$store.commit('login');     //改变token状态
+                //         setStore('user_name', this.formCustom.user);
+                //         this.$store.commit('setPower2');    //设置权限，管理员用户
+                //         this.$router.push({name: 'user_Management', params: {name:this.formCustom.user}});
+                //      }
+                //       console.log(data); 
+                //  }).catch(function(error){
+                //      this.$Message.success('登录失败！' + error);
+                // });
                     }
                    
 
@@ -252,7 +259,7 @@
 
     .login-card {
         position: relative;
-        width: 360px;
+        width: 385px;
         margin: 0px auto;
         /*width: 360px;*/
         /*height: 360px;*/

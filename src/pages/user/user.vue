@@ -77,8 +77,6 @@
                             <div class="person-signature" style="margin-top: 10px;">
                                 <!--<h1>关于我</h1>-->
                             <span style="margin-top: 10px;">{{ this.signature }}</span>
-                            <span style="margin-top: 10px;">我是一颗小小小小草，怎么长也长也不高。我寻寻觅觅，寻寻觅觅，只为找到一颗太阳，那样就可以又长高。
-                                啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</span>
                             </div>
                             <div class="health-index" style="margin-top: 40px;display:-webkit-inline-box;">
                                 <div class="person-img" style="width:46%;margin-right: 4%">
@@ -590,7 +588,7 @@
         data() {
             return {
                 birthday:'',
-                signature:'',
+                signature:'开心的一天噢',
                 Sports_type:'',
                 sports_time:1,
                 Sports_list:[
@@ -643,6 +641,7 @@
                 ],
                 data_sports:[
                     {
+                        id:'0',
                         type:'跑步',
                         time:'10'
                     }
@@ -684,7 +683,8 @@
                                 },
                                 on: {
                                     click: () => {
-                                        this.remove_medical(params.row.id)
+                                        // this.remove_medical(params.row.id)
+                                        this.remove_medical(params.index)
                                     }
                                 }
                             }, '删除'),
@@ -705,9 +705,14 @@
                 ],
             data_medical:[
                 {
-                    id:'1',
+                    id:'0',
                     time:'2018-01-02',
                     diagnosis:'病毒性感冒引起的呼吸道感染',
+                },
+                {
+                    id:'1',
+                    time:'2019-05-01',
+                    diagnosis:'测试',
                 }
             ],
                 columns1: [
@@ -732,7 +737,8 @@
                                 },
                             on: {
                                 click: () => {
-                                    this.remove_allergen(params.row.id)
+                                    // this.remove_allergen(params.row.id)
+                                    this.remove_allergen(params.index)
                                 }
                              }
                             }, 'Delete')
@@ -742,22 +748,12 @@
                 ],
                 data2: [
                     {
+                        id:'0',
+                        allergen:'海鲜',
+                        medicine:'无',
+                    },
+                    {
                         id:'1',
-                        allergen:'海鲜',
-                        medicine:'无',
-                    },
-                    {
-                        id:'2',
-                        allergen:'海鲜',
-                        medicine:'无',
-                    },
-                    {
-                        id:'3',
-                        allergen:'海鲜',
-                        medicine:'无',
-                    },
-                    {
-                        id:'4',
                         allergen:'海鲜',
                         medicine:'无',
                     },
@@ -864,7 +860,7 @@
             },
 
             deletesports(index){
-                this.data_sports.pop(index); 
+                this.data_sports.splice(index,1); 
             },
 
             //获取用户数据
@@ -958,18 +954,21 @@
 
 //            删除过敏史
             remove_allergen(id){
+                
                 if(confirm("确认删除吗？")){
-                    this.$http.post('http://47.107.125.48:8010/api/v1_0/allergy',{
-                     id:id,
-                 },{emulateJSON:true}).then(function(data){
-                     if(data.status === 200){
-                        this.$Message.success('删除成功！');
-                     }
-                      console.log(data); 
-                 }).catch(function(error){
-                     this.$Message.success('删除失败！' + error);
-                });
-                    console.log('删除' + id)
+                    this.data2.splice(id,1);
+                    this.$Message.success('删除成功！');
+                //     this.$http.post('http://47.107.125.48:8010/api/v1_0/allergy',{
+                //      id:id,
+                //  },{emulateJSON:true}).then(function(data){
+                //      if(data.status === 200){
+                //         this.$Message.success('删除成功！');
+                //      }
+                //       console.log(data); 
+                //  }).catch(function(error){
+                //      this.$Message.success('删除失败！' + error);
+                // });
+                //     console.log('删除' + id)
                 }
             },
 //            添加过敏史
@@ -977,28 +976,34 @@
                 this.allergies_modal = true;
             },
             allergies_ok(name){
-                this.$refs[name].validate((valid) => {
-                    if (valid) {
-                        this.$http.post('http://47.107.125.48:8010/api/v1_0/allergy',{
-                             user_id: this.formValidate,
-                             allergy_source: this.formValidate.name,
-                             medicine: this.formValidate.medical
-                            },{emulateJSON:true}).then(function(data){
-                        if(data.status === 200){
-                            this.$Message.success('添加成功！');
-                            this.data2.push(this.formValidate);
-                            this.getAllergy();
-                        }
-                        console.log(data); 
-                        }).catch(function(error){
-                         this.$Message.success('添加失败！' + error);
-                        });
-                        console.log(this.formValidate)
-//                        this.$Message.success('Success!');
-                    } else {
-                        this.$Message.error('请正确填写表单信息');
-                    }
-                })
+                console.log(name);
+                this.data2.push({
+                    allergen: this.formValidate.name,
+                    medicine: this.formValidate.medical
+                });
+                this.allergies_modal = false;
+//                 this.$refs[name].validate((valid) => {
+//                     if (valid) {
+//                         this.$http.post('http://47.107.125.48:8010/api/v1_0/allergy',{
+//                              user_id: this.formValidate,
+//                              allergy_source: this.formValidate.name,
+//                              medicine: this.formValidate.medical
+//                             },{emulateJSON:true}).then(function(data){
+//                         if(data.status === 200){
+//                             this.$Message.success('添加成功！');
+//                             this.data2.push(this.formValidate);
+//                             this.getAllergy();
+//                         }
+//                         console.log(data); 
+//                         }).catch(function(error){
+//                          this.$Message.success('添加失败！' + error);
+//                         });
+//                         console.log(this.formValidate)
+// //                        this.$Message.success('Success!');
+//                     } else {
+//                         this.$Message.error('请正确填写表单信息');
+//                     }
+//                 })
             },
             allergies_cancel(){
                 this.allergies_modal = false;
@@ -1006,23 +1011,28 @@
 
 //            删除病史
             remove_medical(id){
+                console.log(id);
+
                 if(confirm("确认删除吗？")){
-                    console.log('删除' + id)
-                    this.$http.post('http://47.107.125.48:8010/api/v1_0/medical_history ',{
-                     id:id,
-                 },{emulateJSON:true}).then(function(data){
-                     if(data.status === 200){
-                        this.$Message.success('删除成功！');
-                     }
-                      console.log(data); 
-                 }).catch(function(error){
-                     this.$Message.success('删除失败！' + error);
-                });
+                    this.data_medical.splice(id,1);
+                    console.log(this.data_medical);
+                    this.$Message.success('删除成功！');
+                //     console.log('删除' + id)
+                //     this.$http.post('http://47.107.125.48:8010/api/v1_0/medical_history ',{
+                //      id:id,
+                //  },{emulateJSON:true}).then(function(data){
+                //      if(data.status === 200){
+                //         this.$Message.success('删除成功！');
+                //      }
+                //       console.log(data); 
+                //  }).catch(function(error){
+                //      this.$Message.success('删除失败！' + error);
+                // });
                 }
             },
 
             detail_medical(id){
-                this.$router.push({'name':'medical_History',params: {id: id}})
+                this.$router.push({'name':'medical_History',params: {id: id,name: this.user_name, date: this.birthday}})
             },
 
 //            添加病史
@@ -1046,20 +1056,20 @@
                         time:this.getNowFormatDate(),
                         msg:this.leave_comments
                     })
-                    this.$http.post('http://47.107.125.48:8010/api/v1_0/feedback ',{
-                        user_id: "xxx",    
-                        level_msg: "xx",  
-                        email: "xx",
-                        mobilephone: "xxx",
-                        user_name: "xxx" 
-                    },{emulateJSON:true}).then(function(data){
-                     if(data.status === 200){
-                        this.$Message.success('留言成功！');
-                     }
-                      console.log(data); 
-                    }).catch(function(error){
-                     this.$Message.success('留言失败！' + error);
-                    });
+                    // this.$http.post('http://47.107.125.48:8010/api/v1_0/feedback ',{
+                    //     user_id: "xxx",    
+                    //     level_msg: "xx",  
+                    //     email: "xx",
+                    //     mobilephone: "xxx",
+                    //     user_name: "xxx" 
+                    // },{emulateJSON:true}).then(function(data){
+                    //  if(data.status === 200){
+                    //     this.$Message.success('留言成功！');
+                    //  }
+                    //   console.log(data); 
+                    // }).catch(function(error){
+                    //  this.$Message.success('留言失败！' + error);
+                    // });
                 }
             },
             //获取当前时间

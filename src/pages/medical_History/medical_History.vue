@@ -8,16 +8,16 @@
                <div class="basic" style="background: #dcdee2">
                    <div class="medical-body-basic-msg" style="display: flex;padding: 15px">
                        <div class="msg">
-                           <span class="msg-name">姓名：</span><span class="msg-other">啦啦</span>
+                           <span class="msg-name">姓名：</span><span class="msg-other"> {{ this.$route.params.name }}</span>
                        </div>
                        <div class="msg">
-                           <span class="msg-name">出生日期：</span><span class="msg-other">2010-01-07</span>
+                           <span class="msg-name">出生日期：</span><span class="msg-other">{{ this.$route.params.date }}</span>
                        </div>
                        <div class="msg">
-                           <span class="msg-name">诊断时间：</span><span class="msg-other">2018-01-07</span>
+                           <span class="msg-name">诊断时间：</span><span class="msg-other">{{ this.basic_data.time }}</span>
                        </div>
                        <div class="msg">
-                           <span class="msg-name">诊疗结果：</span><span class="msg-other">病毒性感冒引起的呼吸道感染</span>
+                           <span class="msg-name">诊疗结果：</span><span class="msg-other">{{ this.basic_data.result }}</span>
                        </div>
                        <!--<div class="msg">-->
                        <!--<span class="msg-name">诊断时间：</span><span class="msg-other">2018-01-07</span>-->
@@ -25,13 +25,13 @@
                    </div>
                    <div class="medical-body-basic-msg" style="display: flex;padding: 15px">
                        <div class="msg">
-                           <span class="msg-name">医师：</span><span class="msg-other">小熊医生</span>
+                           <span class="msg-name">医师：</span><span class="msg-other">{{ this.basic_data.doctor }}</span>
                        </div>
                        <div class="msg">
-                           <span class="msg-name">就诊医院：</span><span class="msg-other">四川省人民医院</span>
+                           <span class="msg-name">就诊医院：</span><span class="msg-other">{{ this.basic_data.hispital }}</span>
                        </div>
                        <div class="msg">
-                           <span class="msg-name">备注：</span><span class="msg-other">内容包含主诉、诊断、治疗史信息供治疗参考</span>
+                           <span class="msg-name">备注：</span><span class="msg-other">{{ this.basic_data.other }}</span>
                        </div>
                    </div>
                </div>
@@ -102,6 +102,15 @@
                 treatment_name_surgery_value:'ok',
                 treatment_name_radiotherapy_value:'ok',
                 user_name:'',
+                basic_data : 
+                    {
+                        doctor: '陈医生',
+                        time: '2019-5-1',
+                        result: '病毒性感冒引起的呼吸道感染',
+                        hispital: '四川省人民医院',
+                        other: '内容包含主诉、诊断、治疗史信息供治疗参考'
+                    }
+                ,
                 columns_surgery: [
                     {
                         title: '序号',

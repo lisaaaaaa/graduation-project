@@ -83,9 +83,9 @@
                 <div class="">
                     <div>
                         <Form ref="formReset" :model="formReset" :rules="ruleReset" :label-width="100">
-                            <FormItem label="账号：" prop="name">
+                            <!--<FormItem label="账号：" prop="name">
                                 <span>{{ this.formReset.admin_name}}</span>
-                            </FormItem>
+                            </FormItem>-->
                             <FormItem label="密码：" prop="pass">
                                 <Input v-model="formReset.pass" type="password" placeholder="输入密码" style="width:400px;"></Input>
                             </FormItem>
@@ -320,7 +320,20 @@
                         ]
                     },
                 ],
-                table_data:[],
+                table_data:[
+                    {
+                        name: 'lisa',
+                        email: 'lisa.wow@outlook.com',
+                        remark: '开心的一天哦',
+                        enable: '启用'
+                    },
+                     {
+                        name: 'test',
+                        email: 'lisa.wow@outlook.com',
+                        remark: '开心的一天哦',
+                        enable: '启用'
+                    }
+                ],
                 table_columns:[
                     {
                         type: 'selection',
@@ -363,24 +376,24 @@
 //                     },data.row.contact)
 //                 }
 //             },
-            {
-                title: '电话',
-                        key: 'telephone',
-//                width: 80,
-                    render:(create,data) => {
-                return create('div',{
-                    style: {
-                        width: '100%',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap'
-                    },
-                    domProps: {
-                        title:data.row.telephone
-                    }
-                },data.row.telephone)
-            }
-            },
+//             {
+//                 title: '电话',
+//                         key: 'telephone',
+// //                width: 80,
+//                     render:(create,data) => {
+//                 return create('div',{
+//                     style: {
+//                         width: '100%',
+//                         overflow: 'hidden',
+//                         textOverflow: 'ellipsis',
+//                         whiteSpace: 'nowrap'
+//                     },
+//                     domProps: {
+//                         title:data.row.telephone
+//                     }
+//                 },data.row.telephone)
+//             }
+//             },
             {
                 title: '邮箱',
                         key: 'email',
@@ -577,45 +590,53 @@
                 this.$refs[name].validate((valid) => {
                     if (valid) {
                         var x = this.formValidate
-                        this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator',{
-                        user_name: x.name,
-                        passwd: x.passwd,
-                        email: x.mail,
-                        contact: x.contact,
-                        telephone: x.phone,
-                        remark: x.remarks,
-                        enable: x.enable == true ? '启用' : '禁用',
-                        },{emulateJSON:true}).then(function(data){
-                        if(data.status === 200){
+                        this.table_data.push({
+                            name: x.name,
+                            passwd: x.passwd,
+                            email: x.mail,
+                            remark: x.remarks,
+                            enable: x.enable == true ? '启用' : '禁用',
+                        })
                         this.$Message.success('添加成功！');
-                        this.modal_add = false;
-                        }
-                        //  console.log(data); 
-                        }).catch(function(error){
-                            this.$Message.success('添加失败！' + error);
-                        });
+                        // var x = this.formValidate
+                        // this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator',{
+                        // user_name: x.name,
+                        // passwd: x.passwd,
+                        // email: x.mail,
+                        // contact: x.contact,
+                        // telephone: x.phone,
+                        // remark: x.remarks,
+                        // enable: x.enable == true ? '启用' : '禁用',
+                        // },{emulateJSON:true}).then(function(data){
+                        // if(data.status === 200){
+                        // this.$Message.success('添加成功！');
+                        // this.modal_add = false;
+                        // }
+                        // //  console.log(data); 
+                        // }).catch(function(error){
+                        //     this.$Message.success('添加失败！' + error);
+                        // });
                     } else {
                         this.$Message.error('请正确填写表单!');
                 }
             })
             this.getStore();
             },
-            getStore (){
-
-            },
             delete(admin_ids){
                 var self = this;
                 if(confirm("确认要删除用户吗？")){
+                    this.table_data.splice(admin_ids,1);
+                    this.$Message.success('删除成功！');
                     //   console.log('admin_ids' + admin_ids);
-                      this.$http.post('http://47.107.125.48:8010/api/v1_0/user/delete',{
-                            id: admin_ids,
-                        },{emulateJSON:true}).then(function(data){
-                        if(data.status === 200){
-                        this.$Message.success('删除成功！');
-                        }
-                        }).catch(function(error){
-                            this.$Message.success('删除失败！' + error);
-                        });
+                    //   this.$http.post('http://47.107.125.48:8010/api/v1_0/user/delete',{
+                    //         id: admin_ids,
+                    //     },{emulateJSON:true}).then(function(data){
+                    //     if(data.status === 200){
+                    //     this.$Message.success('删除成功！');
+                    //     }
+                    //     }).catch(function(error){
+                    //         this.$Message.success('删除失败！' + error);
+                    //     });
                 }else{
                     self.selection = [];
                 }
@@ -624,18 +645,19 @@
             disable(admin_ids, name){
                 var self = this;
                 if(confirm("确认要禁用吗？")){
+                    this.$Message.success('禁用成功！');
                     console.log('admin_ids' + admin_ids);
                     // console.log('enable' + name);
-                      this.$http.post('http://47.107.125.48:8010/api/v1_0/user/enable',{
-                            id: admin_ids,
-                            enable: name,
-                        },{emulateJSON:true}).then(function(data){
-                        if(data.status === 200){
-                        this.$Message.success('禁用成功！');
-                        }
-                        }).catch(function(error){
-                            this.$Message.success('禁用失败！' + error);
-                        });
+                    //   this.$http.post('http://47.107.125.48:8010/api/v1_0/user/enable',{
+                    //         id: admin_ids,
+                    //         enable: name,
+                    //     },{emulateJSON:true}).then(function(data){
+                    //     if(data.status === 200){
+                    //     this.$Message.success('禁用成功！');
+                    //     }
+                    //     }).catch(function(error){
+                    //         this.$Message.success('禁用失败！' + error);
+                    //     });
                 }else{
                     self.selection = [];
                 }
@@ -647,30 +669,32 @@
                 this.modal_reset = true;
             },
             reset_ok(){
-                this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator/password',{
-                    id: this.formReset.admin_id,
-                    passwd: this.formReset.newpass,
-                },{emulateJSON:true}).then(function(data){
-                    if(data.status === 200){
-                        this.$Message.success('重置成功！');
-                        }
-                        }).catch(function(error){
-                            this.$Message.success('重置失败！' + error);
-                        });
+                this.$Message.success('重置成功！');
                 this.modal_reset = false;
-                self.getStore();
+                // this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator/password',{
+                //     id: this.formReset.admin_id,
+                //     passwd: this.formReset.newpass,
+                // },{emulateJSON:true}).then(function(data){
+                //     if(data.status === 200){
+                //         this.$Message.success('重置成功！');
+                //         }
+                //         }).catch(function(error){
+                //             this.$Message.success('重置失败！' + error);
+                //         });
+                // this.modal_reset = false;
+                // self.getStore();
             },
             reset_cancel(){
                 this.modal_reset = false;
             },
             getStore(){
-                this.$http.get('http://47.107.125.48:8010/api/v1_0/user').then(
-                    function (data) {
-                        this.table_data = data.body.detail;
-                        console.log(data)
-                    }).catch(function (error) {
-                        console.log(error)
-                    })
+                // this.$http.get('http://47.107.125.48:8010/api/v1_0/user').then(
+                //     function (data) {
+                //         this.table_data = data.body.detail;
+                //         console.log(data)
+                //     }).catch(function (error) {
+                //         console.log(error)
+                //     })
             },
 
         },

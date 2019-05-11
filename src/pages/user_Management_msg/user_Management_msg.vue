@@ -84,7 +84,7 @@
                                 },
                                 on: {
                                     click: () => {
-                                        this.remove(params.row.user_id)
+                                        this.remove(params.index)
                                     }
                                 }
                             }, '删除')
@@ -94,14 +94,14 @@
                 ],
                 data:[
                     {
-                        userid:'1',
+                        userid:'0',
                         name: 'John Brown',
                         phone: 1871231456,
                         email: 'lisa.wow@outlook.com',
                         msg:'我留了一次言，留言内容测试'
                     },
                     {
-                        userid:'2',
+                        userid:'1',
                         name: 'Lisa',
                         phone: 879654130,
                         email: 'lisa.wow@outlook.com',
@@ -113,6 +113,13 @@
                         phone: 879654130,
                         email: 'lisa.wow@outlook.com',
                         msg:'第一次访问留言测试系统'
+                    },
+                     {
+                        userid:'3',
+                        name: 'lisa',
+                        phone: 13551219898,
+                        email: 'lisa.wow@outlook.com',
+                        msg:'test'
                     },
                 ],
             }
@@ -131,18 +138,19 @@
                 this.index = index;
             },
             del_ok(){
-                console.log(this.index)
+                this.data.splice(this.index,1);
+                this.$Message.success('删除成功！');
                 // this.modal_loading = true;
-                 this.$http.post('http://47.107.125.48:8010/api/v1_0/level_msg ',{
-                     id:this.index,
-                 },{emulateJSON:true}).then(function(data){
-                     if(data.status === 200){
-                        this.$Message.success('删除成功！');
-                     }
-                      console.log(data); 
-                 }).catch(function(error){
-                     this.$Message.success('删除失败！' + error);
-                });
+                //  this.$http.post('http://47.107.125.48:8010/api/v1_0/level_msg ',{
+                //      id:this.index,
+                //  },{emulateJSON:true}).then(function(data){
+                //      if(data.status === 200){
+                //         this.$Message.success('删除成功！');
+                //      }
+                //       console.log(data); 
+                //  }).catch(function(error){
+                //      this.$Message.success('删除失败！' + error);
+                // });
             this.modal = false;
             this.getStore();
             },

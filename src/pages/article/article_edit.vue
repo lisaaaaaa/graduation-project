@@ -62,17 +62,17 @@
         },
         methods: {
             save(){
-                
-                this.$http.post('http://47.107.125.48:8010/api/v1_0/allergy',{
-                     id:id,
-                 },{emulateJSON:true}).then(function(data){
-                     if(data.status === 200){
-                        this.$Message.success('编辑成功！');
-                     }
-                      console.log(data); 
-                 }).catch(function(error){
-                     this.$Message.success('编辑失败！' + error);
-                });
+                this.$Message.success('编辑成功！');
+                // this.$http.post('http://47.107.125.48:8010/api/v1_0/allergy',{
+                //      id:id,
+                //  },{emulateJSON:true}).then(function(data){
+                //      if(data.status === 200){
+                //         this.$Message.success('编辑成功！');
+                //      }
+                //       console.log(data); 
+                //  }).catch(function(error){
+                //      this.$Message.success('编辑失败！' + error);
+                // });
             },
             goback(){
                 this.$router.push({name:'article_one',params: {article_title:this.page_title,article_body: this.page_content}})

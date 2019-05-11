@@ -112,13 +112,14 @@
                 this.$router.push({name:'index'})
             },
             getNumber(){
-                 this.$http.get('http://47.107.125.48:8010/api/v1_0/level_msg').then(
-                    function (data) {
-                        this.msgcount = data.body.detail.length;
-                        console.log(data)
-                    }).catch(function (error) {
-                        console.log(error)
-                    })
+                // this.msgcount = 3;
+                //  this.$http.get('http://47.107.125.48:8010/api/v1_0/level_msg').then(
+                //     function (data) {
+                //         this.msgcount = data.body.detail.length;
+                //         console.log(data)
+                //     }).catch(function (error) {
+                //         console.log(error)
+                //     })
             }
 
 

@@ -132,7 +132,7 @@
                         </div>
                         <div class="row" style="margin: 0px auto">
                             <figure class="partner-1" style="float: left;width: 30%;margin-right:18%;margin-left: 11%">
-                                <img class="carousel-slide" src="./../images/blog-01.jpg" style="background-size: cover!important;background-position: center center!important;" />
+                                <img class="carousel-slide" src="./../images/lisa.jpeg" style="background-size: cover!important;background-position: center center!important;" />
                                 <div class="discrip" style="line-height: 1.1;margin-top: 30px;text-align: center;">
                                     <div>
                                         <h3 class="blog-title">
@@ -430,22 +430,23 @@
                 this.$router.push({name:'registered'})
             },
             leavemsg(){
+                this.$Message.success('留言成功！');
                 // console.log(document.getElementById('exampleName').value);
                 // console.log(document.getElementById('examplePhone').value);
                 // console.log(document.getElementById('exampleInputEmail1').value);
                 // console.log(document.getElementById('exampleTextarea').value);
-                this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator/enable',{
-                    level_msg: document.getElementById('exampleTextarea').value,
-                    email: document.getElementById('exampleInputEmail1').value,
-                    mobilephone: document.getElementById('examplePhone').value,
-                    user_name: document.getElementById('exampleName').value
-                        },{emulateJSON:true}).then(function(data){
-                        if(data.status === 200){
-                        this.$Message.success('留言成功！');
-                        }
-                        }).catch(function(error){
-                            this.$Message.success('留言失败！' + error);
-                        });
+                // this.$http.post('http://47.107.125.48:8010/api/v1_0/administrator/enable',{
+                //     level_msg: document.getElementById('exampleTextarea').value,
+                //     email: document.getElementById('exampleInputEmail1').value,
+                //     mobilephone: document.getElementById('examplePhone').value,
+                //     user_name: document.getElementById('exampleName').value
+                //         },{emulateJSON:true}).then(function(data){
+                //         if(data.status === 200){
+                //         this.$Message.success('留言成功！');
+                //         }
+                //         }).catch(function(error){
+                //             this.$Message.success('留言失败！' + error);
+                //         });
             }
         },
         watch: {

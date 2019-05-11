@@ -26,7 +26,7 @@
             </Form>
 
             <div class="footer" style="float: right">
-                <!--<Button type="primary" size="large" @click="edit_ok('formValidate')" class="tdrcvp_btn">修改</Button>-->
+                <Button type="primary" size="large" @click="edit_ok('formValidate')" class="tdrcvp_btn">修改</Button>
                 <Button type="primary" ghost size="large" @click="edit_cancel" class="tdrcvp_btn">返回</Button>
             </div>
         </div>
@@ -203,9 +203,12 @@
         },
         methods: {
             edit_ok(name){
+                console.log(name);
                 var self = this;
                 self.$refs[name].validate((valid) => {
                     if (valid) {
+                        this.formValidate.name = this.formValidate.name;
+                        setStore('user_name',this.formValidate.name);
                         self.$Message.success('修改成功')
                     }
                 })
